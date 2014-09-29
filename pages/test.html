@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/ol.css" type="text/css">
+
+    <script src="../scripts/ol-debug.js" type="text/javascript"></script>
+
+    <style type="text/css">
+        /**
+         * The zoomslider in the second map shall be placed between the zoom-in and
+         * zoom-out buttons.
+         */
+        #map2 .ol-zoom .ol-zoom-out {
+            margin-top: 202px;
+        }
+        #map2 .ol-zoomslider {
+            background-color: transparent;
+            top: 2.3em;
+        }
+
+        #map2 .ol-touch .ol-zoom .ol-zoom-out {
+            margin-top: 212px;
+        }
+        #map2 .ol-touch .ol-zoomslider {
+            top: 2.75em;
+        }
+
+        /**
+         * The zoomslider in the third map shall be horizontal, placed in the top-right
+         * corner, smaller and orange.
+         */
+        #map3 .ol-zoomslider {
+            top: 8px;
+            left: auto;
+            right: 8px;
+            background-color: rgba(255,69,0,0.2);
+            width: 200px;
+            height: 15px;
+            padding: 0;
+            box-shadow: 0 0 5px rgb(255,69,0);
+            border-radius: 20px;
+        }
+
+        #map3 .ol-zoomslider:hover {
+            background-color: rgba(255,69,0,0.3);
+        }
+
+        #map3 .ol-zoomslider-thumb {
+            height: 15px;
+            width: 15px;
+            margin: 0;
+            filter: none;
+            background-color: rgba(255,69,0,0.6);
+            border-radius: 20px;
+        }
+        #map3 a.ol-zoomslider-handle:hover {
+            background-color: rgba(255,69,0,0.7);
+        }
+    </style>
+</head>
+<body>
+    <div id="map1"></div>
+    <div id="map2"></div>
+    <div id="map3"></div>
+
+    <script type="text/javascript">
+        /**
+         * Helper method for map-creation.
+         *
+         * @param {string} divId The id of the div for the map.
+         * @return {ol.Map} The ol.Map instance.
+         */
+        var createMap = function(divId) {
+            var source, layer, map, zoomslider, resolutions;
+
+            source = new ol.source.MapQuest({layer: 'sat'});
+            layer = new ol.layer.Tile({
+                source: source
+            });
+            map = new ol.Map({
+                layers: [layer],
+                target: divId,
+                view: new ol.View({
+                    center: [0, 0],
+                    zoom: 2
+                })
+            });
+            zoomslider = new ol.control.ZoomSlider();
+            map.addControl(zoomslider);
+            return map;
+        };
+
+        var map1 = createMap('map1');
+        var map2 = createMap('map2');
+        var map3 = createMap('map3');
+    </script>
+</body>
+</html>
