@@ -86,6 +86,9 @@
             position: absolute;
             top: .5em;
             right: .5em;
+            background: rgba(255, 255, 255, .7);
+            width: 35px;
+            height: 258px;
         }
 
     </style>
@@ -177,8 +180,9 @@
      });*/
 
     /**********************************************************
-     * 定义操作菜单
+     * 定义操作菜单按钮
      **********************************************************/
+    //图层切换按钮
     $('#layerGroupMenu').append('<button class="btnLayerChoose" value="baseMap">行政区划地图</button>');
     $('#layerGroupMenu').append('<button class="btnLayerChoose" value="aerialMapBing">卫星图</button>');
     $('#layerGroupMenu').append('<button class="btnLayerChoose" value="aerialWithLabelMapBing">标注卫星图</button>');
@@ -201,6 +205,9 @@
             this.focus();
         }
     })//初始化设定，默认显示行政区划地图
+
+    //业务菜单按钮
+
 
     /**********************************************************
      * 合成地图
