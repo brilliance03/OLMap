@@ -52,8 +52,8 @@
             left: 40%;
         }
         .btnLayerChoose {
-            border-radius: 5px;
-            height: 30px;
+            border-radius: 4px;
+            height: 25px;
             width: 100px;
             background: rgba(0, 60, 136, .5);
             color: #FFFFFF;
@@ -75,10 +75,17 @@
         }
         .btnLayerChoose:hover {
             background: rgba(0, 60, 136, .7);
+            color: #FFFFFF;
         }
         .btnLayerChoose:active {
             background: rgba(255, 255, 255, .7);
             color: rgba(0, 60, 136, .7);
+        }
+
+        #bizMenu{
+            position: absolute;
+            top: .5em;
+            right: .5em;
         }
 
     </style>
@@ -126,7 +133,13 @@
      **********************************************************/
     layers.baseMap = new ol.layer.Tile({
         source: new ol.source.XYZ({
-            url: 'http://emap{1-3}.mapabc.com/mapabc/maptile?&x={x}&y={y}&z={z}'
+            url: 'http://emap{1-3}.mapabc.com/mapabc/maptile?&x={x}&y={y}&z={z}',
+            attributions: [
+                new ol.Attribution({
+                    html: '交付中心 © ' +
+                            '<a href="http://www.sinosoft.com.cn/">中科软科技股份有限公司</a>'
+                })
+             ]
         })
     }); //定义底图层
 
@@ -166,12 +179,28 @@
     /**********************************************************
      * 定义操作菜单
      **********************************************************/
-    $('#layerGroupMenu').append('<button class="btnLayerChoose">行政区划地图</button>');
-    $('#layerGroupMenu').append('<button class="btnLayerChoose">卫星图</button>');
-    $('#layerGroupMenu').append('<button class="btnLayerChoose">标注卫星图</button>');
-     layers.aerialMapBing.setVisible(false);
-     layers.aerialWithLabelMapBing.setVisible(false);
+    $('#layerGroupMenu').append('<button class="btnLayerChoose" value="baseMap">行政区划地图</button>');
+    $('#layerGroupMenu').append('<button class="btnLayerChoose" value="aerialMapBing">卫星图</button>');
+    $('#layerGroupMenu').append('<button class="btnLayerChoose" value="aerialWithLabelMapBing">标注卫星图</button>');
 
+    $('button.btnLayerChoose').click(function(){
+        var flgVisiable = false;
+        for(var key in layers){
+            if(key == this.value){
+                flgVisiable = true;
+            }else{
+                flgVisiable = false;
+            }
+            layers[key].setVisible(flgVisiable);
+    }
+    });//设定按钮切换方法
+
+    $.each($('button.btnLayerChoose'), function () {
+        if(this.value == 'baseMap'){
+            this.click();
+            this.focus();
+        }
+    })//初始化设定，默认显示行政区划地图
 
     /**********************************************************
      * 合成地图
