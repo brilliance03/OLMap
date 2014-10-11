@@ -1,0 +1,135 @@
+html,body
+{
+    height: 100%; margin: 0; padding: 0;
+}
+#map
+{
+    height: 100%; width: 100%; position:absolute; top:0; bottom:0;
+}
+#map .ol-zoom .ol-zoom-out {
+    margin-top: 202px;
+}
+#map .ol-zoomslider {
+    background-color: transparent; top: 2.3em;
+}
+
+#map .ol-touch .ol-zoom .ol-zoom-out {
+    margin-top: 212px;
+}
+#map .ol-touch .ol-zoomslider {
+    top: 2.75em;
+}
+
+#mousePosition {
+    width: 125px;
+    height: 33px;
+    text-align: left;
+    font-size: 14px;
+    background: rgba(0, 60, 136, .3);
+    border-radius: 4px;
+    bottom: 35px;
+    left: 8px;
+    padding: 0 2px;
+    position: absolute;
+    border: 1px solid #eee;
+    border-top: none;
+    color: #eee;
+    margin: 1px;
+}
+#layerGroupMenuBar {
+    position: absolute;
+    top: .5em;
+    left: 40%;
+}
+.btnLayerChoose {
+    border-radius: 4px;
+    height: 25px;
+    width: 100px;
+    background: rgba(0, 60, 136, .5);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 1px;
+    padding: 0;
+    line-height: .4em;
+    border: none;
+    box-shadow: 2px 2px 4px #7d7c7d;
+
+}
+.btnLayerChooseAfterClick {
+    border-radius: 4px;
+    height: 25px;
+    width: 100px;
+    background: rgba(255, 255, 255, .7);
+    color: rgba(0, 60, 136, .7);
+    font-size: 14px;
+    font-weight: 700;
+    margin: 1px;
+    padding: 0;
+    line-height: .4em;
+    border: none;
+    box-shadow: 2px 2px 4px #7d7c7d;
+
+}
+
+.btnLayerChoose:hover {
+    background: rgba(0, 60, 136, .7);
+    color: #FFFFFF;
+}
+
+.bizMenuBar{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+.btnBizMenu{
+    box-shadow: 2px 2px 4px #7d7c7d;
+    display: block;
+    border-radius: 4px;
+    position: relative;
+    pointer-events: auto;
+    margin: .5em .5em .5em auto;
+    width: 37px;
+}
+.btnBizMenu:hover {
+   width: 126px;
+}
+
+.btnBizMenu a {
+    background: rgba(0, 60, 136, .5);
+    width: 37px;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.btnBizMenu a:hover {
+    background: rgba(0, 60, 136, .7);
+    box-shadow: 0 1px 6px 3px rgba(0, 153, 255, 0.5);
+    width: 126px;
+}
+
+.btnBizMenu a:hover span{
+    display: inline;
+}
+
+.btnBizMenu span{
+    display: none;
+}
+/*
+.btnBizMenu i{
+    color: white;
+}*/
+
+.menu-icon-red{
+    color:red;
+}
