@@ -81,6 +81,12 @@
         </a>
     </div>
 </div>
+<div id="savePictureBar" class="ol-attribution ol-unselectable ol-control ol-collapsed savePictureBar">
+    <a class="ol-has-tooltip" download="map.png" id="test">
+        <i class="fa fa-floppy-o"></i>
+        <span role="tooltip">保存地图为图片</span>
+    </a>
+</div>
 
 <script type="text/javascript">
     /**********************************************************
@@ -175,6 +181,24 @@
             changeStyle(element.id, element.value == value ? 'btnLayerChooseAfterClick' : 'btnLayerChoose');
         });
     });//设定按钮切换方法
+
+    //定义保存图片按钮的点击事件
+    var exportPNGElement = document.getElementById("test");
+    if ('download' in exportPNGElement) {
+        exportPNGElement.addEventListener('click', function(e) {
+            map.once('postcompose', function(event) {
+                var canvas = event.context.canvas;
+                exportPNGElement.href = canvas.toDataURL('image/png');
+            });
+            map.renderSync();
+        }, false);
+    } else {
+        var info = document.getElementById('no-download');
+        /**
+         * display error message
+         */
+        info.style.display = '';
+    }
 
     //定义业务菜单按钮的点击事件
     $('#lnkDisasterLocation').on('click',function(){
