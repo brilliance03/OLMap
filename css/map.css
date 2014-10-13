@@ -92,7 +92,7 @@ html,body
     position: relative;
     pointer-events: auto;
     margin: .5em .5em .5em auto;
-    width: 37px;
+    width: 30px;
 }
 .btnBizMenu:hover {
    width: 126px;
@@ -100,7 +100,7 @@ html,body
 
 .btnBizMenu a {
     background: rgba(0, 60, 136, .5);
-    width: 37px;
+    width: 30px;
     height: 30px;
     line-height: 30px;
     display: block;
