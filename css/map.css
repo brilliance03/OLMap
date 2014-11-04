@@ -117,7 +117,6 @@ html,body
     box-shadow: 0 1px 6px 3px rgba(0, 153, 255, 0.5);
     width: 126px;
 }
-
 .btnBizMenu a:hover span{
     display: inline;
 }
@@ -139,3 +138,33 @@ html,body
     right: 0.5em;
     text-align: right;
 }
+
+/* 鼠标点击弹出圆形业务菜单 Begin*/
+.radius {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #ff4400;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: transform .2s ease-out;
+    box-sizing: border-box;
+    padding: 6px 3px 4px 7px;
+    box-shadow: 0 1px 3px rgba(255, 255, 255, .6) inset;
+}
+.radius i {
+    font-size: 18px;
+    color: #ffffff;
+}
+.radius-scale {
+    opacity: 1;
+    transform: scale(1);
+}
+.radius:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+/* 鼠标点击弹出圆形业务菜单 End*/
