@@ -139,6 +139,16 @@ html,body
     text-align: right;
 }
 
+#modeSwitchBar {
+    position: absolute;
+    top: .5em;
+    left: 60%;
+}
+
+#btnModeSwitch{
+    margin-left: 50px;
+}
+
 /* 鼠标点击弹出圆形业务菜单 Begin*/
 .radius {
     width: 30px;

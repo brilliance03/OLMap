@@ -19,8 +19,10 @@
 <div id="layerGroupMenuBar" class="ol-unselectable">
     <button class="btnLayerChoose" id="btnBaseMap" value="baseMap">行政区划地图</button>
     <button class="btnLayerChoose" id="btnAerialMap" value="aerialMapBing" title="此图层需要互联网连接才可显示">卫星图</button>
-    <button class="btnLayerChoose" id="btnAerialLabelMap" value="aerialWithLabelMapBing" title="此图层需要互联网连接才可显示">标注卫星图
-    </button>
+    <button class="btnLayerChoose" id="btnAerialLabelMap" value="aerialWithLabelMapBing" title="此图层需要互联网连接才可显示">标注卫星图</button>
+</div>
+<div id="modeSwitchBar" class="ol-unselectable">
+    <button class="btnLayerChoose" id="btnModeSwitch" title="在浏览模式与业务模式之间切换" value="browse">浏览模式</button>
 </div>
 <div class="ol-unselectable bizMenuBar">
     <div class="btnBizMenu">
@@ -219,6 +221,11 @@ $('#layerGroupMenuBar>button').click(function () {
     });
 });//设定按钮切换方法
 
+//定义模式切换按钮
+$('#btnModeSwitch').click(function () {
+    alert($('#btnModeSwitch').text());
+});
+
 //定义业务菜单按钮的点击事件
 $('#lnkDisasterLocation').on('click', function () {
     alert(this.title);
@@ -263,7 +270,7 @@ layers.vectorLayers.provinceBounds.setVisible(false); //默认不显示矢量图
 /**********************************************************
  * 绑定鼠标业务菜单操作，默认为浏览模式
  **********************************************************/
-$(document).click(function (e) {
+$('#map').click(function (e) {
     var $items = $('.radius');
     $items.removeClass('radius-scale');
     setTimeout(function () {
