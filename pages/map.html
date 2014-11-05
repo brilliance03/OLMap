@@ -7,16 +7,22 @@
     <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../css/map.css" type="text/css">
     <link rel="stylesheet" href="../css/jquery.qtip.min.css" type="text/css">
-
-    <script src="../scripts/ol-debug.js" type="text/javascript"></script>
-    <script src="../scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="../scripts/jquery.qtip.min.js" type="text/javascript"></script>
-
 </head>
 <body>
 <div id="map"></div>
-<div id="mapOperation" class="ol-unselectable">
-    <a href="#"><i class="fa fa-globe"></i></a>
+<div id="mapOperationBar" class="ol-unselectable">
+    <a href="#" id="mapOperation"><i class="fa fa-globe"></i></a>
+</div>
+<div style="display: none">
+   <fieldset>
+        <legend>测量</legend>
+       <a href="javascript:;" id="measureDistance">测量距离</a>
+       <a href="javascript:;" id="measureArea">测量面积</a>
+   </fieldset>
+    <p/>
+    <fieldset>
+        <legend>标绘</legend>
+    </fieldset>
 </div>
 <div id="mousePosition" class="ol-unselectable"></div>
 <div id="layerGroupMenuBar" class="ol-unselectable">
@@ -83,6 +89,12 @@
 <div class="radius"><i class="fa fa-globe"></i></div>
 <div class="radius"><i class="fa fa-location-arrow"></i></div>
 <div class="radius"><i class="fa fa-share"></i></div>
+
+<!--javascript引用-->
+<script src="../scripts/ol-debug.js" type="text/javascript"></script>
+<script src="../scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="../scripts/jquery.qtip.min.js" type="text/javascript"></script>
+<!--javascript引用 End-->
 <script type="text/javascript">
 /**********************************************************
  * 定义全局变量
@@ -93,7 +105,6 @@ var layers = {
     vectorLayers: {}
 } //定义图层集合
 
-$('[title!=""]').qtip();
 
 /**********************************************************
  * 定义页面控件
@@ -201,6 +212,8 @@ layers.vectorLayers.provinceBounds = new ol.layer.Vector({
 /**********************************************************
  * 定义操作菜单按钮
  **********************************************************/
+$('[title!=""]').qtip(); //使用qtip重新渲染所有title提示
+
 //定义图层切换按钮的点击事件
 $('#layerGroupMenuBar>button').click(function () {
     var value = this.value;
@@ -213,6 +226,39 @@ $('#layerGroupMenuBar>button').click(function () {
 });//设定按钮切换方法
 
 //定义地图操作按钮展开菜单事件
+var mapOperObj = $('#mapOperation').qtip({
+    content: {
+        title: '地图操作按钮',
+        text: $('#mapOperation').parent().next(),
+        button: 'Close'
+    },
+    position: {
+        my: 'left top',
+        adjust: {
+            x: 10, y: -12, resize: true
+        },
+        effect: function(api, pos, viewport) {
+            // "this" refers to the tooltip
+            $(this).animate(pos, {
+                duration: 600,
+                easing: 'linear',
+                queue: true // Set this to false so it doesn't interfere with the show/hide animations
+            });
+        }
+    },
+    style: {
+        classes: 'qtip-bootstrap mapOperationPanel'
+    },
+    show: {
+        event: 'click',
+        effect: function(offset) {
+            $(this).fadeToggle('fast');
+        }
+    },
+    hide: {
+        event: 'click'
+    }
+});
 
 //定义侧边栏菜单展开事件
 $('.left-title-bg').click(function () {
@@ -236,7 +282,7 @@ $('#exit').click(function () {
 });
 
 //定义标点定位按钮展开菜单事件
-$('.dropdown').click(function(){
+$('.dropdown').mouseenter(function(){
     $('.sublinks').stop(false, true).hide();
 
     var submenu = $(this).parent().next();
