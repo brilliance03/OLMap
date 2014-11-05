@@ -26,7 +26,7 @@ body a
     top: 2.75em;
 }
 
-#mapOperation{
+#mapOperationBar{
     position: absolute;
     top: 0.5em;
     left: 8px;
@@ -39,12 +39,12 @@ body a
     text-align: center;
 }
 
-#mapOperation:hover{
+#mapOperationBar:hover{
     background: rgba(0, 60, 136, .7);
     color: #FFFFFF;
 }
 
-#mapOperation i {
+#mapOperationBar i {
     font-size: 55px;
     color: white;
     text-align: center;
