@@ -22,6 +22,10 @@
     <p/>
     <fieldset>
         <legend>标绘</legend>
+        <a href="javascript:;" id="drawPoint">绘制点</a>
+        <a href="javascript:;" id="drawLine">绘制线</a>
+        <a href="javascript:;" id="drawCircle">绘制圆</a>
+        <a href="javascript:;" id="drawPoly">绘制多边形</a>
     </fieldset>
 </div>
 <div id="mousePosition" class="ol-unselectable"></div>
@@ -297,6 +301,10 @@ $('.dropdown').mouseenter(function(){
     submenu.stop().slideDown(300);
 
     submenu.mouseleave(function(){
+        $(this).slideUp(300);
+    });
+
+    submenu.blur(function(){
         $(this).slideUp(300);
     });
 });
