@@ -21,8 +21,16 @@
     <button class="btnLayerChoose" id="btnAerialMap" value="aerialMapBing" title="此图层需要互联网连接才可显示">卫星图</button>
     <button class="btnLayerChoose" id="btnAerialLabelMap" value="aerialWithLabelMapBing" title="此图层需要互联网连接才可显示">标注卫星图</button>
 </div>
-<div id="modeSwitchBar" class="ol-unselectable">
-    <button class="btnLayerChoose" id="btnModeSwitch" title="在浏览模式与业务模式之间切换" value="browse">浏览模式</button>
+<div id="dataLocateBar" class="ol-unselectable">
+    <ul>
+        <li><a href="#" class="dropdown" title="提供数据信息的标点定位功能">标点定位</a></li>
+        <li class="sublinks">
+            <a href="#"><i class="fa fa-lg fa-bullseye"></i><span style="margin-left: 3px">灾情标点</span></a>
+            <a href="#"><i class="fa fa-lg fa-calculator"></i><span style="margin-left: 3px">物资库标点</span></a>
+            <a href="#"><i class="fa fa-lg fa-calculator"></i><span style="margin-left: 3px">地质灾害隐患点标点</span></a>
+            <a href="#"><i class="fa fa-lg fa-calculator"></i><span style="margin-left: 3px">避难场所标点</span></a>
+        </li>
+    </ul>
 </div>
 <div class="ol-unselectable bizMenuBar">
     <div class="btnBizMenu">
@@ -210,7 +218,7 @@ layers.vectorLayers.provinceBounds = new ol.layer.Vector({
 /**********************************************************
  * 定义操作菜单按钮
  **********************************************************/
-    //定义图层切换按钮的点击事件
+//定义图层切换按钮的点击事件
 $('#layerGroupMenuBar>button').click(function () {
     var value = this.value;
     for (key in layers.baseLayers) {
@@ -222,9 +230,25 @@ $('#layerGroupMenuBar>button').click(function () {
 });//设定按钮切换方法
 
 //定义模式切换按钮
-$('#btnModeSwitch').click(function () {
-    alert($('#btnModeSwitch').text());
+$('.dropdown').mouseenter(function(){
+    $('.sublinks').stop(false, true).hide();
+
+    var submenu = $(this).parent().next();
+
+    submenu.css({
+        position:'absolute',
+        top: $(this).offset().top + $(this).height() + 'px',
+        //left: $(this).offset().left + 'px',
+        zIndex:1000
+    });
+
+    submenu.stop().slideDown(300);
+
+    submenu.mouseleave(function(){
+        $(this).slideUp(300);
+    });
 });
+
 
 //定义业务菜单按钮的点击事件
 $('#lnkDisasterLocation').on('click', function () {
