@@ -15,6 +15,9 @@
 </head>
 <body>
 <div id="map"></div>
+<div id="mapOperation" class="ol-unselectable">
+    <a href="#"><i class="fa fa-globe"></i></a>
+</div>
 <div id="mousePosition" class="ol-unselectable"></div>
 <div id="layerGroupMenuBar" class="ol-unselectable">
     <button class="btnLayerChoose" id="btnBaseMap" value="baseMap">行政区划地图</button>
@@ -23,76 +26,14 @@
 </div>
 <div id="dataLocateBar" class="ol-unselectable">
     <ul>
-        <li><a href="#" class="dropdown" title="提供数据信息的标点定位功能"><span>标点定位</span><i class="fa fa-lg fa-angle-double-down" style="color: white"></i></a></li>
+        <li><a href="#" class="dropdown" title="提供数据信息的标点定位功能"><span>标点定位</span><i class="fa fa-angle-double-down" style="color: white"></i></a></li>
         <li class="sublinks">
-            <a href="#"><i class="fa fa-lg fa-bullseye"></i><span>灾情标点</span></a>
-            <a href="#"><i class="fa fa-lg fa-home"></i><span>物资库标点</span></a>
-            <a href="#"><i class="fa fa-lg fa-warning"></i><span>地质灾害隐患点标点</span></a>
-            <a href="#"><i class="fa fa-lg fa-group"></i><span>避难场所标点</span></a>
+            <a href="#"><i class="fa fa-bullseye"></i><span>灾情标点</span></a>
+            <a href="#"><i class="fa fa-home"></i><span>物资库标点</span></a>
+            <a href="#"><i class="fa fa-warning"></i><span>地质灾害隐患点标点</span></a>
+            <a href="#"><i class="fa fa-group"></i><span>避难场所标点</span></a>
         </li>
     </ul>
-</div>
-<div class="ol-unselectable bizMenuBar">
-    <div class="btnBizMenu">
-        <a href="javascript:;" id="lnkDisasterLocation">
-            <i class="fa fa-lg fa-bullseye menu-icon-red"></i>
-            <span>灾害地点定位</span>
-        </a>
-    </div>
-    <div class="btnBizMenu">
-        <a href="javascript:;">
-            <i class="fa fa-lg fa-ambulance"></i>
-            <span>应急资源分布</span>
-        </a>
-    </div>
-    <div class="btnBizMenu">
-        <a href="javascript:;">
-            <i class="fa fa-lg fa-info"></i>
-            <span>区域详细信息</span>
-        </a>
-    </div>
-    <div class="btnBizMenu">
-        <a href="javascript:;">
-            <i class="fa fa-lg fa-calculator"></i>
-            <span>物资需求分析</span>
-        </a>
-    </div>
-    <div class="btnBizMenu">
-        <a href="javascript:;">
-            <i class="fa fa-lg fa-phone"></i>
-            <span>应急调度</span>
-        </a>
-    </div>
-    <div class="btnBizMenu">
-        <a href="javascript:;">
-            <i class="fa fa-lg fa-road"></i>
-            <span>救援路径分析</span>
-        </a>
-    </div>
-    <div class="btnBizMenu">
-        <a href="javascript:;">
-            <i class="fa fa-lg fa-exchange"></i>
-            <span>态势标绘</span>
-        </a>
-    </div>
-    <div class="btnBizMenu">
-        <a href="javascript:;">
-            <i class="fa fa-lg fa-paint-brush"></i>
-            <span>自由标绘</span>
-        </a>
-    </div>
-    <div class="btnBizMenu">
-        <a href="javascript:;">
-            <i class="fa fa-lg fa-map-marker"></i>
-            <span>定位</span>
-        </a>
-    </div>
-    <div class="btnBizMenu">
-        <a href="javascript:;" id="statisticalAnalysis">
-            <i class="fa fa-lg fa-bar-chart"></i>
-            <span>统计分析</span>
-        </a>
-    </div>
 </div>
 <!--鼠标业务菜单-->
 <div class="radius"><i class="fa fa-plus"></i></div>
@@ -229,7 +170,9 @@ $('#layerGroupMenuBar>button').click(function () {
     });
 });//设定按钮切换方法
 
-//定义模式切换按钮
+//定义地图操作按钮展开菜单事件
+
+//定义标点定位按钮展开菜单事件
 $('.dropdown').click(function(){
     $('.sublinks').stop(false, true).hide();
 
@@ -247,16 +190,6 @@ $('.dropdown').click(function(){
     submenu.mouseleave(function(){
         $(this).slideUp(300);
     });
-});
-
-
-//定义业务菜单按钮的点击事件
-$('#lnkDisasterLocation').on('click', function () {
-    alert(this.title);
-});//灾害地点定位
-
-$('#statisticalAnalysis').on('click', function () {
-    layers.vectorLayers.provinceBounds.setVisible(!layers.vectorLayers.provinceBounds.getVisible());
 });
 
 
