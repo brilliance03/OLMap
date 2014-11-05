@@ -35,6 +35,48 @@
         </li>
     </ul>
 </div>
+<!--侧边栏-->
+<div id="eastnav-left">
+    <div class="left-title">
+        <div class="left-title-bg" id="zqlb">
+            <span class="left-title-icon"><i class="fa fa-bars"></i></span>
+            <span class="left-title-word">灾情列表</span>
+        </div>
+    </div>
+    <div class="left-title">
+        <div class="left-title-bg" id="zycx">
+            <span class="left-title-icon"><i class="fa fa-search"></i></span>
+            <span class="left-title-word">资源查询</span>
+        </div>
+    </div>
+    <div class="left-title">
+        <div class="left-title-bg" id="jcxx">
+            <span class="left-title-icon"><i class="fa fa-info"></i></span>
+            <span class="left-title-word">基础信息</span>
+        </div>
+    </div>
+    <div class="left-title">
+        <div class="left-title-bg" id="ztt">
+            <span class="left-title-icon"><i class="fa fa-picture-o"></i></span>
+            <span class="left-title-word">专题图</span>
+        </div>
+    </div>
+    <div id="exit"><i class="fa fa-arrow-right"></i></div>
+</div>
+<div id="eastnav-right">
+    <div class="right-menu" data-url="zqlb">
+        <a>灾情列表</a>
+    </div>
+    <div class="right-menu" data-url="zycx">
+        <a>资源查询</a>
+    </div>
+    <div class="right-menu" data-url="jcxx">
+        <a>基础信息</a>
+    </div>
+    <div class="right-menu" data-url="ztt">
+        <a>专题图</a>
+    </div>
+</div>
 <!--鼠标业务菜单-->
 <div class="radius"><i class="fa fa-plus"></i></div>
 <div class="radius"><i class="fa fa-trash"></i></div>
@@ -171,6 +213,27 @@ $('#layerGroupMenuBar>button').click(function () {
 });//设定按钮切换方法
 
 //定义地图操作按钮展开菜单事件
+
+//定义侧边栏菜单展开事件
+$('.left-title-bg').click(function () {
+    var $this = $(this),
+            url = $this.attr('id'),
+            $actionmenu = $('.right-menu[data-url = '+ url +']');
+    $('#eastnav-left').animate({'right': '260px'}, 300);
+    $('#eastnav-right').animate({'right': '1px'}, 300);
+    $('.left-title').removeClass('left-title-selected');
+    $this.parents('.left-title').addClass('left-title-selected');
+    $('.right-menu').hide();
+    $actionmenu.fadeIn();
+    $('#exit').fadeIn();
+});
+$('#exit').click(function () {
+    $('#eastnav-left').animate({'right': '0px'}, 300);
+    $('#eastnav-right').animate({'right': '-260px'}, 300);
+    $('.left-title').removeClass('left-title-selected');
+    $('.right-menu').hide();
+    $('#exit').fadeOut();
+});
 
 //定义标点定位按钮展开菜单事件
 $('.dropdown').click(function(){
