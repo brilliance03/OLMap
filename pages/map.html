@@ -24,7 +24,6 @@
         <legend>标绘</legend>
         <a href="javascript:;" id="drawPoint">绘制点</a>
         <a href="javascript:;" id="drawLine">绘制线</a>
-        <a href="javascript:;" id="drawCircle">绘制圆</a>
         <a href="javascript:;" id="drawPoly">绘制多边形</a>
     </fieldset>
 </div>
@@ -255,7 +254,7 @@ $('#layerGroupMenuBar>button').click(function () {
 //定义地图操作按钮展开菜单事件
 var mapOperObj = $('#mapOperation').qtip({
     content: {
-        title: '地图操作按钮',
+        title: '地图基本操作',
         text: $('#mapOperation').parent().next(),
         button: 'Close'
     },
@@ -335,6 +334,7 @@ $('.dropdown').mouseenter(function(){
 /**********************************************************
  * 定义测量长度和面积的方法 example from measure.js
  * on openlayers.org
+ * 设定测量长度和面积的操作按钮
  **********************************************************/
 /**
  * Currently drawed feature
@@ -347,13 +347,15 @@ var sketch;
  * @type {Element}
  */
 var sketchElement;
+
+var output;
 /**
  * handle pointer move
  * @param {Event} evt
  */
 var mouseMoveHandler = function(evt) {
     if (sketch) {
-        var output;
+        //var output;
         var geom = (sketch.getGeometry());
         if (geom instanceof ol.geom.Polygon) {
             output = formatArea(/** @type {ol.geom.Polygon} */ (geom));
@@ -361,9 +363,118 @@ var mouseMoveHandler = function(evt) {
         } else if (geom instanceof ol.geom.LineString) {
             output = formatLength( /** @type {ol.geom.LineString} */ (geom));
         }
-        sketchElement.innerHTML = output;
     }
 };
+
+/**
+ * format length output
+ * @param {ol.geom.LineString} line
+ * @return {string}
+ */
+//var output;
+
+var formatLength = function(line) {
+    //var output;
+    var length = Math.round(line.getLength() * 100) / 100;
+    if (length > 100) {
+        output = '测量距离为：' + (Math.round(length / 1000 * 100) / 100) +
+        //' ' + 'km';
+        ' ' + '公里';
+    } else {
+        output = '测量距离为：' + (Math.round(length * 100) / 100) +
+        //' ' + 'm';
+        ' ' + '米';
+    }
+    return output;
+};
+
+/**
+ * format length output
+ * @param {ol.geom.Polygon} polygon
+ * @return {string}
+ */
+var formatArea = function(polygon) {
+    var area = polygon.getArea();
+    //var output
+    if (area > 10000) {
+        output = '测量面积为：' + (Math.round(area / 1000000 * 100) / 100) +
+        //' ' + 'km<sup>2</sup>';
+        ' ' + '平方公里';
+    } else {
+        output = '测量面积为：' + (Math.round(area * 100) / 100) +
+        //' ' + 'm<sup>2</sup>';
+        ' ' + '平方米';
+    }
+    return output;
+};
+
+var draw; // global so we can remove it later
+function addInteraction(measureType) {
+    draw = new ol.interaction.Draw({
+        source: source,
+        type: /** @type {ol.geom.GeometryType} */ measureType
+    });
+    map.addInteraction(draw);
+
+    draw.on('drawstart',
+            function(evt) {
+                // set sketch
+                sketch = evt.feature;
+                sketchElement = null;
+            }, this);
+
+    draw.on('drawend',
+            function(evt) {
+                // unset sketch
+                sketch = null;
+                sketchElement = null;
+                map.removeInteraction(draw);
+                alert(output);
+            }, this);
+}
+
+//定义测量距离按钮
+$('#measureDistance').click(function(){
+    //map.removeInteraction(draw);
+    addInteraction(ol.geom.GeometryType.LINE_STRING);
+});
+//定义测量面积按钮
+$('#measureArea').click(function(){
+    //map.removeInteraction(draw);
+    addInteraction(ol.geom.GeometryType.POLYGON);
+});
+
+/**********************************************************
+ * 定义绘制点、线、圆、多边形的方法
+ * 初始化相应地图操作按钮
+ **********************************************************/
+
+function drawSometing(drawType) {
+    draw = new ol.interaction.Draw({
+        source: source,
+        type: /** @type {ol.geom.GeometryType} */ (drawType)
+    });
+    map.addInteraction(draw);
+
+    draw.on('drawend',
+            function(evt) {
+                // unset sketch
+                map.removeInteraction(draw);
+            }, this);
+}
+//画点
+$('#drawPoint').click(function(){
+    drawSometing("Point");
+});
+//画线
+$('#drawLine').click(function(){
+    drawSometing("LineString");
+});
+//画多边形
+$('#drawPoly').click(function(){
+    drawSometing("Polygon");
+});
+
 
 /**********************************************************
  * 合成地图、初始化操作
@@ -380,7 +491,8 @@ var map = new ol.Map({
     ]),
     layers: [
         baseMapGroup,
-        layers.vectorLayers.provinceBounds
+        layers.vectorLayers.provinceBounds,
+        layers.vectorLayers.measureLenAndArea
     ],
     view: mapView,
     target: 'map'
@@ -394,6 +506,8 @@ $.each($('button.btnLayerChoose'), function () {
 
 layers.vectorLayers.provinceBounds.setVisible(false); //默认不显示矢量图层
 
+$(map.getViewport()).on('mousemove', mouseMoveHandler); //绑定测量长度和面积方法
+
 //http://localhost/cgi-bin/mapserv?map=/var/www/cgi-bin/mapserver/mapserver_china.map&service=wfs&request=getfeature&version=1.0.0&maxfeatures=50&typename=provinces_simplify&outputformat=application/json
 
 /**********************************************************
@@ -406,7 +520,37 @@ layers.vectorLayers.provinceBounds.setVisible(false); //默认不显示矢量图
         showItem($items, 0, e);
     }, 200)
 
-});*/
+});
+
+function bindEvent() {
+    var isMousedown = false,
+            isClick = true;
+    $(document).on('mousedown', function (e) {
+        isMousedown = true;
+    });
+
+    $(document).mousemove( function () {
+        if (isMousedown) {
+            isClick = false;
+        }
+    });
+
+    $(document).mouseup( function (e) {
+        if (isMousedown && isClick) {
+            isMousedown = false;
+            var $items = $('.radius');
+            $items.removeClass('radius-scale');
+            setTimeout(function() {
+                showItem($items, 0 , e);
+            }, 200);
+        }
+        resetStatus();
+        function resetStatus () {
+            isMousedown = false;
+            isClick = true;
+        }
+    });
+}*/
 
 $('.radius').click(function (e) {
     e.stopPropagation();
