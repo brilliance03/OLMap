@@ -342,6 +342,7 @@ $('.dropdown').mouseenter(function(){
     });
 });
 
+
 //定义标点定位的子菜单事件
 var disasterWindow, warehouseWindow, hiddenTroubleWindow, sheltersWindow;
 $("#locateDisaster").click(function () {
@@ -839,12 +840,12 @@ var iconFeature = new ol.Feature({
 });
 
 var iconStyle = new ol.style.Style({
-    image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+    image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
         opacity: 0.75,
-        src: 'data/ic_place_black_18dp.png'
+        src: 'data/icon/icon.png'
     }))
 });
 
@@ -867,23 +868,24 @@ map.on('click', function(evt) {
             function(feature, layer) {
                 return feature;
             });
+    var popupTips;
     if (feature) {
         var geometry = feature.getGeometry();
         var coord = geometry.getCoordinates();
         popup.setPosition(coord);
-        $(element).popover({
-            'placement': 'top',
-            'html': true,
-            'content': feature.get('name')
+        popupTips = $(element).qtip({
+            content: {
+                text: $(feature.get('name'))
+            }
         });
-        $(element).popover('show');
+        popupTips.show();
     } else {
-        $(element).popover('destroy');
+        $(element).hide();
     }
 });
 
 // change mouse cursor when over marker
-/*$(map.getViewport()).on('mousemove', function(e) {
+$(map.getViewport()).on('mousemove', function(e) {
  var pixel = map.getEventPixel(e.originalEvent);
  var hit = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
  return true;
@@ -893,7 +895,7 @@ map.on('click', function(evt) {
  } else {
  map.getTarget().style.cursor = '';
  }
- });*/
+ });
 
 /*****************************************************************************/
 
