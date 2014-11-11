@@ -94,7 +94,7 @@
 <div class="radius"><i class="fa fa-trash"></i></div>
 <div class="radius"><i class="fa fa-globe"></i></div>
 <div class="radius"><i class="fa fa-location-arrow"></i></div>
-<div class="radius"><i class="fa fa-share"></i></div>
+<div class="radius"><i class="fa fa-close"></i></div>
 
 <!--业务页面代码-->
 <div id="locateDisasterWindow" class="bizWindow displayNone">灾害标点</div>
@@ -115,9 +115,16 @@
 var projection = {}; //定义使用的投影系
 var layers = {
     baseLayers: {},
-    vectorLayers: {}
+    vectorLayers: {},
+    featureLayers: {},
+    clusterLayers: {}
 } //定义图层集合
-
+var vectorFeatures = {
+    disasterPoint : {
+        name: 'disasterPoint',
+        type: ol.geom.GeometryType.POINT
+    }
+}//定义矢量兴趣点类型集合
 
 /**********************************************************
  * 定义页面控件
@@ -245,6 +252,27 @@ layers.vectorLayers.measureLenAndArea = new ol.layer.Vector({
         })
     })
 });
+
+//灾情标点的矢量图层
+layers.featureLayers.disasters = new ol.layer.Vector({
+    source: new ol.source.Vector()
+});
+
+//物资库矢量图层
+layers.featureLayers.warehouses = new ol.layer.Vector({
+    source: new ol.source.Vector()
+});
+
+//隐患点矢量图层
+layers.featureLayers.hiddenTrouble = new ol.layer.Vector({
+    source: new ol.source.Vector()
+});
+
+//避难场所矢量图层
+layers.featureLayers.shelters = new ol.layer.Vector({
+    source: new ol.source.Vector()
+});
+
 
 /**********************************************************
  * 定义操作菜单按钮
@@ -518,7 +546,7 @@ var formatArea = function(polygon) {
 var draw; // global so we can remove it later
 function addInteraction(measureType) {
     draw = new ol.interaction.Draw({
-        source: source,
+        source: layers.vectorLayers.measureLenAndArea.getSource(),
         type: /** @type {ol.geom.GeometryType} */ measureType
     });
     map.addInteraction(draw);
@@ -559,7 +587,7 @@ $('#measureArea').click(function(){
 
 function drawSometing(drawType) {
     draw = new ol.interaction.Draw({
-        source: source,
+        source: layers.vectorLayers.measureLenAndArea.getSource(),
         type: /** @type {ol.geom.GeometryType} */ (drawType)
     });
     map.addInteraction(draw);
@@ -601,7 +629,8 @@ var map = new ol.Map({
     layers: [
         baseMapGroup,
         layers.vectorLayers.provinceBounds,
-        layers.vectorLayers.measureLenAndArea
+        layers.vectorLayers.measureLenAndArea,
+        layers.featureLayers.disasters
     ],
     view: mapView,
     target: 'map'
@@ -620,7 +649,7 @@ $(map.getViewport()).on('mousemove', mouseMoveHandler); //绑定测量长度和�
 //http://localhost/cgi-bin/mapserv?map=/var/www/cgi-bin/mapserver/mapserver_china.map&service=wfs&request=getfeature&version=1.0.0&maxfeatures=50&typename=provinces_simplify&outputformat=application/json
 
 /**********************************************************
- * 绑定鼠标业务菜单操作，默认为浏览模式
+ * 绑定鼠标业务菜单操作
  **********************************************************/
 /*$('#map').click(function (e) {
     var $items = $('.radius');
@@ -663,6 +692,12 @@ function bindEvent() {
 
 $('.radius').click(function (e) {
     e.stopPropagation();
+});
+
+//鼠标菜单失去焦点自动隐藏
+$('.radius').blur(function (e) {
+    alert('123');
+    this.removeClass('radius-scale');
 });
 
 function showItem($items, index, e) {
@@ -708,6 +743,11 @@ function showItem($items, index, e) {
     }
 }
 
+//取消按钮
+$('.fa-close').click(function(){
+    $('.radius').removeClass('radius-scale');
+});
+
 /**********************************************************
  * 公共方法
  **********************************************************/
@@ -720,7 +760,7 @@ function changeStyle(domId, styleName) {
 /**********************************************************
  * 矢量图层操作
  **********************************************************/
-var highlightStyleCache = {};
+/*var highlightStyleCache = {};
 
 var featureOverlay = new ol.FeatureOverlay({
     map: map,
@@ -782,7 +822,7 @@ $(map.getViewport()).on('mousemove', function (evt) {
 
 map.on('click', function (evt) {
     displayFeatureInfo(evt.pixel);
-});
+});*/
 
 /*=============================以下是界面原型演示效果==========================================*/
 //聚焦到甘肃
@@ -837,60 +877,98 @@ setTimeout(function(){
 //模拟几个灾情
 var disasterFeatures = new Array();
 
-var iconStyle = new ol.style.Style({
+var disasterStyle = new ol.style.Style({
     image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
         opacity: 0.75,
-        src: 'data/icon/icon.png'
-    }))
+        src: 'data/icon/emergency_32.png'
+}))
 });
 
 disasterFeatures[0] = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.transform([105.3647, 35.3576], 'EPSG:4326', 'EPSG:3857')),
     name: 'Null Island1',
     population: 4000,
-    rainfall: 500
+    rainfall: 500,
+    type: ol.geom.GeometryType.POINT
 });
 
 disasterFeatures[1] = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.transform([103.2773, 34.7099], 'EPSG:4326', 'EPSG:3857')),
     name: 'Null Island2',
     population: 4000,
-    rainfall: 500
+    rainfall: 500,
+    type: ol.geom.GeometryType.POINT
 });
 
 disasterFeatures[2] = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.transform([103.4091, 37.3220], 'EPSG:4326', 'EPSG:3857')),
     name: 'Null Island3',
     population: 4000,
-    rainfall: 500
+    rainfall: 500,
+    type: ol.geom.GeometryType.POINT
 });
 
 disasterFeatures[3] = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.transform([99.4437, 38.8771], 'EPSG:4326', 'EPSG:3857')),
     name: 'Null Island4',
     population: 4000,
-    rainfall: 500
+    rainfall: 500,
+    type: ol.geom.GeometryType.POINT
 });
 
 disasterFeatures[4] = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.transform([94.4437, 39.8771], 'EPSG:4326', 'EPSG:3857')),
     name: 'Null Island5',
     population: 4000,
-    rainfall: 500
+    rainfall: 500,
+    type: ol.geom.GeometryType.POINT
 });
 
-disasterFeatures[0].setStyle(iconStyle);
-disasterFeatures[1].setStyle(iconStyle);
-disasterFeatures[2].setStyle(iconStyle);
-disasterFeatures[3].setStyle(iconStyle);
-disasterFeatures[4].setStyle(iconStyle);
+disasterFeatures[0].setStyle(disasterStyle);
+disasterFeatures[1].setStyle(disasterStyle);
+disasterFeatures[2].setStyle(disasterStyle);
+disasterFeatures[3].setStyle(disasterStyle);
+disasterFeatures[4].setStyle(disasterStyle);
 
 //iconFeature.setStyle(iconStyle);
 
-source.addFeatures(disasterFeatures);
+layers.featureLayers.disasters.getSource().addFeatures(disasterFeatures);
+
+//模拟物资库
+var warehouseStyle = new ol.style.Style({
+    image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+        anchor: [0.5, 46],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 0.75,
+        src: 'data/icon/house_32.png'
+    }))
+});
+
+//模拟隐患点
+var hiddenTroubleStyle = new ol.style.Style({
+    image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+        anchor: [0.5, 46],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 0.75,
+        src: 'data/icon/hiddenTrouble_32.png'
+    }))
+});
+
+//模拟避难场所
+var shelterStyle = new ol.style.Style({
+    image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+        anchor: [0.5, 46],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 0.75,
+        src: 'data/icon/shelter_32.png'
+    }))
+});
 
 var element = document.getElementById('popup');
 
@@ -903,11 +981,12 @@ map.addOverlay(popup);
 
 // display popup on click
 map.on('click', function(evt) {
+    $('.radius').removeClass('radius-scale'); //先清除一下鼠标菜单
     var feature = map.forEachFeatureAtPixel(evt.pixel,
             function(feature, layer) {
                 return feature;
             });
-    if (feature) {
+    if (feature.get('type') == ol.geom.GeometryType.POINT) {
         var geometry = feature.getGeometry();
         var coord = geometry.getCoordinates();
         popup.setPosition(coord);
@@ -926,7 +1005,8 @@ map.on('click', function(evt) {
             }, 200)
 
     } else {
-        $(element).qtip('hide');
+        //$(element).qtip('hide');
+        $('.radius').removeClass('radius-scale');
     }
 });
 
