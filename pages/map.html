@@ -97,10 +97,10 @@
 <div class="radius"><i class="fa fa-share"></i></div>
 
 <!--业务页面代码-->
-<div id="locateDisasterWindow" class="bizWindow">灾害标点</div>
-<div id="locateWarehouseWindow" class="bizWindow">物资库物资库标点</div>
-<div id="locateHiddenTroubleWindow" class="bizWindow">隐患点标点</div>
-<div id="locateSheltersWindow" class="bizWindow">避难场所标点</div>
+<div id="locateDisasterWindow" class="bizWindow displayNone">灾害标点</div>
+<div id="locateWarehouseWindow" class="bizWindow displayNone">物资库物资库标点</div>
+<div id="locateHiddenTroubleWindow" class="bizWindow displayNone">隐患点标点</div>
+<div id="locateSheltersWindow" class="bizWindow displayNone">避难场所标点</div>
 
 <!--javascript引用-->
 <script src="../scripts/ol-debug.js" type="text/javascript"></script>
@@ -666,8 +666,10 @@ $('.radius').click(function (e) {
 });
 
 function showItem($items, index, e) {
-    var x = e.clientX,
-            y = e.clientY,
+    var //x = e.clientX,
+            //y = e.clientY,
+            x= e.pixel[0],
+            y= e.pixel[1],
             left,
             top,
             taskId;
@@ -847,37 +849,37 @@ var iconStyle = new ol.style.Style({
 
 disasterFeatures[0] = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.transform([105.3647, 35.3576], 'EPSG:4326', 'EPSG:3857')),
-    name: 'Null Island',
+    name: 'Null Island1',
     population: 4000,
     rainfall: 500
 });
 
 disasterFeatures[1] = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.transform([103.2773, 34.7099], 'EPSG:4326', 'EPSG:3857')),
-    name: 'Null Island',
+    name: 'Null Island2',
     population: 4000,
     rainfall: 500
 });
 
 disasterFeatures[2] = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.transform([103.4091, 37.3220], 'EPSG:4326', 'EPSG:3857')),
-    name: 'Null Island',
+    name: 'Null Island3',
     population: 4000,
     rainfall: 500
 });
 
 disasterFeatures[3] = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.transform([99.4437, 38.8771], 'EPSG:4326', 'EPSG:3857')),
-    name: 'Null Island',
+    name: 'Null Island4',
     population: 4000,
     rainfall: 500
 });
 
 disasterFeatures[4] = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.transform([94.4437, 39.8771], 'EPSG:4326', 'EPSG:3857')),
-    name: 'Null Island',
+    name: 'Null Island5',
     population: 4000,
-    rainfall: 500,
+    rainfall: 500
 });
 
 disasterFeatures[0].setStyle(iconStyle);
@@ -905,19 +907,26 @@ map.on('click', function(evt) {
             function(feature, layer) {
                 return feature;
             });
-    var popupTips;
     if (feature) {
         var geometry = feature.getGeometry();
         var coord = geometry.getCoordinates();
         popup.setPosition(coord);
-        popupTips = $(element).qtip({
+       /* $(element).qtip({
             content: {
-                text: $(feature.get('name'))
+                title: feature.get('name'),
+                text: feature.get('name')
             }
         });
-        popupTips.show();
+        $(element).qtip('show');*/
+            var $items = $('.radius');
+            //$items.hide();
+            $items.removeClass('radius-scale');
+            setTimeout(function() {
+                showItem($items, 0 , evt);
+            }, 200)
+
     } else {
-        $(element).hide();
+        $(element).qtip('hide');
     }
 });
 
@@ -927,10 +936,11 @@ $(map.getViewport()).on('mousemove', function(e) {
  var hit = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
  return true;
  });
+
  if (hit) {
- map.getTarget().style.cursor = 'pointer';
+ $('#map').addClass('mouse_cursor');
  } else {
- map.getTarget().style.cursor = '';
+ $('#map').removeClass('mouse_cursor');
  }
  });
 
