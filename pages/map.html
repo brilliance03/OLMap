@@ -938,6 +938,7 @@ disasterFeatures[4].setStyle(disasterStyle);
 layers.featureLayers.disasters.getSource().addFeatures(disasterFeatures);
 
 //模拟物资库
+var warehouseFeatures;
 var warehouseStyle = new ol.style.Style({
     image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
         anchor: [0.5, 46],
@@ -949,6 +950,7 @@ var warehouseStyle = new ol.style.Style({
 });
 
 //模拟隐患点
+var hiddenTrouleFeatures;
 var hiddenTroubleStyle = new ol.style.Style({
     image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
         anchor: [0.5, 46],
@@ -960,6 +962,7 @@ var hiddenTroubleStyle = new ol.style.Style({
 });
 
 //模拟避难场所
+var sheltersFeatures;
 var shelterStyle = new ol.style.Style({
     image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
         anchor: [0.5, 46],
