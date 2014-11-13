@@ -446,3 +446,14 @@ ul li.sublinks
 .displayNone{
     display: none;
 }
+
+table{
+    border-collapse: collapse;
+    border: none;
+    width: 100%;
+}
+
+table td{
+    border: 1px solid #000000;
+    text-align: center;
+}

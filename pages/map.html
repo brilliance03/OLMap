@@ -11,7 +11,6 @@
 </head>
 <body>
 <div id="map">
-    <div id="popup"></div>
 </div>
 <div id="mapOperationBar" class="ol-unselectable">
     <a href="#" id="mapOperation"><i class="fa fa-globe"></i></a>
@@ -67,7 +66,7 @@
             <span class="left-title-word">基础信息</span>
         </div>
     </div>
-    <div class="left-title">
+    <div class="left-title" style="display: none">
         <div class="left-title-bg" id="ztt">
             <span class="left-title-icon"><i class="fa fa-picture-o"></i></span>
             <span class="left-title-word">专题图</span>
@@ -77,13 +76,59 @@
 </div>
 <div id="eastnav-right">
     <div class="right-menu" data-url="zqlb">
-        <a>灾情列表</a>
+        <input type="checkbox" id="chkDisasterLayerShow"/>灾情定位图层<br/>
+        灾情名称: <input type="text" id="data_disasterName"/><br/>
+        灾情类别: <select id="data_resourceType" name="data_resourceType">
+                    <option value="">干旱</option>
+                    <option value="">洪涝</option>
+                    <option value="">冰雹</option>
+                </select>
+        <br/>
+        <button>查询</button>
+        <p/>
+        <table>
+            <tr>
+                <td></td>
+                <td>灾害名称</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="slecDisaster" value="0"/></td>
+                <td>灾害1</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="slecDisaster" value="1"/></td>
+                <td>灾害2</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="slecDisaster" value="2"/></td>
+                <td>灾害3</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="slecDisaster" value="3"/></td>
+                <td>灾害4</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="slecDisaster" value="4"/></td>
+                <td>灾害5</td>
+            </tr>
+        </table>
     </div>
     <div class="right-menu" data-url="zycx">
-        <a>资源查询</a>
+        <input type="checkbox" id="chkWarehouseLayerShow"/>物资库图层<br/>
+        <input type="checkbox" id="chkHiddenTroubleLayerShow"/>地质灾害隐患点图层<br/>
+        <input type="checkbox" id="chkSheltersLayerShow"/>应急避难场所图层<br/>
+        <br/>
+        资源名称：<input type="text" id="data_resourceName"/><br/>
+        资源类型：<select id="data_resourceType" name="data_resourceType">
+        <option value="">物资库</option>
+        <option value="">地质灾害隐患点</option>
+        <option value="">应急避难场所</option>
+    </select>
+        <br/>
+        <button>查询</button>
     </div>
     <div class="right-menu" data-url="jcxx">
-        <a>基础信息</a>
+        <input type="checkbox" id="chkBaseInfoLayerShow"/>基础信息图层<br/>
     </div>
     <div class="right-menu" data-url="ztt">
         <a>专题图</a>
@@ -121,8 +166,24 @@ var layers = {
     clusterLayers: {}
 } //定义图层集合
 var vectorFeatures = {
-    disasterPoint : {
-        name: 'disasterPoint',
+    disasterPoint: {
+        name: 'disaster',
+        type: ol.geom.GeometryType.POINT
+    },
+    warehousePoint: {
+        name: 'warehouse',
+        type: ol.geom.GeometryType.POINT
+    },
+    hiddenTroublePoint: {
+        name: 'hiddenTrouble',
+        type: ol.geom.GeometryType.POINT
+    },
+    shelterPoint: {
+        name: 'shelter',
+        type: ol.geom.GeometryType.POINT
+    },
+    baseInfoPoint:{
+        name: 'baseInfo',
         type: ol.geom.GeometryType.POINT
     }
 }//定义矢量兴趣点类型集合
@@ -279,6 +340,26 @@ layers.featureLayers.baseInfo = new ol.layer.Vector({
     source: new ol.source.Vector()
 });
 
+/**********************************************************
+ * 定义操作所需的其他元素和层
+ **********************************************************/
+//定义弹出层使用的元素
+var SimpleTipElement = $('<div/>').appendTo($('#map'));
+var popupElement = $('<div/>').appendTo($('#map'));
+
+var simpleTip = new ol.Overlay({
+    element: SimpleTipElement,
+    positioning: 'bottom-center',
+    stopEvent: false
+});
+
+var popup = new ol.Overlay({
+    element: popupElement,
+    positioning: 'bottom-center',
+    stopEvent: false
+});
+
+
 
 /**********************************************************
  * 定义操作菜单按钮
@@ -351,6 +432,23 @@ $('#exit').click(function () {
     $('.right-menu').hide();
     $('#exit').fadeOut();
 });
+
+//定义侧边栏菜单按钮
+$("#chkDisasterLayerShow").click(function(){
+    layers.featureLayers.disasters.setVisible($(this).is(':checked') ? true:false);
+}).click();//灾情图层
+$("#chkWarehouseLayerShow").click(function(){
+    layers.featureLayers.warehouses.setVisible($(this).is(':checked') ? true:false);
+});//物资库图层
+$("#chkHiddenTroubleLayerShow").click(function(){
+    layers.featureLayers.hiddenTrouble.setVisible($(this).is(':checked') ? true:false);
+});//隐患点
+$("#chkSheltersLayerShow").click(function(){
+    layers.featureLayers.shelters.setVisible($(this).is(':checked') ? true:false);
+});//避难场所图层
+$("#chkBaseInfoLayerShow").click(function(){
+    layers.featureLayers.baseInfo.setVisible($(this).is(':checked') ? true:false);
+});//基础信息图层
 
 //定义标点定位按钮展开菜单事件
 $('.dropdown').mouseenter(function(){
@@ -470,6 +568,52 @@ $("#locateShelters").click(function () {
         ;
     }
 });//避难场所
+
+//灾情列表选择按钮事件
+$('table input[type="radio"]').click(function(){
+    $(popupElement).qtip('hide');
+    if($(this).is(':checked')){
+        //alert(getDisaster($(this).val()).getGeometry().getCoordinates());
+        var disaster = getDisaster($(this).val());
+        var coord = disaster.getGeometry().getCoordinates();
+        map.beforeRender(new ol.animation.pan({
+                duration: 2000,
+                source: mapView.getCenter(),
+                start: +new Date()
+            }),
+            new ol.animation.bounce({
+            duration: 2000,
+            resolution: 4 * mapView.getResolution(),
+            start: +new Date()
+        }));
+        mapView.setCenter(coord);
+        mapView.setZoom(13);
+        //定位到灾情后，自动弹出灾情详细信息
+        popup.setPosition(coord);
+        setTimeout(function(){
+                $(popupElement).qtip({
+                content: {
+                    title: disaster.get('name'),
+                    text: disaster.get('name'),
+                    button: 'Close'
+                },
+                position: {
+                    my: 'bottom center',
+                    adjust: {
+                        x: 0, y: -50, resize: true
+                    }
+                },
+                style: {
+                    classes: 'qtip-bootstrap'
+                },
+                hide: {
+                    event: false
+                }
+
+            }).qtip('show')
+        },3000);
+    }
+});
 
 
 /**********************************************************
@@ -636,7 +780,11 @@ var map = new ol.Map({
         baseMapGroup,
         layers.vectorLayers.provinceBounds,
         layers.vectorLayers.measureLenAndArea,
-        layers.featureLayers.disasters
+        layers.featureLayers.disasters,
+        layers.featureLayers.warehouses,
+        layers.featureLayers.hiddenTrouble,
+        layers.featureLayers.shelters,
+        layers.featureLayers.baseInfo
     ],
     view: mapView,
     target: 'map'
@@ -649,8 +797,14 @@ $.each($('button.btnLayerChoose'), function () {
 })//图层选择按钮初始化设定，默认显示行政区划地图
 
 //layers.vectorLayers.provinceBounds.setVisible(false); //默认不显示矢量图层
+layers.featureLayers.hiddenTrouble.setVisible(false);
+layers.featureLayers.warehouses.setVisible(false);
+layers.featureLayers.shelters.setVisible(false);
+layers.featureLayers.baseInfo.setVisible(false);
 
 $(map.getViewport()).on('mousemove', mouseMoveHandler); //绑定测量长度和面积方法
+map.addOverlay(simpleTip);//绑定弹出层
+map.addOverlay(popup);//绑定弹出层
 
 //http://localhost/cgi-bin/mapserv?map=/var/www/cgi-bin/mapserver/mapserver_china.map&service=wfs&request=getfeature&version=1.0.0&maxfeatures=50&typename=provinces_simplify&outputformat=application/json
 
@@ -753,6 +907,8 @@ function showItem($items, index, e) {
 $('.fa-close').click(function(){
     $('.radius').removeClass('radius-scale');
 });
+
+//
 
 /**********************************************************
  * 公共方法
@@ -878,14 +1034,9 @@ setTimeout(function(){
     mapView.setCenter(GanSu);
 }, 2000);
 
-var element = document.getElementById('popup');
+//构建模拟数据
+simulatedData();
 
-var popup = new ol.Overlay({
-    element: element,
-    positioning: 'bottom-center',
-    stopEvent: false
-});
-map.addOverlay(popup);
 
 // display popup on click
 map.on('click', function(evt) {
@@ -894,17 +1045,20 @@ map.on('click', function(evt) {
             function(feature, layer) {
                 return feature;
             });
-    if (feature.get('type') == ol.geom.GeometryType.POINT) {
+    if(feature) {
+        /*if (feature.get('type').type = ol.geom.GeometryType.POINT) {
         var geometry = feature.getGeometry();
         var coord = geometry.getCoordinates();
-        popup.setPosition(coord);
-       /* $(element).qtip({
+        simpleTip.setPosition(coord);
+       */
+        /* $(SimpleTipElement).qtip({
             content: {
                 title: feature.get('name'),
                 text: feature.get('name')
             }
         });
-        $(element).qtip('show');*/
+        $(SimpleTipElement).qtip('show');*/
+        /*
             var $items = $('.radius');
             //$items.hide();
             $items.removeClass('radius-scale');
@@ -912,28 +1066,71 @@ map.on('click', function(evt) {
                 showItem($items, 0 , evt);
             }, 200)
 
-    } else {
-        //$(element).qtip('hide');
+    } else if(){
+    else
+    } {
+        //$(SimpleTipElement).qtip('hide');
         $('.radius').removeClass('radius-scale');
+    }*/  //改成CASE
+        switch (feature.get('type')){
+            case vectorFeatures.disasterPoint:
+            {
+                var $items = $('.radius');
+                //$items.hide();
+                $items.removeClass('radius-scale');
+                setTimeout(function () {
+                    showItem($items, 0, evt);
+                }, 200);
+            }
+            case vectorFeatures.warehousePoint:
+                ;
+            case vectorFeatures.hiddenTroublePoint:
+                ;
+            case vectorFeatures.shelterPoint:
+                ;
+            case vectorFeatures.baseInfoPoint:
+                ;
+            default :
+                $('.radius').removeClass('radius-scale');
+        }
     }
 });
 
 // change mouse cursor when over marker
-$(map.getViewport()).on('mousemove', function(e) {
- var pixel = map.getEventPixel(e.originalEvent);
- var hit = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
- return true;
- });
+$(map.getViewport()).on('mousemove', function (e) {
+    var pixel = map.getEventPixel(e.originalEvent);
+    var feature = map.forEachFeatureAtPixel(pixel, function (feature, layer) {
+        return feature;
+    });
 
- if (hit) {
- $('#map').addClass('mouse_cursor');
- } else {
- $('#map').removeClass('mouse_cursor');
- }
- });
+    if (feature && feature.get('type')) {
+        $('#map').addClass('mouse_cursor');
+        var geometry = feature.getGeometry();
+        var coord = geometry.getCoordinates();
+        simpleTip.setPosition(coord);
+        $(SimpleTipElement).qtip({
+            content: {
+                text: feature.get('name')
+            },
+            position: {
+                my: 'left top',
+                adjust: {
+                    x: 10, y: -12, resize: true
+                }
+            },
+            style: {
+                classes: 'qtip-bootstrap'
+            }
+        });
+        //console.error(e.target);
+        $(SimpleTipElement).qtip('show');
+    } else {
+        $('#map').removeClass('mouse_cursor');
+        $(SimpleTipElement).qtip('hide');
+    }
+});
 
-//构建模拟数据
-simulatedData();
+
 
 /*****************************************************************************/
 
