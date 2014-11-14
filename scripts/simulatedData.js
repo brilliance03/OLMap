@@ -8,6 +8,7 @@ var disasterFeatures = new Array();
 var warehouseFeatures = new Array();
 var hiddenTrouleFeatures = new Array();
 var sheltersFeatures = new Array();
+var baseInfoFeatures = new Array();
 
 function simulatedData(){
     /******************************************************************/
@@ -179,7 +180,6 @@ function simulatedData(){
     layers.featureLayers.hiddenTrouble.getSource().addFeatures(hiddenTrouleFeatures);
 
 //模拟避难场所
-    var sheltersFeatures = new Array();
     var shelterStyle = new ol.style.Style({
         image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
             anchor: [0.5, 46],
@@ -212,9 +212,46 @@ function simulatedData(){
 
     layers.featureLayers.shelters.getSource().addFeatures(sheltersFeatures);
 
+
+    //基础信息
+    var baseInfoStyle = new ol.style.Style({
+        image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+            //anchor: [0.5, 46],
+            anchor: [0.5, 20],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            opacity: 0.75,
+            src: 'data/icon/star_32.png'
+        }))
+    });
+
+    baseInfoFeatures[0] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([103.8244, 36.0585], 'EPSG:4326', 'EPSG:3857')),
+        name: '兰州',
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.baseInfoPoint
+    });
+
+    baseInfoFeatures[0].setStyle(baseInfoStyle);
+
+    layers.featureLayers.baseInfo.getSource().addFeatures(baseInfoFeatures);
+
 }
 
 function getDisaster(index){
     return disasterFeatures[index];
+}
+
+function getWareHouse(index){
+    return warehouseFeatures[index];
+}
+
+function getHiddenTrouble(index){
+    return hiddenTrouleFeatures[index];
+}
+
+function getShelter(index){
+    return sheltersFeatures[index];
 }
 

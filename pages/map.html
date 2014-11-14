@@ -583,7 +583,7 @@ $('table input[type="radio"]').click(function(){
             }),
             new ol.animation.bounce({
             duration: 2000,
-            resolution: 4 * mapView.getResolution(),
+            resolution: mapView.getZoom() * mapView.getResolution(),
             start: +new Date()
         }));
         mapView.setCenter(coord);
