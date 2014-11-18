@@ -135,12 +135,15 @@
     </div>
 </div>
 <!--鼠标业务菜单-->
-<div class="radius"><i class="fa fa-plus"></i></div>
-<div class="radius"><i class="fa fa-trash"></i></div>
-<div class="radius"><i class="fa fa-globe"></i></div>
-<div class="radius"><i class="fa fa-location-arrow"></i></div>
-<div class="radius"><i class="fa fa-close"></i></div>
-
+<div id="bizDisaster">
+    <!--灾情相关业务-->
+    <div class="radius"><i class="fa fa-bars" title="查看灾情详细信息"></i></div>
+    <div class="radius"><i class="fa fa-picture-o" title="查看灾情图片"></i></div>
+    <div class="radius"><i class="fa fa-film" title="查看灾情视频"></i></div>
+    <!--<div class="radius"><i class="fa fa-search" title="查询周边"></i></div>-->
+    <div class="radius"><i class="fa fa-newspaper-o" title="灾情综合研判"></i></div>
+    <div class="radius"><i class="fa fa-close" title="关闭"></i></div>
+</div>
 <!--业务页面代码-->
 <div id="locateDisasterWindow" class="bizWindow displayNone">
     <fieldset>
@@ -275,6 +278,14 @@
             </tr>
         </table>
     </fieldset>
+</div>
+
+<!--灾情图片临时测试-->
+<div id="imgs" style="display:none">
+    <img src="data/picture/1.jpg" layer-img="data/picture/1.jpg" alt="灾情图片">
+    <img src="data/picture/2.jpg" layer-img="data/picture/2.jpg" alt="灾情图片">
+    <img src="data/picture/3.jpg" layer-img="data/picture/3.jpg" alt="灾情图片">
+    <img src="data/picture/4.jpg" layer-img="data/picture/4.jpg" alt="灾情图片">
 </div>
 
 <!--javascript引用-->
@@ -1100,6 +1111,109 @@ function showItem($items, index, e) {
     }
 }
 
+//查看灾情详细信息
+var disasterInfo, disasterAnalysis;
+$('.fa-bars').click(function(){
+    if(!disasterInfo) {
+        disasterInfo = $.layer({
+            type: 1,
+            title: '灾情详细信息',
+            area: ['520px', '460px'],
+            border: [0], //去掉默认边框
+            shade: [0], //去掉遮罩
+            closeBtn: [0, true], //去掉默认关闭按钮
+            shift: 'top', //从左动画弹出
+            /*offset: ['', '70%'],*/
+            page: {
+                html: '<div>详细信息</div>'
+                //dom: '#locateSheltersWindow'
+            },
+            success: function(layero){
+                //重新加载列表
+                ;
+            },
+            close: function(index){
+                disasterInfo = null;
+            }
+        });
+    }else{
+        ;
+    }
+});
+
+//综合研判
+$('.fa-newspaper-o').click(function(){
+    if(!disasterAnalysis) {
+        disasterAnalysis = $.layer({
+            type: 1,
+            title: '灾情综合研判',
+            area: ['520px', '460px'],
+            border: [0], //去掉默认边框
+            shade: [0], //去掉遮罩
+            closeBtn: [0, true], //去掉默认关闭按钮
+            shift: 'top', //从左动画弹出
+            /*offset: ['', '70%'],*/
+            page: {
+                html: '<div>综合研判</div>'
+                //dom: '#locateSheltersWindow'
+            },
+            success: function(layero){
+                //重新加载列表
+                ;
+            },
+            close: function(index){
+                disasterAnalysis = null;
+            }
+        });
+    }else{
+        ;
+    }
+});
+
+//显示图片
+layer.use('extend/layer.ext.js');
+$('.fa-picture-o').click(function(){
+    layer.photos({
+        html: '' ,   //自定义的html，显示在层右侧
+        tab: function(obj){}, //图片切换操作的回调，obj返回了图片pid和name
+       /* json: { //您服务端接口需严格按照下述格式返回
+            "status": 1,    //请求的状态，1表示成功，其它表示失败
+            "msg": "",  //状态提示语
+            "title": "灾情图片",    //相册标题
+            "id": 1,    //相册id
+            "start": 0, //初始显示的图片序号，默认0
+            "data": [   //相册包含的图片，数组格式
+                {
+                    "name": "", //图片名
+                    "pid": 1, //图片id
+                    "src": "data/picture/1.jpg", //原图地址
+                    "thumb": "data/picture/1.jpg", //缩略图地址
+                    "area": [638, 851] //原图宽高
+                }
+            ]
+        }*/
+        page: { //直接获取页面指定区域的图片，他与上述异步不可共存，只能择用其一。
+            parent: '#imgs' , //图片的父元素选择器，如'#imsbox',
+            start: 0, //初始显示的图片序号，默认0
+            title: '灾情图片' //相册标题
+        }
+    });
+});
+
+//显示视频
+$('.fa-film').click(function () {
+    var i = $.layer({
+        type : 1,
+        title : false,
+        fix : false,
+        border: false,
+        offset:['50px' , ''],
+        area : ['448px','336px'],
+        page : {
+            html : '<video src="data/video/1.mp4" controls="controls">您的浏览器不支持video标签</video>'
+        }
+    });
+});
 //取消按钮
 $('.fa-close').click(function(){
     $('.radius').removeClass('radius-scale');
