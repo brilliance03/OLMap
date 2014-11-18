@@ -6,18 +6,13 @@
  */
 var disasterFeatures = new Array();
 var warehouseFeatures = new Array();
-var hiddenTrouleFeatures = new Array();
+var hiddenTroubleFeatures = new Array();
 var sheltersFeatures = new Array();
 var baseInfoFeatures = new Array();
 
-function simulatedData(){
-    /******************************************************************/
-//模拟几个灾情
-
-
-    var disasterStyle = new ol.style.Style({
-        image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
-            anchor: [0.5, 46],
+var disasterStyle = new ol.style.Style({
+            image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+            anchor: [0.5, 16],
             anchorXUnits: 'fraction',
             anchorYUnits: 'pixels',
             opacity: 0.75,
@@ -25,6 +20,50 @@ function simulatedData(){
         }))
     });
 
+var warehouseStyle = new ol.style.Style({
+            image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+            anchor: [0.5, 16],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            opacity: 0.75,
+            src: 'data/icon/house_32.png'
+        }))
+    });
+
+var hiddenTroubleStyle = new ol.style.Style({
+            image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+            anchor: [0.5, 16],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            opacity: 0.75,
+            src: 'data/icon/hiddenTrouble_32.png'
+        }))
+    });
+
+var shelterStyle = new ol.style.Style({
+            image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+            anchor: [0.5, 16],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            opacity: 0.75,
+            src: 'data/icon/shelter_32.png'
+        }))
+    });
+
+var baseInfoStyle = new ol.style.Style({
+            image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+            //anchor: [0.5, 46],
+            anchor: [0.5, 20],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            opacity: 0.75,
+            src: 'data/icon/star_32.png'
+        }))
+    });
+
+function simulatedData(){
+    /******************************************************************/
+//模拟几个灾情
     disasterFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([105.3647, 35.3576], 'EPSG:4326', 'EPSG:3857')),
         name: '灾情1',
@@ -76,15 +115,7 @@ function simulatedData(){
     layers.featureLayers.disasters.getSource().addFeatures(disasterFeatures);
 
 //模拟物资库
-    var warehouseStyle = new ol.style.Style({
-        image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
-            anchor: [0.5, 46],
-            anchorXUnits: 'fraction',
-            anchorYUnits: 'pixels',
-            opacity: 0.75,
-            src: 'data/icon/house_32.png'
-        }))
-    });
+
 
     warehouseFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([104.2661, 36.0001], 'EPSG:4326', 'EPSG:3857')),
@@ -119,17 +150,8 @@ function simulatedData(){
     layers.featureLayers.warehouses.getSource().addFeatures(warehouseFeatures);
 
 //模拟隐患点
-    var hiddenTroubleStyle = new ol.style.Style({
-        image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
-            anchor: [0.5, 46],
-            anchorXUnits: 'fraction',
-            anchorYUnits: 'pixels',
-            opacity: 0.75,
-            src: 'data/icon/hiddenTrouble_32.png'
-        }))
-    });
 
-    hiddenTrouleFeatures[0] = new ol.Feature({
+    hiddenTroubleFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([104.2221, 34.1844], 'EPSG:4326', 'EPSG:3857')),
         name: '隐患点1',
         population: 4000,
@@ -137,7 +159,7 @@ function simulatedData(){
         type: vectorFeatures.hiddenTroublePoint
     });
 
-    hiddenTrouleFeatures[1] = new ol.Feature({
+    hiddenTroubleFeatures[1] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([105.2988, 33.7471], 'EPSG:4326', 'EPSG:3857')),
         name: '隐患点2',
         population: 4000,
@@ -145,7 +167,7 @@ function simulatedData(){
         type: vectorFeatures.hiddenTroublePoint
     });
 
-    hiddenTrouleFeatures[2] = new ol.Feature({
+    hiddenTroubleFeatures[2] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([107.3642, 36.0179], 'EPSG:4326', 'EPSG:3857')),
         name: '隐患点3',
         population: 4000,
@@ -153,7 +175,7 @@ function simulatedData(){
         type: vectorFeatures.hiddenTroublePoint
     });
 
-    hiddenTrouleFeatures[3] = new ol.Feature({
+    hiddenTroubleFeatures[3] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([102.8159, 38.6554], 'EPSG:4326', 'EPSG:3857')),
         name: '隐患点4',
         population: 4000,
@@ -161,7 +183,7 @@ function simulatedData(){
         type: vectorFeatures.hiddenTroublePoint
     });
 
-    hiddenTrouleFeatures[4] = new ol.Feature({
+    hiddenTroubleFeatures[4] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([97.1469, 39.9475], 'EPSG:4326', 'EPSG:3857')),
         name: '隐患点5',
         population: 4000,
@@ -171,25 +193,15 @@ function simulatedData(){
 
 
 
-    hiddenTrouleFeatures[0].setStyle(hiddenTroubleStyle);
-    hiddenTrouleFeatures[1].setStyle(hiddenTroubleStyle);
-    hiddenTrouleFeatures[2].setStyle(hiddenTroubleStyle);
-    hiddenTrouleFeatures[3].setStyle(hiddenTroubleStyle);
-    hiddenTrouleFeatures[4].setStyle(hiddenTroubleStyle);
+    hiddenTroubleFeatures[0].setStyle(hiddenTroubleStyle);
+    hiddenTroubleFeatures[1].setStyle(hiddenTroubleStyle);
+    hiddenTroubleFeatures[2].setStyle(hiddenTroubleStyle);
+    hiddenTroubleFeatures[3].setStyle(hiddenTroubleStyle);
+    hiddenTroubleFeatures[4].setStyle(hiddenTroubleStyle);
 
-    layers.featureLayers.hiddenTrouble.getSource().addFeatures(hiddenTrouleFeatures);
+    layers.featureLayers.hiddenTrouble.getSource().addFeatures(hiddenTroubleFeatures);
 
 //模拟避难场所
-    var shelterStyle = new ol.style.Style({
-        image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
-            anchor: [0.5, 46],
-            anchorXUnits: 'fraction',
-            anchorYUnits: 'pixels',
-            opacity: 0.75,
-            src: 'data/icon/shelter_32.png'
-        }))
-    });
-
     sheltersFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([103.7827, 36.0856], 'EPSG:4326', 'EPSG:3857')),
         name: '避难场所1',
@@ -214,17 +226,6 @@ function simulatedData(){
 
 
     //基础信息
-    var baseInfoStyle = new ol.style.Style({
-        image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
-            //anchor: [0.5, 46],
-            anchor: [0.5, 20],
-            anchorXUnits: 'fraction',
-            anchorYUnits: 'pixels',
-            opacity: 0.75,
-            src: 'data/icon/star_32.png'
-        }))
-    });
-
     baseInfoFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([103.8244, 36.0585], 'EPSG:4326', 'EPSG:3857')),
         name: '兰州',
@@ -248,10 +249,84 @@ function getWareHouse(index){
 }
 
 function getHiddenTrouble(index){
-    return hiddenTrouleFeatures[index];
+    return hiddenTroubleFeatures[index];
 }
 
 function getShelter(index){
     return sheltersFeatures[index];
 }
 
+
+function featurePlot(featureType){
+
+    switch(featureType){
+        case vectorFeatures.disasterPoint:
+            if(!layers.featureLayers.disasters.getVisible()){
+                $("#chkDisasterLayerShow").click();
+            }
+            draw = new ol.interaction.Draw({
+                source: layers.featureLayers.disasters.getSource(),
+                type: /** @type {ol.geom.GeometryType} */ (ol.geom.GeometryType.POINT),
+                style: disasterStyle
+            });
+            map.addInteraction(draw);
+
+            draw.on('drawend',
+                function(evt) {
+                    evt.feature.setStyle(disasterStyle);
+                    map.removeInteraction(draw);
+                }, this);
+            break;
+        case vectorFeatures.warehousePoint:
+            if(!layers.featureLayers.warehouses.getVisible()){
+                $("#chkWarehouseLayerShow").click();
+            }
+            draw = new ol.interaction.Draw({
+                source: layers.featureLayers.warehouses.getSource(),
+                type: /** @type {ol.geom.GeometryType} */ (ol.geom.GeometryType.POINT),
+                style: warehouseStyle
+            });
+            map.addInteraction(draw);
+
+            draw.on('drawend',
+                function(evt) {
+                    evt.feature.setStyle(warehouseStyle);
+                    map.removeInteraction(draw);
+                }, this);
+            break;
+        case vectorFeatures.hiddenTroublePoint:
+            if(!layers.featureLayers.hiddenTrouble.getVisible()){
+                $("#chkHiddenTroubleLayerShow").click();
+            }
+            draw = new ol.interaction.Draw({
+                source: layers.featureLayers.hiddenTrouble.getSource(),
+                type: /** @type {ol.geom.GeometryType} */ (ol.geom.GeometryType.POINT),
+                style: hiddenTroubleStyle
+            });
+            map.addInteraction(draw);
+
+            draw.on('drawend',
+                function(evt) {
+                    evt.feature.setStyle(hiddenTroubleStyle);
+                    map.removeInteraction(draw);
+                }, this);
+            break;
+        case vectorFeatures.shelterPoint:
+            if(!layers.featureLayers.shelters.getVisible()){
+                $("#chkSheltersLayerShow").click();
+            }
+            draw = new ol.interaction.Draw({
+                source: layers.featureLayers.shelters.getSource(),
+                type: /** @type {ol.geom.GeometryType} */ (ol.geom.GeometryType.POINT),
+                style: sheltersFeatures
+            });
+            map.addInteraction(draw);
+
+            draw.on('drawend',
+                function(evt) {
+                    evt.feature.setStyle(sheltersFeatures);
+                    map.removeInteraction(draw);
+                }, this);
+            break;
+    }
+}
