@@ -318,13 +318,13 @@ function featurePlot(featureType){
             draw = new ol.interaction.Draw({
                 source: layers.featureLayers.shelters.getSource(),
                 type: /** @type {ol.geom.GeometryType} */ (ol.geom.GeometryType.POINT),
-                style: sheltersFeatures
+                style: shelterStyle
             });
             map.addInteraction(draw);
 
             draw.on('drawend',
                 function(evt) {
-                    evt.feature.setStyle(sheltersFeatures);
+                    evt.feature.setStyle(shelterStyle);
                     map.removeInteraction(draw);
                 }, this);
             break;
