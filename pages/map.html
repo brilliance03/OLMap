@@ -28,6 +28,11 @@
         <a href="javascript:;" id="drawLine">绘制线</a>
         <a href="javascript:;" id="drawPoly">绘制多边形</a>
     </fieldset>
+    <p/>
+    <fieldset>
+        <legend>路径</legend>
+        <a href="javascript:;" id="routing">路径分析</a>
+    </fieldset>
 </div>
 <div id="mousePosition" class="ol-unselectable"></div>
 <div id="layerGroupMenuBar" class="ol-unselectable">
@@ -160,7 +165,7 @@
                 <td>甘肃省兰州市城关区于2014-03-05 03:32:32发生干旱10人死亡</td>
                 <td>干旱</td>
                 <td>城关区</td>
-            </tr><tr>
+            </tr><tr>d
                 <td><input type="radio" name="locDisaster" value=""/></td>
                 <td>甘肃省金昌市永昌县于2014-04-07 08:42:32发生风雹18人死亡</td>
                 <td>风雹</td>
@@ -454,6 +459,11 @@ layers.vectorLayers.measureLenAndArea = new ol.layer.Vector({
             })
         })
     })
+});
+
+//路径分析使用的矢量图层
+layers.vectorLayers.routing = new ol.layer.Vector({
+    source: new ol.source.Vector()
 });
 
 //灾情标点的矢量图层
@@ -969,6 +979,63 @@ $('#drawPoly').click(function(){
     drawSometing("Polygon");
 });
 
+/**********************************************************
+ * 定义路径规划的方法
+ * 初始化相应地图操作按钮
+ **********************************************************/
+var routingParam = {};
+
+routingParam.requestParam = {
+    LAYERS: 'GanSuGIS:lanzhou_road',
+    FORMAT: 'image/png'
+};
+
+routingParam.transform = ol.proj.getTransform('EPSG:3857','EPSG:4326');
+
+routingParam.startPoint = new ol.Feature();
+routingParam.endPoint = new ol.Feature();
+
+layers.vectorLayers.routing.getSource().addFeatures([routingParam.startPoint,routingParam.endPoint]);
+
+$('#routing').click(function (){
+    var result = null;
+
+    map.on('click', function(evt){
+        var startPoint = routingParam.startPoint;
+        var endPoint = routingParam.endPoint;
+
+        if(result != null){
+            map.removeLayer(result);
+        }
+
+        if(startPoint.getGeometry() == null){
+            //第一次点击,在点击处标一个点
+            startPoint.setGeometry(new ol.geom.Point(evt.coordinate));
+        }else if(endPoint.getGeometry() == null){
+            //第二次点击
+            endPoint.setGeometry(new ol.geom.Point(evt.coordinate()));
+
+            var startCoord = routingParam.transform(startPoint.getGeometry().getCoordinates());
+            var endCoord = routingParam.transform(endPoint.getGeometry().getCoordinates());
+            var viewparams = [
+                    'x1:' + startCoord[0], 'y1:' + startCoord[1],
+                    'x2:' + endCoord[0], 'y2:' + endCoord[1]
+            ];
+            routingParam.requestParam.viewparams = viewparams.join(';');
+            result = new ol.layer.Image({
+                source: new ol.source.ImageWMS({
+                    url: 'http://localhost:8080/geoserver/GanSuGIS/wms',
+                    params: routingParam.requestParam
+                })
+            });
+            map.addLayer(result);
+
+            //清除
+            startPoint.setGeometry(null);
+            endPoint.setGeometry(null);
+        }
+    });
+});
 
 
 /**********************************************************
@@ -988,6 +1055,7 @@ var map = new ol.Map({
         baseMapGroup,
         layers.vectorLayers.provinceBounds,
         layers.vectorLayers.measureLenAndArea,
+        layers.vectorLayers.routing,
         layers.featureLayers.disasters,
         layers.featureLayers.warehouses,
         layers.featureLayers.hiddenTrouble,
@@ -1127,6 +1195,7 @@ $('.fa-bars').click(function(){
             page: {
                 html: '<div>详细信息</div>'
                 //dom: '#locateSheltersWindow'
+                //url: 'map_oldversion.html'
             },
             success: function(layero){
                 //重新加载列表
@@ -1170,7 +1239,7 @@ $('.fa-newspaper-o').click(function(){
     }
 });
 
-//显示图片
+//显示灾情图片
 layer.use('extend/layer.ext.js');
 $('.fa-picture-o').click(function(){
     layer.photos({
@@ -1196,7 +1265,8 @@ $('.fa-picture-o').click(function(){
             parent: '#imgs' , //图片的父元素选择器，如'#imsbox',
             start: 0, //初始显示的图片序号，默认0
             title: '灾情图片' //相册标题
-        }
+        },
+        shade: [0]
     });
 });
 
@@ -1248,7 +1318,7 @@ var featureOverlay = new ol.FeatureOverlay({
                 stroke: new ol.style.Stroke({
                     color: '#f00',
                     width: 1
-                }),
+                }), 
                 fill: new ol.style.Fill({
                     color: 'rgba(255,0,0,0.1)'
                 }),
