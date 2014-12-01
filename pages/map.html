@@ -32,6 +32,7 @@
     <fieldset>
         <legend>路径</legend>
         <a href="javascript:;" id="routing">路径分析</a>
+        <a href="javascript:;" id="clearRouting">清除路径</a>
     </fieldset>
 </div>
 <div id="mousePosition" class="ol-unselectable"></div>
@@ -992,49 +993,73 @@ routingParam.requestParam = {
 
 routingParam.transform = ol.proj.getTransform('EPSG:3857','EPSG:4326');
 
-routingParam.startPoint = new ol.Feature();
+routingParam.startPoint = new ol.Feature({});
 routingParam.endPoint = new ol.Feature();
+
+
+routingParam.startPointStyle = new ol.style.Style({
+    image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+        anchor: [0.5, 60],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 0.75,
+        src: 'data/icon/routing_start.png'
+    }))
+});
+
+routingParam.endPointStyle = new ol.style.Style({
+    image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+        anchor: [0.5, 60],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 0.75,
+        src: 'data/icon/routing_end.png'
+    }))
+});
+
+routingParam.startPoint.setStyle(routingParam.startPointStyle);
+routingParam.endPoint.setStyle(routingParam.endPointStyle);
+
 
 layers.vectorLayers.routing.getSource().addFeatures([routingParam.startPoint,routingParam.endPoint]);
 
+routingParam.result = null;
+
 $('#routing').click(function (){
-    var result = null;
 
     map.on('click', function(evt){
-        var startPoint = routingParam.startPoint;
-        var endPoint = routingParam.endPoint;
 
-        if(result != null){
-            map.removeLayer(result);
-        }
-
-        if(startPoint.getGeometry() == null){
+        if(!routingParam.startPoint.getGeometry()){
             //第一次点击,在点击处标一个点
-            startPoint.setGeometry(new ol.geom.Point(evt.coordinate));
-        }else if(endPoint.getGeometry() == null){
+            routingParam.startPoint.setGeometry(new ol.geom.Point(evt.coordinate));
+        }else if(!routingParam.endPoint.getGeometry()){
             //第二次点击
-            endPoint.setGeometry(new ol.geom.Point(evt.coordinate()));
+            routingParam.endPoint.setGeometry(new ol.geom.Point(evt.coordinate));
 
-            var startCoord = routingParam.transform(startPoint.getGeometry().getCoordinates());
-            var endCoord = routingParam.transform(endPoint.getGeometry().getCoordinates());
+            var startCoord = routingParam.transform(routingParam.startPoint.getGeometry().getCoordinates());
+            var endCoord = routingParam.transform(routingParam.endPoint.getGeometry().getCoordinates());
             var viewparams = [
                     'x1:' + startCoord[0], 'y1:' + startCoord[1],
                     'x2:' + endCoord[0], 'y2:' + endCoord[1]
             ];
             routingParam.requestParam.viewparams = viewparams.join(';');
-            result = new ol.layer.Image({
+            routingParam.result = new ol.layer.Image({
                 source: new ol.source.ImageWMS({
                     url: 'http://localhost:8080/geoserver/GanSuGIS/wms',
                     params: routingParam.requestParam
                 })
             });
-            map.addLayer(result);
-
-            //清除
-            startPoint.setGeometry(null);
-            endPoint.setGeometry(null);
+            map.addLayer(routingParam.result);
         }
     });
+});
+
+$('#clearRouting').click(function (){
+    map.removeLayer(routingParam.result);
+    routingParam.startPoint.setGeometry(null);
+    routingParam.endPoint.setGeometry(null);
+
+
 });
 
 
