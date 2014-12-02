@@ -188,6 +188,11 @@ body a
     border-left: 2px dotted rgba(0, 60, 136, .5);
     border-right: 0px;
     border-bottom: 0px;
+    padding: 4px;
+}
+
+.mapOperationPanel p{
+    padding: 4px;
 }
 
 .mapOperationPanel fieldset legend{
@@ -220,6 +225,8 @@ body a
 .mapOperationPanel fieldset a:hover{
     background:rgba(0, 60, 136, .7);
 }
+
+#mapOperation{}
 /*地图操作面板样式 End*/
 
 /*定义侧边栏菜单样式 Begin*/
