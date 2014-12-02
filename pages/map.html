@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/ol.css" type="text/css">
     <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../css/map.css" type="text/css">
+    <link rel="stylesheet" href="../css/ele.css" type="text/css">
     <link rel="stylesheet" href="../css/jquery.qtip.min.css" type="text/css">
     <link rel="stylesheet" href="../scripts/layer/skin/layer.css" type="text/css">
 </head>
@@ -16,11 +17,11 @@
     <a href="#" id="mapOperation"><i class="fa fa-globe"></i></a>
 </div>
 <div style="display: none">
-   <fieldset>
+    <fieldset>
         <legend>测量</legend>
-       <a href="javascript:;" id="measureDistance">测量距离</a>
-       <a href="javascript:;" id="measureArea">测量面积</a>
-   </fieldset>
+        <a href="javascript:;" id="measureDistance">测量距离</a>
+        <a href="javascript:;" id="measureArea">测量面积</a>
+    </fieldset>
     <p/>
     <fieldset>
         <legend>标绘</legend>
@@ -82,59 +83,88 @@
 </div>
 <div id="eastnav-right">
     <div class="right-menu" data-url="zqlb">
-        <input type="checkbox" id="chkDisasterLayerShow"/>灾情定位图层<br/>
-        灾情名称: <input type="text" id="data_disasterName"/><br/>
-        灾情类别: <select id="data_resourceType" name="data_resourceType">
-                    <option value="">干旱</option>
-                    <option value="">洪涝</option>
-                    <option value="">冰雹</option>
-                </select>
-        <br/>
-        <button>查询</button>
-        <p/>
-        <table>
+        <div class="row">
+            <input type="checkbox" id="chkDisasterLayerShow"/>
+            <span class="menu-title">灾情定位图层</span>
+        </div>
+        <div class="row">
+            <span class="span-title">灾情名称</span>
+            <input type="text" class="gis-input" style="width: 150px" id="data_disasterName"/>
+        </div>
+        <div class="row">
+            <span class="span-title">灾情种类</span>
+            <select id="data_resourceTypes" class="gis-select" style="width: 150px" name="data_resourceType">
+                <option value="">干旱</option>
+                <option value="">洪涝</option>
+                <option value="">冰雹</option>
+            </select>
+        </div>
+        <div class="row">
+            <a class="gis-btn" style="margin-left: 70px;">查询</a>
+        </div>
+        <table class="gis-table">
             <tr>
-                <td></td>
-                <td>灾害名称</td>
+                <th></th>
+                <th>灾害种类</th>
+                <th>灾害发生时间</th>
             </tr>
             <tr>
-                <td><input type="radio" name="slecDisaster" value="0"/></td>
-                <td>灾害1</td>
+                <td class="table-icons"><input type="radio" name="slecDisaster" value="0"/></td>
+                <td>洪涝</td>
+                <td>2014-10-09 10:40:40</td>
             </tr>
             <tr>
-                <td><input type="radio" name="slecDisaster" value="1"/></td>
-                <td>灾害2</td>
+                <td class="table-icons"><input type="radio" name="slecDisaster" value="1"/></td>
+                <td>干旱</td>
+                <td>2014-07-02 08:21:23</td>
             </tr>
             <tr>
-                <td><input type="radio" name="slecDisaster" value="2"/></td>
-                <td>灾害3</td>
+                <td class="table-icons"><input type="radio" name="slecDisaster" value="2"/></td>
+                <td>冰雹</td>
+                <td>2014-03-11 09:42:23</td>
             </tr>
             <tr>
-                <td><input type="radio" name="slecDisaster" value="3"/></td>
-                <td>灾害4</td>
+                <td class="table-icons"><input type="radio" name="slecDisaster" value="3"/></td>
+                <td>冰雹</td>
+                <td>2014-02-12 02:20:12</td>
             </tr>
             <tr>
-                <td><input type="radio" name="slecDisaster" value="4"/></td>
-                <td>灾害5</td>
+                <td class="table-icons"><input type="radio" name="slecDisaster" value="4"/></td>
+                <td>干旱</td>
+                <td>2013-09-20 12:23:12</td>
             </tr>
         </table>
     </div>
     <div class="right-menu" data-url="zycx">
-        <input type="checkbox" id="chkWarehouseLayerShow"/>物资库图层<br/>
-        <input type="checkbox" id="chkHiddenTroubleLayerShow"/>地质灾害隐患点图层<br/>
-        <input type="checkbox" id="chkSheltersLayerShow"/>应急避难场所图层<br/>
-        <br/>
-        资源名称：<input type="text" id="data_resourceName"/><br/>
-        资源类型：<select id="data_resourceType" name="data_resourceType">
-        <option value="">物资库</option>
-        <option value="">地质灾害隐患点</option>
-        <option value="">应急避难场所</option>
-    </select>
-        <br/>
-        <button>查询</button>
+        <div class="row">
+            <input type="checkbox" id="chkWarehouseLayerShow"/>
+            <span class="menu-title">物资库图层</span><br>
+            <input type="checkbox" id="chkHiddenTroubleLayerShow"/>
+            <span class="menu-title">地质灾害隐患点图层</span><br>
+            <input type="checkbox" id="chkSheltersLayerShow"/>
+            <span class="menu-title">应急避难场所图层</span>
+        </div>
+        <div class="row">
+            <span class="span-title">资源名称</span>
+            <input type="text" class="gis-input" style="width: 150px" id="data_resourceName"/>
+        </div>
+        <div class="row">
+            <span class="span-title">资源类型</span>
+            <select id="data_resourceType" name="data_resourceType" style="width: 150px" class="gis-select">
+                <option value="">物资库</option>
+                <option value="">地质灾害隐患点</option>
+                <option value="">应急避难场所</option>
+            </select>
+        </div>
+        <div class="row">
+            <a class="gis-btn" style="margin-left: 70px;">查询</a>
+        </div>
     </div>
     <div class="right-menu" data-url="jcxx">
-        <input type="checkbox" id="chkBaseInfoLayerShow"/>基础信息图层<br/>
+        <div class="row">
+            <input type="checkbox" id="chkBaseInfoLayerShow"/>
+            <span class="menu-title">基础信息图层</span>
+        </div>
     </div>
     <div class="right-menu" data-url="ztt">
         <a>专题图</a>
@@ -146,144 +176,149 @@
     <div class="radius"><i class="fa fa-bars" title="查看灾情详细信息"></i></div>
     <div class="radius"><i class="fa fa-picture-o" title="查看灾情图片"></i></div>
     <div class="radius"><i class="fa fa-film" title="查看灾情视频"></i></div>
+    <div class="radius"><i class="fa fa-cloud" title="查看受灾地需求"></i></div>
+    <div class="radius"><i class="fa fa-envelope" title="查看受灾地救灾工作"></i></div>
+    <div class="radius"><i class="fa fa-cubes" title="查看涉灾部门数据"></i></div>
     <!--<div class="radius"><i class="fa fa-search" title="查询周边"></i></div>-->
-    <div class="radius"><i class="fa fa-newspaper-o" title="灾情综合研判"></i></div>
-    <div class="radius"><i class="fa fa-close" title="关闭"></i></div>
+    <div class="radius"><i class="fa fa-newspaper-o" title="查看灾情研判结果"></i></div>
+    <div class="radius"><i class="fa fa-users" title="决策"></i></div>
 </div>
 <!--业务页面代码-->
 <div id="locateDisasterWindow" class="bizWindow displayNone">
-    <fieldset>
-        <legend>未标点灾情</legend>
-        <table>
+    <div class="page">
+        <div class="page-title">
+            <p><i class="fa fa-th-list"></i>未标点灾情</p>
+        </div>
+        <table class="gis-table" style="width: 390px;">
             <tr>
-                <td>选择</td>
-                <td>灾情标题</td>
-                <td>灾害种类</td>
-                <td>受灾区域</td>
+                <th></th>
+                <th>灾情标题</th>
+                <th>灾害种类</th>
+                <th>受灾区域</td>
             </tr>
             <tr>
-                <td><input type="radio" name="locDisaster" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locDisaster" value=""/></td>
                 <td>甘肃省兰州市城关区于2014-03-05 03:32:32发生干旱10人死亡</td>
                 <td>干旱</td>
                 <td>城关区</td>
-            </tr><tr>d
-                <td><input type="radio" name="locDisaster" value=""/></td>
+            </tr><tr>
+
+                <td class="table-icons"><input type="radio" name="locDisaster" value=""/></td>
                 <td>甘肃省金昌市永昌县于2014-04-07 08:42:32发生风雹18人死亡</td>
                 <td>风雹</td>
                 <td>永昌县</td>
             </tr><tr>
-                <td><input type="radio" name="locDisaster" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locDisaster" value=""/></td>
                 <td>甘肃省平凉市泾川县于2014-04-15 07:14:38发生泥石流10人死亡</td>
                 <td>泥石流</td>
                 <td>泾川县</td>
             </tr>
-            <tr>
-                <td colspan="4"><button type="button" id="disasterLocate">标点</button></td>
-            </tr>
+
         </table>
-    </fieldset>
+        <a class="gis-btn" style="margin-top: 10px" id="disasterLocate">标点</a>
+    </div>
 </div>
 <div id="locateWarehouseWindow" class="bizWindow displayNone">
-    <fieldset>
-        <legend>未标点物资库</legend>
-        <table>
+    <div class="page">
+        <div class="page-title">
+            <p><i class="fa fa-th-list"></i>未标点物资库</p>
+        </div>
+        <table class="gis-table" style="width: 390px;">
             <tr>
-                <td>选择</td>
-                <td>仓库名称</td>
-                <td>仓库级别</td>
-                <td>地址</td>
+                <th></th>
+                <th>仓库名称</th>
+                <th>仓库级别</th>
+                <th>地址</th>
             </tr>
             <tr>
-                <td><input type="radio" name="locWarehouse" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locWarehouse" value=""/></td>
                 <td>甘肃省救灾物资储备库</td>
                 <td>国家级</td>
                 <td>兰州市榆中县小桥大街20号</td>
             </tr>
             <tr>
-                <td><input type="radio" name="locWarehouse" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locWarehouse" value=""/></td>
                 <td>甘肃省救灾物资储备库</td>
                 <td>省级</td>
                 <td>白银市靖远县小桥大街20号</td>
             </tr>
             <tr>
-                <td><input type="radio" name="locWarehouse" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locWarehouse" value=""/></td>
                 <td>甘肃省救灾物资储备库</td>
                 <td>州市级</td>
                 <td>威武市古浪县沙洲镇大街9号</td>
             </tr>
-            <tr>
-                <td colspan="4"><button id="warehouseLocate">标点</button></td>
-            </tr>
         </table>
-    </fieldset>
+        <a class="gis-btn" style="margin-top: 10px;" id="warehouseLocate">标点</a>
+    </div>
 </div>
 <div id="locateHiddenTroubleWindow" class="bizWindow displayNone">
-    <fieldset>
-        <legend>未标点地质灾害隐患点</legend>
-        <table>
+    <div class="page">
+        <div class="page-title">
+            <p><i class="fa fa-th-list"></i>未标点地质灾害隐患点</p>
+        </div>
+        <table class="gis-table" style="width: 390px;">
             <tr>
-                <td>选择</td>
-                <td>隐患点名称</td>
-                <td>隐患点类别</td>
-                <td>地址</td>
+                <th></th>
+                <th>隐患点名称</td>
+                <th>隐患点类别</td>
+                <th>地址</td>
             </tr>
             <tr>
-                <td><input type="radio" name="locHiddenTrouble" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locHiddenTrouble" value=""/></td>
                 <td>隐患点1</td>
                 <td>类别1</td>
                 <td>地址1</td>
             </tr>
             <tr>
-                <td><input type="radio" name="locHiddenTrouble" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locHiddenTrouble" value=""/></td>
                 <td>隐患点2</td>
                 <td>类别2</td>
                 <td>地址2</td>
             </tr>
             <tr>
-                <td><input type="radio" name="locHiddenTrouble" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locHiddenTrouble" value=""/></td>
                 <td>隐患点3</td>
                 <td>类别3</td>
                 <td>地址3</td>
             </tr>
-            <tr>
-                <td colspan="4"><button id="hiddenTroubleLocate">标点</button></td>
-            </tr>
         </table>
-    </fieldset>
+        <a class="gis-btn" style="margin-top: 10px" id="hiddenTroubleLocate">标点</a>
+    </div>
 </div>
 <div id="locateSheltersWindow" class="bizWindow displayNone">
-    <fieldset>
-        <legend>未标点避难场所</legend>
-        <table>
+    <div class="page">
+        <div class="page-title">
+            <p><i class="fa fa-th-list"></i>未标点避难场所</p>
+        </div>
+        <table class="gis-table" style="width: 390px;">
             <tr>
-                <td>选择</td>
-                <td>避难场所名称</td>
-                <td>避难场所类型</td>
-                <td>行政区划</td>
+                <th></th>
+                <th>避难场所名称</th>
+                <th>避难场所类型</th>
+                <th>行政区划</th>
             </tr>
             <tr>
-                <td><input type="radio" name="locShelters" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locShelters" value=""/></td>
                 <td>东方红广场</td>
                 <td>广场</td>
                 <td>甘肃省兰州市永登县</td>
             </tr>
             <tr>
-                <td><input type="radio" name="locShelters" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locShelters" value=""/></td>
                 <td>白塔山公园</td>
                 <td>公园</td>
                 <td>甘肃省天水市麦积区</td>
             </tr>
             <tr>
-                <td><input type="radio" name="locShelters" value=""/></td>
+                <td class="table-icons"><input type="radio" name="locShelters" value=""/></td>
                 <td>伏羲广场</td>
                 <td>绿地</td>
                 <td>甘肃省酒泉市金塔县</td>
             </tr>
-            <tr>
-                <td colspan="4"><button id="sheltersLocate">标点</button></td>
-            </tr>
         </table>
-    </fieldset>
+        <a class="gis-btn" style="margin-top: 10px" id="sheltersLocate">标点</a>
+    </div>
 </div>
 
 <!--灾情图片临时测试-->
@@ -796,24 +831,24 @@ $('table input[name="slecDisaster"]').click(function(){
         var disaster = getDisaster($(this).val());
         var coord = disaster.getGeometry().getCoordinates();
         map.beforeRender(new ol.animation.pan({
-                duration: 2000,
-                source: mapView.getCenter(),
-                start: +new Date()
-            }),
-            new ol.animation.bounce({
-            duration: 2000,
-            resolution: mapView.getZoom() * mapView.getResolution(),
-            start: +new Date()
-        }));
+                    duration: 2000,
+                    source: mapView.getCenter(),
+                    start: +new Date()
+                }),
+                new ol.animation.bounce({
+                    duration: 2000,
+                    resolution: mapView.getZoom() * mapView.getResolution(),
+                    start: +new Date()
+                }));
         mapView.setCenter(coord);
         mapView.setZoom(13);
         //定位到灾情后，自动弹出灾情详细信息
         popup.setPosition(coord);
         setTimeout(function(){
-                $(popupElement).qtip({
+            $(popupElement).qtip({
                 content: {
                     title: disaster.get('name'),
-                    text: disaster.get('name'),
+                    text: disaster.get('text'),
                     button: 'Close'
                 },
                 position: {
@@ -882,12 +917,12 @@ var formatLength = function(line) {
     var length = Math.round(line.getLength() * 100) / 100;
     if (length > 100) {
         output = '测量距离为：' + (Math.round(length / 1000 * 100) / 100) +
-        //' ' + 'km';
-        ' ' + '公里';
+            //' ' + 'km';
+                ' ' + '公里';
     } else {
         output = '测量距离为：' + (Math.round(length * 100) / 100) +
-        //' ' + 'm';
-        ' ' + '米';
+            //' ' + 'm';
+                ' ' + '米';
     }
     return output;
 };
@@ -902,12 +937,12 @@ var formatArea = function(polygon) {
     //var output
     if (area > 10000) {
         output = '测量面积为：' + (Math.round(area / 1000000 * 100) / 100) +
-        //' ' + 'km<sup>2</sup>';
-        ' ' + '平方公里';
+            //' ' + 'km<sup>2</sup>';
+                ' ' + '平方公里';
     } else {
         output = '测量面积为：' + (Math.round(area * 100) / 100) +
-        //' ' + 'm<sup>2</sup>';
-        ' ' + '平方米';
+            //' ' + 'm<sup>2</sup>';
+                ' ' + '平方米';
     }
     return output;
 };
@@ -1157,7 +1192,7 @@ $('.radius').click(function (e) {
 
 //鼠标菜单失去焦点自动隐藏
 $('.radius').blur(function (e) {
-    alert('123');
+   // alert('123');
     this.removeClass('radius-scale');
 });
 
@@ -1190,6 +1225,18 @@ function showItem($items, index, e) {
             left = x + 45;
             top = y - 15;
             break;
+        case 5:
+            left = x + 28;
+            top = y + 27;
+            break;
+        case 6:
+            left = x - 15;
+            top = y + 45;
+            break;
+        case 7:
+            left = x - 58;
+            top = y + 27;
+            break;
     }
 
     $($items.get(index)).css({
@@ -1207,20 +1254,106 @@ function showItem($items, index, e) {
 //查看灾情详细信息
 var disasterInfo, disasterAnalysis;
 $('.fa-bars').click(function(){
-    if(!disasterInfo) {
-        disasterInfo = $.layer({
+        if(!disasterInfo) {
+            disasterInfo = $.layer({
+                type: 1,
+                title: '灾情详细信息',
+                area: ['1000px', '400px'],
+                border: [0], //去掉默认边框
+                shade: [0], //去掉遮罩
+                closeBtn: [0, true], //去掉默认关闭按钮
+                shift: 'top', //从左动画弹出
+                /*offset: ['', '70%'],*/
+                page: {
+                    html: '<iframe src="zqxxzs/zqxx.html" frameborder="0" style="height:400px;width:1000px;"></iframe>'
+                    //dom: '#locateSheltersWindow'
+                    //url:'zqxxzs/zqxx.html'
+                },
+                success: function(layero){
+                    //重新加载列表
+                    ;
+                },
+                close: function(index){
+                    disasterInfo = null;
+                }
+            });
+        }else{
+        ;
+    }
+});
+
+//决策
+$('.fa-users').click(function(){
+    if(!disasterAnalysis) {
+        disasterAnalysis = $.layer({
             type: 1,
-            title: '灾情详细信息',
-            area: ['520px', '460px'],
+            title: '决策',
+            area: ['1000px', '500px'],
             border: [0], //去掉默认边框
             shade: [0], //去掉遮罩
             closeBtn: [0, true], //去掉默认关闭按钮
             shift: 'top', //从左动画弹出
             /*offset: ['', '70%'],*/
             page: {
-                html: '<div>详细信息</div>'
+                url:'zqxxzs/jc.html'//救灾工作
+            },
+            success: function(layero){
+                //重新加载列表
+                ;
+            },
+            close: function(index){
+                disasterAnalysis = null;
+            }
+        });
+    }else{
+        ;
+    }
+});
+
+//查看涉灾部门数据
+$('.fa-cubes').click(function(){
+    if(!disasterAnalysis) {
+        disasterAnalysis = $.layer({
+            type: 1,
+            title: '查看涉灾部门数据',
+            area: ['1000px', '350px'],
+            border: [0], //去掉默认边框
+            shade: [0], //去掉遮罩
+            closeBtn: [0, true], //去掉默认关闭按钮
+            shift: 'top', //从左动画弹出
+            /*offset: ['', '70%'],*/
+            page: {
+                html: '<iframe src="zqxxzs/szbmxx.html" frameborder="0" style="height:500px;width:1000px;"></iframe>'
+            },
+            success: function(layero){
+                //重新加载列表
+                ;
+            },
+            close: function(index){
+                disasterAnalysis = null;
+            }
+        });
+    }else{
+        ;
+    }
+});
+
+//查看受灾地需求信息
+$('.fa-cloud').click(function(){
+    if(!disasterInfo) {
+        disasterInfo = $.layer({
+            type: 1,
+            title: '受灾地需求详细信息',
+            area: ['520px', '356px'],
+            border: [0], //去掉默认边框
+            shade: [0], //去掉遮罩
+            closeBtn: [0, true], //去掉默认关闭按钮
+            shift: 'top', //从左动画弹出
+            /*offset: ['', '70%'],*/
+            page: {
+                html: '<iframe src="jzxq/jzxqxx.html" frameborder="0" style="height:320px;width:520px;"></iframe>'
                 //dom: '#locateSheltersWindow'
-                //url: 'map_oldversion.html'
+                //url:'jzxq/jzxqxx.html'
             },
             success: function(layero){
                 //重新加载列表
@@ -1234,21 +1367,49 @@ $('.fa-bars').click(function(){
         ;
     }
 });
-
-//综合研判
-$('.fa-newspaper-o').click(function(){
+//查看受灾地救灾工作
+$('.fa-envelope').click(function(){
     if(!disasterAnalysis) {
         disasterAnalysis = $.layer({
             type: 1,
-            title: '灾情综合研判',
-            area: ['520px', '460px'],
+            title: '受灾地救灾工作',
+            area: ['1000px', '400px'],
             border: [0], //去掉默认边框
             shade: [0], //去掉遮罩
             closeBtn: [0, true], //去掉默认关闭按钮
             shift: 'top', //从左动画弹出
             /*offset: ['', '70%'],*/
             page: {
-                html: '<div>综合研判</div>'
+                html: '<iframe src="zqxxzs/jzgz.html" frameborder="0" style="height:400px;width:1000px;"></iframe>'
+               // url:'zqxxzs/jzgz.html'//救灾工作
+            },
+            success: function(layero){
+                //重新加载列表
+                ;
+            },
+            close: function(index){
+                disasterAnalysis = null;
+            }
+        });
+    }else{
+        ;
+    }
+});
+
+//查看灾情研判信息
+$('.fa-newspaper-o').click(function(){
+    if(!disasterAnalysis) {
+        disasterAnalysis = $.layer({
+            type: 1,
+            title: '灾情综合研判',
+            area: ['850px', '500px'],
+            border: [0], //去掉默认边框
+            shade: [0], //去掉遮罩
+            closeBtn: [0, true], //去掉默认关闭按钮
+            shift: 'top', //从左动画弹出
+            /*offset: ['', '70%'],*/
+            page: {
+                html: '<iframe src="zqyp/zqypxx.html" frameborder="0" style="height:464px;width:850px;"></iframe>'
                 //dom: '#locateSheltersWindow'
             },
             success: function(layero){

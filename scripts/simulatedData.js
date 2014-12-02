@@ -66,7 +66,8 @@ function simulatedData(){
 //模拟几个灾情
     disasterFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([105.3647, 35.3576], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾情1',
+        name: '甘南藏族自治州舟曲县城于2014-10-09 22:00:40发生洪涝',
+        text:"昨晚10点开始，舟曲县上游突降强暴雨，雨量达到93.8毫米，大暴雨引发<br/>滑坡泥石流冲进舟曲县城，截断了城中的白龙江，形成堰塞湖",
         population: 4000,
         rainfall: 500,
         type: vectorFeatures.disasterPoint
@@ -74,7 +75,8 @@ function simulatedData(){
 
     disasterFeatures[1] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([103.2773, 34.7099], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾情2',
+        name: '甘肃省兰州市城关区于2014-07-02 08:21:23发生干旱灾害',
+        text:"截止目前该灾情已经造成兰州市城关区10.8万人受灾、5.28万头牲畜饮水困难、<br/>92.45万亩农作物受灾",
         population: 4000,
         rainfall: 500,
         type: vectorFeatures.disasterPoint
@@ -82,7 +84,8 @@ function simulatedData(){
 
     disasterFeatures[2] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([103.4091, 37.3220], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾情3',
+        name: '甘肃省平凉市、天水市等地区于2014-03-11 09:42:23发生了冰雹灾害',
+        text:"该灾害造成全省１４人死亡和大量民房倒塌、大面积农作物受损，受灾地区直接经济<br/>损失很大",
         population: 4000,
         rainfall: 500,
         type: vectorFeatures.disasterPoint
@@ -90,7 +93,8 @@ function simulatedData(){
 
     disasterFeatures[3] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([99.4437, 38.8771], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾情4',
+        name: '甘肃省张掖市等地区于2014-02-12 02:20:12发生了冰雹灾害',
+        text:"该灾害造成大量民房倒塌、大面积农作物受损，受灾地区直接经济损失很大",
         population: 4000,
         rainfall: 500,
         type: vectorFeatures.disasterPoint
@@ -98,7 +102,8 @@ function simulatedData(){
 
     disasterFeatures[4] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([94.4437, 39.8771], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾情5',
+        name: '甘肃省白银市地区于2013-09-20 12:23:12发生干旱灾害',
+        text:" 持续干旱涉及48个乡镇，415个村，2648个社，受灾群众达15.05万户，67.58万人。<br/>目前，全市除保证灌溉的130万亩水地以外，干旱山区367.98万亩耕地全部受旱，农<br/>作物面临全部绝收",
         population: 4000,
         rainfall: 500,
         type: vectorFeatures.disasterPoint

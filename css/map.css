@@ -247,17 +247,18 @@ body a
     border-right: none;
     box-shadow: -1px 1px 0px #b8b8b8;
 }
+.left-title-selected  .left-title-bg {
+    background: rgba(0, 60, 136, .7);
+}
 .left-title-bg {
     display: block;
     width: 36px;
     height: 80px;
     border-radius: 3px;
-    /*background: rgba(51, 102, 153, 0.7);*/
     background: rgba(0, 60, 136, .5);
     text-align: center;
     color: #fcfcfc;
     cursor: pointer;
-    /*box-shadow: -1px 2px 3px #888;*/
     box-shadow: 2px 2px 4px #7d7c7d;
 }
 
@@ -298,8 +299,40 @@ body a
 }
 .right-menu {
     display: none;
-    padding: 20px;
+    padding: 5px 10px;
 }
+.right-menu .row {
+    display: block;
+    padding: 4px 0;
+    overflow: hidden;
+    font-size: 0;
+}
+.right-menu .row:first-child {
+    border-bottom: 1px dotted #4C76AB;
+    margin-bottom: 10px;
+}
+.right-menu .row .menu-title {
+    display: inline-block;
+    vertical-align: middle;
+    height: 28px;
+    line-height: 28px;
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #7e9abd;
+}
+.right-menu .row .span-title {
+    display: inline-block;
+    vertical-align: middle;
+    height: 28px;
+    line-height: 28px;
+    width: 62px;
+    margin-right: 8px;
+    font-size: 12px;
+    color: #525252;
+    text-align: right;
+}
+
 #exit {
     display: none;
     margin: 8px 0px 0px 4px;
@@ -312,7 +345,7 @@ body a
     background: rgba(0, 60, 136, .5);
     text-align: center;
     color: #fcfcfc;
-   /* box-shadow: -1px 2px 4px #777;*/
+    /*box-shadow: -1px 2px 4px #777;*/
     box-shadow: 2px 2px 4px #7d7c7d;
     cursor: pointer;
     font-size: 18px;
@@ -458,6 +491,6 @@ table{
 }
 
 table td{
-    border: 1px solid #000000;
+    /*border: 1px solid #000000;*/
     text-align: center;
 }
