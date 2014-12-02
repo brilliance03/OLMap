@@ -1,0 +1,458 @@
+html, body, div, p, span, img, a, h1, h2, h3, h4, h5, h6, ul, li, dl, dt,
+dd, form, input, select, textarea, fieldset, legend, table, tr, th, td {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+.gis-input {
+    box-sizing: border-box;
+    height: 26px;
+    line-height: 26px !important;
+    width: 100%;
+    padding-left: 4px;
+    border-radius: 2px;
+    font:12px Microsoft YaHei,"宋体";
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    display: inline-block;
+    vertical-align: middle;
+}
+.gis-input:focus,
+.gis-textarea:focus {
+    border: 1px solid #6793cc;
+    box-shadow: inset 0 1px 1px #d5e8ff, 0 0 1px #d5e8ff;
+}
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    height: 26px;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    background: transparent !important;
+}
+.gis-select {
+    box-sizing: border-box;
+    height: 26px;
+    width: 100%;
+    padding-left: 4px;
+    border-radius: 2px;
+    font:12px Microsoft YaHei,"宋体";
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    display: inline-block;
+    vertical-align: middle;
+}
+.gis-textarea {
+    box-sizing: border-box;
+    height: 60px;
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #c1c1c1;
+    border-radius: 2px;
+    font:12px Microsoft YaHei,"宋体";
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.075);
+}
+
+.gis-table {
+    padding: 0;
+    margin-top: 10px;
+    border: 1px solid #4C76AB;
+    border-collapse: collapse;
+    font-size: 12px;
+    color: #525252;
+}
+.gis-table tr{
+    background: #fcfcfc;
+    min-height: 28px;
+}
+.gis-table tr:nth-child(even) {
+    background-color: #DFE7F2;
+}
+.gis-table tr:hover{
+    background: #e1f6fc;
+}
+.gis-table th{
+    background-color: #319FD3;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    color: #fcfcfc;
+    font-weight: bold;
+    padding: 4px;
+    line-height: 16px;
+    text-align: left;
+    border-left: 1px dotted #4C76AB;
+}
+.gis-table td {
+    padding: 4px;
+    border-left: 1px dotted #4C76AB;
+    text-align: left;
+    line-height: 16px;
+}
+.gis-table td.table-icons {
+    padding: 4px;
+    width: 20px;
+    text-align: center;
+}
+
+.gis-btn {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    padding: 0 26px;
+    height: 26px;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 28px;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.35);
+    background-color: #4C76AB;
+    background-image: -moz-linear-gradient(top, #5887c2, #4C76AB);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5887c2), to(#4C76AB));
+    background-image: -webkit-linear-gradient(top, #5887c2, #4C76AB);
+    background-image: -o-linear-gradient(top, #5887c2, #4C76AB);
+    background-image: linear-gradient(to bottom, #5887c2, #4C76AB);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#5887c2,endcolorstr=#4C76AB,gradientType=0);
+    border: 1px solid #355b8c;
+    border-radius: 3px;
+    margin: 5px 5px 0 5px;
+}
+.gis-btn:hover {
+    background-color: #5887c2;
+    background-image: -moz-linear-gradient(top, #7E9BBF, #5887c2);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7E9BBF), to(#5887c2));
+    background-image: -webkit-linear-gradient(top, #7E9BBF, #5887c2);
+    background-image: -o-linear-gradient(top, #7E9BBF, #5887c2);
+    background-image: linear-gradient(to bottom, #7E9BBF, #5887c2);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#94b5dd,endcolorstr=#7E9BBF,gradientType=0);
+    border: 1px solid #5b7ca4;
+}
+.gis-btn:active {
+    -webkit-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.25), 0 0 0 #fff;
+    -moz-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.25), 0 0 0 #fff;
+    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.25), 0 0 0 #fff;
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#5887c2,endcolorstr=#4C76AB,gradientType=0);
+    border: 1px solid #355b8c;
+}
+.gis-btn-save {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    padding: 0 26px;
+    height: 26px;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 28px;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.35);
+    border: 1px solid #287828;
+    background-color: #5bb75b;
+    background-image: -moz-linear-gradient(top, #62c462, #51a351);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+    background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+    background-image: -o-linear-gradient(top, #62c462, #51a351);
+    background-image: linear-gradient(to bottom, #62c462, #51a351);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#62c462,endcolorstr=#51a351,gradientType=0);
+    border-radius: 3px;
+    margin: 5px 5px 0 5px;
+}
+.gis-btn-save:hover {
+    background-color: #62c462;
+    background-image: -moz-linear-gradient(top, #6bd46b, #62c462);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6bd46b), to(#62c462));
+    background-image: -webkit-linear-gradient(top, #6bd46b, #62c462);
+    background-image: -o-linear-gradient(top, #6bd46b, #62c462);
+    background-image: linear-gradient(to bottom, #6bd46b, #62c462);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#6bd46b,endcolorstr=#62c462,gradientType=0);
+    border: 1px solid #51a351;
+}
+.gis-btn-save:active {
+    -webkit-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.25), 0 0 0 #fff;
+    -moz-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.25), 0 0 0 #fff;
+    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.25), 0 0 0 #fff;
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#62c462,endcolorstr=#51a351,gradientType=0);
+    border: 1px solid #287828;
+}
+
+/*-------------栅格---------------*/
+.grid-layout {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
+    overflow:auto;
+}
+.row {
+    width: 100%;
+    padding: 8px 0px;
+    vertical-align: middle;
+    overflow:hidden;
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    padding-left: 6px;
+    min-height: 1px;
+    vertical-align: middle;
+}
+.col-12 {
+    width: 100%;
+}
+.col-11 {
+    width: 91.66666667%;
+}
+.col-10 {
+    width: 83.33333333%;
+}
+.col-9 {
+    width: 75%;
+}
+.col-8 {
+    width: 66.66666667%;
+}
+.col-7 {
+    width: 58.33333333%;
+}
+.col-6 {
+    width: 50%;
+}
+.col-5 {
+    width: 41.66666667%;
+}
+.col-4 {
+    width: 33.33333333%;
+}
+.col-3 {
+    width: 25%;
+}
+.col-2 {
+    width: 16.66666667%;
+}
+.col-1 {
+    width: 8.33333333%;
+}
+
+/*--------------------栅格布局中文字的处理----------------------*/
+.gis-grid-title {
+    margin: 0;
+    padding: 0;
+    float: right;
+    font:12px Microsoft YaHei,"宋体";
+    text-align: right;
+    line-height: 26px;
+    white-space:nowrap;
+}
+.col-1 .icheck-span,
+.col-2 .icheck-span,
+.col-3 .icheck-span,
+.col-4 .icheck-span,
+.col-5 .icheck-span,
+.col-6 .icheck-span,
+.col-7 .icheck-span,
+.col-8 .icheck-span,
+.col-9 .icheck-span,
+.col-10 .icheck-span,
+.col-11 .icheck-span,
+.col-12 .icheck-span {
+    display: inline-block;
+    vertical-align: middle;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px 0 0;
+}
+/*-------------------------  必填字段样式  ----------------------------*/
+.field-required {
+    display: inline-block;
+    width: 6px;
+    margin-left: 3px;
+    text-align: center;
+    height: 26px;
+    line-height: 26px;
+    vertical-align: middle;
+    color: red;
+}
+.field-blank {
+    display: inline-block;
+    margin-left: 3px;
+    width: 6px;
+    height: 26px;
+    vertical-align: middle;
+    color: transparent;     //面对一些太固执的人，我不得不这样写样式了
+}
+
+
+/*--------------------弹出框页面滑动效果样式代码----------------------*/
+html,body {
+    width: 100%;
+}
+#page {
+    box-sizing: border-box;
+    padding: 15px;
+    width: 100%;
+}
+.page {
+    box-sizing: border-box;
+    padding: 15px;
+    width: 100%;
+}
+#page-title,
+.page-title{
+    display: block;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+#page-title p,
+.page-title p{
+    display: inline-block;
+    height: 24px;
+    padding: 0 10px 0 5px;
+    border-bottom: 2px solid #ff7a40;
+    color: #285a99;
+    font: 16px '宋体';
+    font-weight: bold;
+    margin: 0;
+}
+#page-title p i,
+.page-title p i{
+    margin-right: 5px;
+    font-size: 18px;
+    color: #ff7a40;
+}
+#page-nav{
+    width: 100%;
+}
+#page-nav ul {
+    width: 100%;
+    height: 26px;
+    margin: 0;
+    padding: 10px 0;
+    background: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+    list-style-type: none;
+}
+#page-nav li {
+    float: left;
+    margin-left: 20px;
+}
+#page-nav li a {
+    display: block;
+    background: #7E9BBF;
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px #7d7c7d;
+    color: #ffffff;
+    font-size: 12px;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+#page-nav li a:hover {
+    background: #4C76AB;
+}
+#page-nav li a:active {
+    position: relative;
+    top: 1px;
+    background: #4C76AB;
+    box-shadow: 0px 0px 1px #7d7c7d;
+}
+#page-nav li a.selected {
+    position: relative;
+    top: 1px;
+    background: #4C76AB;
+    box-shadow: 0px 0px 1px #7d7c7d;
+}
+#container {
+    display: inline-block;
+    background: #f5f5f5;
+    box-sizing: border-box;
+    width: 100%;
+    border-top: 1px solid #fafafa;
+    position: relative;
+    overflow: hidden;
+}
+#text {
+    width: 20000px;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+#text li {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#text .gis-table {
+    border: 1px solid #4C76AB;
+    border-collapse: collapse;
+    font-size: 12px;
+    color: #525252;
+    margin: 10px 15px;
+}
+#text iframe {
+    box-sizing: border-box;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.grid-layout .picture{
+    float: left;
+    width: 180px;
+    height: 110px;
+    background: #eeeeee;
+    margin: 0 15px;
+}
+.grid-layout .picture img{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+}
+.grid-layout p {
+    display: block;
+    height: 110px;
+    color: #525252;
+    font: 12px '宋体';
+    margin-right: 15px;
+}
