@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/ele.css">
+    <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+    <title>WebGIS 灾情信息展示</title>
+<script src="../../scripts/jquery-1.11.1.min.js"></script>
+<script type="application/javascript" src="../../scripts/slide.js"></script>
+
+</head>
+<body>
+<div id="page">
+    <div id="page-nav">
+        <ul>
+            <li><a>受灾人口</a></li>
+            <li><a>农作物牲畜</a></li>
+            <li><a>倒塌房屋</a></li>
+            <li><a>直接经济损失</a></li>
+        </ul>
+    </div>
+    <div id="container">
+        <ul id="text">
+            <li>
+                <table class="gis-table">
+                    <thead>
+                    <tr>
+                        <th rowspan="2" style="width: 100px;"
+                            colspan="1">行政区划</th>
+                        <th rowspan="1" colspan="1">受灾人口</th>
+                        <th rowspan="1" colspan="1">因灾死亡人口</th>
+                        <th rowspan="1" colspan="1">因灾失踪人口</th>
+                        <th rowspan="1" colspan="1">因灾伤病人口</th>
+                        <th rowspan="1" colspan="1">紧急转移安置人口</th>
+                        <th rowspan="1" colspan="1">集中安置人口</th>
+                        <th rowspan="1" colspan="1">分散安置人口</th>
+                        <th rowspan="1" colspan="1">需紧急生活救助人口</th>
+                        <th rowspan="1" colspan="1">需过渡性救助人口</th>
+                        <th rowspan="1" colspan="1">因旱需生活救助人口</th>
+                        <th rowspan="1" colspan="1">其中：因旱饮水困难需救助人口</th>
+                        <th rowspan="1" colspan="1">被困人口</th>
+                    </tr>
+                    <tr >
+                        <th  rowspan="1" colspan="1"
+                             style="width: 39px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 57px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 57px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 57px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 75px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 57px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 57px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 84px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 75px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 84px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 132px;">人</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 39px;">人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>甘肃省</td>
+                        <td>8021</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;兰州市</td>
+                        <td>8021</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;金昌市</td>
+                        <td>8021</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;永昌县</td>
+                        <td>8021</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <table class="gis-table">
+                    <thead>
+                    <tr role="row">
+                        <th rowspan="2" style="width: 100px;"
+                            colspan="1">行政区划</th>
+                        <th rowspan="1" colspan="1">农作物受灾面积</th>
+                        <th rowspan="1" colspan="1">其中:农作物受灾面积</th>
+                        <th rowspan="1" colspan="1">其中:农作物绝收面积</th>
+                        <th rowspan="1" colspan="1">草场受灾面积</th>
+                        <th rowspan="1" colspan="1">毁坏耕地面积</th>
+                        <th rowspan="1" colspan="1">饮水困难大牲畜</th>
+                        <th rowspan="1" colspan="1">因灾死亡大牲畜</th>
+                        <th rowspan="1" colspan="1">因灾死亡羊只</th>
+                    </tr>
+                    <tr role="row">
+                        <th  rowspan="1" colspan="1"
+                             style="width: 116px;">公顷</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 130px;">公顷</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 130px;">公顷</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 101px;">公顷</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 80px;">公顷</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 116px;">头只</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 110px;">头只</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 80px;">只</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>甘肃省</td>
+                        <td>10033.62</td>
+                        <td>10033.62</td>
+                        <td>5236.1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;兰州市</td>
+                        <td>5236.1</td>
+                        <td>5236.1</td>
+                        <td>5236.1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;金昌市</td>
+                        <td>4684.52</td>
+                        <td>4684.52</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;永昌县</td>
+                        <td>113</td>
+                        <td>113</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <table class="gis-table">
+                    <thead>
+                    <tr>
+                        <th rowspan="2" style="width: 100px;"
+                            colspan="1">行政区划</th>
+                        <th rowspan="1" colspan="1">倒塌房屋间数</th>
+                        <th rowspan="1" colspan="1">其中：倒塌农房间数</th>
+                        <th rowspan="1" colspan="1">倒塌房屋户数</th>
+                        <th rowspan="1" colspan="1">其中：倒塌农房户数</th>
+                        <th rowspan="1" colspan="1">严重损坏房屋间数</th>
+                        <th rowspan="1" colspan="1">其中：严重损坏农房间数</th>
+                        <th rowspan="1" colspan="1">严重损坏房屋户数</th>
+                        <th rowspan="1" colspan="1">其中：严重损坏农房户数</th>
+                        <th rowspan="1" colspan="1">一般损坏房屋间数</th>
+                        <th rowspan="1" colspan="1">其中：一般损坏农房间数</th>
+                        <th rowspan="1" colspan="1">一般损坏房屋户数</th>
+                        <th rowspan="1" colspan="1">其中一般损坏农房户数</th>
+                    </tr>
+                    <tr>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 46px;">间</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 72px;">间</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 46px;">户</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 72px;">户</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 60px;">间</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 86px;">间</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 60px;">户</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 86px;">户</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 60px;">间</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 86px;">间</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 60px;">户</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 100px;">户</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>甘肃省</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;兰州市</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;金昌市</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;永昌县</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <table class="gis-table">
+                    <thead>
+                    <tr role="row">
+                        <th rowspan="2" style="width: 100px;"
+                            colspan="1">行政区划</th>
+                        <th rowspan="1" colspan="1">直接经济损失</th>
+                        <th rowspan="1" colspan="1">其中：农业损失</th>
+                        <th rowspan="1" colspan="1">工矿企业损失</th>
+                        <th rowspan="1" colspan="1">基础设施损失</th>
+                        <th rowspan="1" colspan="1">公益设施损失</th>
+                        <th rowspan="1" colspan="1">家庭财产损失</th>
+                    </tr>
+                    <tr role="row">
+                        <th  rowspan="1" colspan="1"
+                             style="width: 152px;">万元</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 175px;">万元</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 152px;">万元</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 152px;">万元</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 152px;">万元</th>
+                        <th  rowspan="1" colspan="1"
+                             style="width: 152px;">万元</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>甘肃省</td>
+                        <td>5069</td>
+                        <td>4967</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;兰州市</td>
+                        <td>3988</td>
+                        <td>3988</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;金昌市</td>
+                        <td>979</td>
+                        <td>979</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;永昌县</td>
+                        <td>102</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="../../css/ele.css">
+    <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+    <script src="../../scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../plugin/highcharts/highcharts.js"></script>
+    <script type="text/javascript" src="../../plugin/highcharts/exporting.js"></script>
+</head>
+<body>
+<!-- 受灾基础数据 -->
+<div >
+    <div class="row">
+        <div style="text-align: center;">
+           <div id="rkbar" style="height:250px;"></div>
+        </div>
+        <div style="text-align: center;">
+            <div id="mjcolumn" style="height:250px;"></div>
+        </div>
+        <div style="text-align: center;">
+            <div id="scbar" style="height:250px;"></div>
+        </div>
+        <div style="text-align: center;">
+            <div id="dtfwcolumn" style="height:250px;"></div>
+        </div>
+        <!--<div style="text-align: center;">
+
+                      <div id="rkbar" style="float:left;width:50%;height:250px;"></div>
+
+                       <div id="mjcolumn" style="float:left;width:50%;height:250px;"></div>
+        </div>
+        <div>
+            <div id="scbar" style="float:left;width:50%;height:250px;"></div>
+            <div id="dtfwcolumn" style="float:left;width:50%;height:250px;"></div>
+        </div>-->
+    </div>
+</div>
+<script>
+    $(function(){
+        createHighChartsRkBar();
+        createHighChartsMjColumn();
+        createHighChartsScBar();
+        createHighChartsDtfwColumn();
+    });
+//人口数据
+function createHighChartsRkBar(){
+        $('#rkbar').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: '人口受灾数据对比'
+            },
+            xAxis: {
+                categories: ['兰州市', '金昌市'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '人口 (万人)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: '万'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                enabled: true,
+                itemHoverStyle:  {color: 'red'} //鼠标放到图例上，颜色变化
+            },
+            credits: {
+                enabled: false
+            },
+            series: [ {
+                name: '受灾人口',
+                color:"blue",
+                data: [78,56]
+            },{
+                name: '总人口',
+                color:"green",
+                data: [156, 133]
+            }]
+        });
+}
+    //受灾面积
+   function createHighChartsMjColumn(){
+           $('#mjcolumn').highcharts({
+               chart: {
+                   type: 'column'
+               },
+
+               title: {
+                   text: '受灾面积数据对比'
+               },
+
+               xAxis: {
+                   categories: ['兰州市', '金昌市']
+               },
+
+               yAxis: {
+                   allowDecimals: false,
+                   min: 0,
+                   title: {
+                       text: '面积(公顷)'
+                   }
+               },
+               legend: {
+                   enabled: true,
+                   itemHoverStyle:  {color: 'red'} //鼠标放到图例上，颜色变化
+               },
+               tooltip: {
+                   formatter: function() {
+                       return '<b>'+ this.x +'</b><br/>'+
+                               this.series.name +': '+ this.y +'公顷<br/>'+
+                               '总面积: '+ this.point.stackTotal+'公顷';
+
+                   }
+               },
+
+               plotOptions: {
+                   column: {
+                       stacking: 'normal'
+                   }
+               },
+               credits: {
+                   enabled: false
+               },
+               series: [
+                   {
+                       name: '农作物受灾面积',
+                       data: [5, 3],
+                       stack: '农作物面积'
+                   },{
+                       name: '农作物未受灾面积',
+                       data: [5, 3],
+                       stack: '农作物面积'
+                   }, {
+                       name: '耕地受灾面积',
+                       data: [3, 4],
+                       stack: '耕地面积'
+                   }, {
+                       name: '耕地未受灾面积',
+                       data: [3, 4],
+                       stack: '耕地面积'
+                   }, {
+                       name: '草场受灾面积',
+                       data: [2, 5],
+                       stack: '草场面积'
+                   }, {
+                       name: '草场未受灾面积',
+                       data: [2, 5],
+                       stack: '草场面积'
+                   }]
+           });
+   }
+    //牲畜受灾数据
+    function createHighChartsScBar(){
+        $('#scbar').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: '牲畜受灾数据对比'
+            },
+            xAxis: {
+                categories: ['兰州市', '金昌市'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '头',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: '头'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                enabled: true,
+                itemHoverStyle:  {color: 'red'} //鼠标放到图例上，颜色变化
+            },
+            credits: {
+                enabled: false
+            },
+            series: [ {
+                name: '因灾死亡牲畜',
+                color:"blue",
+                data: [780,560]
+            },{
+                name: '饮水困难牲畜',
+                color:"green",
+                data: [1226, 1213]
+            }]
+        });
+    }
+    //倒塌房屋
+    function createHighChartsDtfwColumn(){
+        $('#dtfwcolumn').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: '倒塌房屋数据对比'
+            },
+            xAxis: {
+                categories: ['兰州市', '金昌市']
+            },
+            yAxis: {
+                min: 0,
+                title: { text: ' 房屋数量(间)', 	 align: 'high' },
+                labels: { overflow: 'justify' }
+
+            },
+            legend: {
+                backgroundColor: '#FFFFFF',
+                reversed: true
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}房屋</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                // pointFormat: '<span style="color:{series.color}">{series.options.stack}{series.name}房屋</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true,
+                valueSuffix: ' 间'
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                    //stacking: 'percent'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '倒塌砖木结构',
+                stack: '受灾',
+                data: [345, 563]
+            }, {
+                name: '倒塌砖混结构',
+                stack: '受灾',
+                data: [434, 221]
+            }, {
+                name: '倒塌钢筋结构',
+                stack: '受灾',
+                data: [21, 53]
+            },{
+                name: '砖木结构',
+                stack: '',
+                data: [1550, 1456]
+            }, {
+                name: '砖混结构',
+                stack: '',
+                data: [2510, 2341]
+            }, {
+                name: '钢筋结构',
+                stack: '',
+                data: [3451,3214]
+            }]
+        });
+       /* $('#dtfwcolumn').highcharts({
+            chart: {
+                type: 'column'
+            },
+
+            title: {
+                text: '倒塌房屋数据对比'
+            },
+
+            xAxis: {
+                categories: ['兰州市', '金昌市']
+            },
+
+            yAxis: {
+                allowDecimals: false,
+                min: 0,
+                title: {
+                    text: '千间'
+                }
+            },
+            legend: {
+                enabled: true,
+                itemHoverStyle:  {color: 'red'} //鼠标放到图例上，颜色变化
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.x +'</b><br/>'+
+                            this.series.name +'数量: '+ this.y +'千间<br/>'+
+                            '总房屋数量：: '+ this.point.stackTotal+'千间';
+
+                }
+            },
+
+            plotOptions: {
+                column: {
+                    stacking: 'normal'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: '砖木结构',
+                    data: [3.44, 3.6],
+                    stack: 'fwdt'
+                },{
+                    name: '砖混结构',
+                    data: [4.30, 3.423],
+                    stack: 'fwdt'
+                }, {
+                    name: '钢筋结构',
+                    data: [4.63, 3.32],
+                    stack: 'fwdt'
+                }, {
+                    name: '混凝土结构',
+                    data: [7.12, 6.43],
+                    stack: 'fwdt'
+                }, {
+                    name: '钢结构',
+                    data: [5.62, 5.97],
+                    stack: 'fwdt'
+                },  {
+                    name: '土木结构',
+                    data: [3.21, 2.43],
+                    stack: 'fwdt'
+                }]
+        });*/
+    }
+</script>
+</body>
+</html>

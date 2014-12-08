@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8"/>
+    <script src="../../scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="../../plugin/flashPaper/swfobject.js"></script>
+    <script src="../../plugin/flashPaper/flexpaper.js"></script>
+    <script src="../../plugin/flashPaper/flexpaper_handlers.js"></script>
+
+    <title>响应审批单-预览</title>
+    <style>
+        html,body {
+            height: 100%;
+            overflow: hidden;
+        }
+        #documentViewer {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="documentViewer" class="flexpaper_viewer"></div>
+</body>
+
+<script>
+    $(function() {
+        var startDocument = "Paper";
+        var flashvars =  $('#documentViewer').FlexPaperViewer(
+                {
+                    config : {
+                        SWFFile : escape("zqyp.swf"),
+                        Scale : 1.5,// 显示比例
+                        ZoomTransition : 'easeOut',// 变焦过渡
+                        ZoomTime : 0.5,// 从一个缩放比例变为另一个缩放比例需要的时间
+                        ZoomInterval : 0.2,//缩放比例之间间隔]
+                        FitPageOnLoad : true,//自适应页面
+                        FitWidthOnLoad : true,//自适应宽度
+                        FullScreenAsMaxWindow : false,//全屏按钮-新页面全屏[工具栏]
+                        ProgressiveLoading : true,//分割加载 对实际来说没有效果
+                        MinZoomSize : 0.2,//最小缩放
+                        MaxZoomSize : 5,//最大缩放
+                        SearchMatchAll : false,//搜索全部并且全部高亮显示
+                        InitViewMode : 'Portrait',// 浏览模式单页
+                        RenderingOrder : 'flash',
+                        StartAtPage : '',
+
+                        ViewModeToolsVisible : false,// 工具栏上是否显示样式选择框
+                        ZoomToolsVisible : false,// 工具栏上时候显示缩放工具
+                        NavToolsVisible : false,// 工具栏上是否显示导航工具
+                        CursorToolsVisible : false,// 工具栏上是否显示光标工具
+                        SearchToolsVisible : false,// 工具栏上是否显示搜索工具
+                        WMode : 'Opaque',
+                        localeChain: 'zh_CN',
+                        jsDirectory: '../../plugin/flashPaper/'
+                    }
+                }
+        );
+    });
+</script>
+
+</body>
+</html>

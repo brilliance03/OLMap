@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>救灾详情</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="../../css/ele.css">
+    <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+    <script src="../../scripts/jquery-1.11.1.min.js"></script>
+    <script src="../../scripts/slide.js"></script>
+    <script src="../../scripts/layer/layer.min.js" type="text/javascript"></script>
+
+    <style>
+        textarea {
+/*
+            border: 1px solid #4C76AB;resize: none;padding: 4px;width: 645px;
+*/
+            background: none repeat scroll 0 0 #ededed;
+            border: medium none;
+            border-radius: 2px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.18) inset;
+            box-sizing: border-box;
+            color: #555;
+            font: 12px Microsoft YaHei,"宋体";
+            height: 78px;
+            margin: 0;
+            padding: 4px;
+            resize: none;
+            transition: all 0.2s linear 0s;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="page" >
+    <!-- <div id="page-title">
+         <p><i class="fa fa-th-list"></i>数据展示</p>
+     </div>-->
+    <div id="page-nav">
+        <ul>
+            <li><a>应急响应启动情况</a></li>
+            <li><a>基础数据对比</a></li>
+            <li><a>卫星遥感数据分析</a></li>
+        </ul>
+    </div>
+    <div id="container" style="height:250px;overflow-y: auto;">
+        <ul id="text" style="height:200px;">
+            <li>
+                <iframe src="xyqdqk.html" ></iframe>
+            </li>
+            <li>
+                <iframe src="jcsjdb.html" ></iframe>
+            </li>
+            <li>
+                <div class="row">
+                    <div style="width:425px;float: left;height: 280px; "><div><img width="100%" src="灾前.jpg" alt="灾情遥感图"></div></div>
+                    <div style="width:425px;float: left; height: 280px;"><div><img width="100%" src="灾后.jpg" alt="灾情遥感图"></div></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+        <div style="margin-top: 5px;">
+            <textarea  placeholder="请填写研判结果" id="pgyj" class="summer-textarea"></textarea>
+            <div style="margin-top: 8px;text-align: center;">
+                <a class="gis-btn-save" id="submitbut">保存</a>
+<!--
+                <a class="gis-btn" href="zqyg.doc">查询</a>
+-->
+                <a class="gis-btn" href="zqyg.doc">生成研判报告</a>
+            </div>
+        </div>
+</div>
+<script>
+    $(function(){
+        $("#submitbut").on("click",function(){
+            layer.alert('研判结果保存成功',1,'提示信息');
+        });
+    });
+</script>
+</body>
+</html>
