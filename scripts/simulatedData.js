@@ -145,11 +145,9 @@ function simulatedData(){
         type: vectorFeatures.disasterPoint
     });
 
-    disasterFeatures[0].setStyle(disasterStyle);
-    disasterFeatures[1].setStyle(disasterStyle);
-    disasterFeatures[2].setStyle(disasterStyle);
-    disasterFeatures[3].setStyle(disasterStyle);
-    disasterFeatures[4].setStyle(disasterStyle);
+    disasterFeatures.forEach(function(item, index, array){
+       item.setStyle(disasterStyle);
+    });
 
 //iconFeature.setStyle(iconStyle);
 
@@ -281,10 +279,132 @@ function simulatedData(){
 
 
     //模拟专家信息
+    expertFeatures[0] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([105.3647, 34.3576], 'EPSG:4326', 'EPSG:3857')),
+        name: '专家1',
+        text:"专家1",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.expertPoint
+    });
+    expertFeatures[1] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([105.3647, 33.3576], 'EPSG:4326', 'EPSG:3857')),
+        name: '专家2',
+        text:"专家2",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.expertPoint
+    });
+    expertFeatures[2] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([105.3647, 32.3576], 'EPSG:4326', 'EPSG:3857')),
+        name: '专家3',
+        text:"专家3",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.expertPoint
+    });
+    expertFeatures.forEach(function(item, index, array){
+       item.setStyle(expertStyle);
+    });
+    layers.featureLayers.expert.getSource().addFeatures(expertFeatures);
 
     //模拟救援队伍信息
+    rescueTeamFeatures[0] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([102.2885, 37.7489], 'EPSG:4326', 'EPSG:3857')),
+        name: '救援队1',
+        text:"救援1",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.rescueTeamPoint
+    });
 
-    //模拟
+    rescueTeamFeatures[1] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([102.2885, 36.7489], 'EPSG:4326', 'EPSG:3857')),
+        name: '救援队2',
+        text:"救援2",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.rescueTeamPoint
+    });
+
+    rescueTeamFeatures[2] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([102.2885, 35.7489], 'EPSG:4326', 'EPSG:3857')),
+        name: '救援队3',
+        text:"救援3",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.rescueTeamPoint
+    });
+
+    rescueTeamFeatures[3] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([102.2885, 34.7489], 'EPSG:4326', 'EPSG:3857')),
+        name: '救援队4',
+        text:"救援4",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.rescueTeamPoint
+    });
+
+    rescueTeamFeatures.forEach(function (item, index, array) {
+        item.setStyle(rescueTeamStyle);
+    });
+    layers.featureLayers.rescueTeam.getSource().addFeatures(rescueTeamFeatures);
+
+    //模拟灾害信息员
+    messengerFeatures[0] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([97.6303, 39.7198], 'EPSG:4326', 'EPSG:3857')),
+        name: '灾害信息员1',
+        text:"灾害信息员1",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.messengerPoint
+    });
+
+    messengerFeatures[1] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([97.6303, 38.7198], 'EPSG:4326', 'EPSG:3857')),
+        name: '灾害信息员2',
+        text:"灾害信息员2",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.messengerPoint
+    });
+    messengerFeatures[2] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([97.6303, 37.7198], 'EPSG:4326', 'EPSG:3857')),
+        name: '灾害信息员3',
+        text:"灾害信息员3",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.messengerPoint
+    });
+    messengerFeatures[3] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([97.6303, 36.7198], 'EPSG:4326', 'EPSG:3857')),
+        name: '灾害信息员4',
+        text:"灾害信息员4",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.messengerPoint
+    });
+    messengerFeatures[4] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([97.6303, 35.7198], 'EPSG:4326', 'EPSG:3857')),
+        name: '灾害信息员5',
+        text:"灾害信息员5",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.messengerPoint
+    });
+    messengerFeatures[5] = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.transform([97.6303, 34.7198], 'EPSG:4326', 'EPSG:3857')),
+        name: '灾害信息员6',
+        text:"灾害信息员6",
+        population: 4000,
+        rainfall: 500,
+        type: vectorFeatures.messengerPoint
+    });
+
+    messengerFeatures.forEach(function (item, index, array) {
+        item.setStyle(messengerStyle);
+    });
+    layers.featureLayers.messenger.getSource().addFeatures(messengerFeatures);
 
 }
 
@@ -302,6 +422,22 @@ function getHiddenTrouble(index){
 
 function getShelter(index){
     return sheltersFeatures[index];
+}
+
+function getBaseInfo(index){
+    return baseInfoFeatures[index];
+}
+
+function getExpert(index){
+    return expertFeatures[index];
+}
+
+function getRescueTeam(index){
+    return rescueTeamFeatures[index];
+}
+
+function getMessenger(index){
+    return messengerFeatures[index];
 }
 
 

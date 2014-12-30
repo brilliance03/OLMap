@@ -141,7 +141,7 @@
             <span class="menu-title">物资库图层</span><br>
             <input type="checkbox" id="chkSheltersLayerShow"/>
             <span class="menu-title">应急避难场所图层</span><br>
-            <input type="checkbox" id="chkProLayerShow"/>
+            <input type="checkbox" id="chkExpertLayerShow"/>
             <span class="menu-title">应急专家</span><br>
             <input type="checkbox" id="chkRescueTeamLayerShow"/>
             <span class="menu-title">救援队伍</span><br>
@@ -374,6 +374,18 @@ var vectorFeatures = {
     },
     baseInfoPoint:{
         name: 'baseInfo',
+        type: ol.geom.GeometryType.POINT
+    },
+    expertPoint:{
+        name: 'expert',
+        type: ol.geom.GeometryType.POINT
+    },
+    rescueTeamPoint:{
+        name: 'rescueTeam',
+        type: ol.geom.GeometryType.POINT
+    },
+    messengerPoint:{
+        name: 'messenger',
         type: ol.geom.GeometryType.POINT
     }
 }//定义矢量兴趣点类型集合
@@ -1172,6 +1184,9 @@ layers.featureLayers.hiddenTrouble.setVisible(false);
 layers.featureLayers.warehouses.setVisible(false);
 layers.featureLayers.shelters.setVisible(false);
 layers.featureLayers.baseInfo.setVisible(false);
+layers.featureLayers.expert.setVisible(false);
+layers.featureLayers.rescueTeam.setVisible(false);
+layers.featureLayers.messenger.setVisible(false);
 
 $(map.getViewport()).on('mousemove', mouseMoveHandler); //绑定测量长度和面积方法
 map.addOverlay(simpleTip);//绑定弹出层
@@ -1702,7 +1717,7 @@ map.on('click', function(evt) {
     }
 });
 
-// change mouse cursor when over marker
+//鼠标划过兴趣点的时候改变样式
 $(map.getViewport()).on('mousemove', function (e) {
     var pixel = map.getEventPixel(e.originalEvent);
     var feature = map.forEachFeatureAtPixel(pixel, function (feature, layer) {
