@@ -4,11 +4,14 @@
 /**
  * 界面原型使用的模拟数据
  */
-var disasterFeatures = new Array();
-var warehouseFeatures = new Array();
-var hiddenTroubleFeatures = new Array();
-var sheltersFeatures = new Array();
-var baseInfoFeatures = new Array();
+var disasterFeatures = [];
+var warehouseFeatures = [];
+var hiddenTroubleFeatures = [];
+var sheltersFeatures = [];
+var baseInfoFeatures = [];
+var expertFeatures = [];
+var rescueTeamFeatures = [];
+var messengerFeatures = [];
 
 var disasterStyle = new ol.style.Style({
             image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
@@ -60,6 +63,39 @@ var baseInfoStyle = new ol.style.Style({
             src: 'data/icon/star_32.png'
         }))
     });
+
+var expertStyle = new ol.style.Style({
+        image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+        //anchor: [0.5, 46],
+        anchor: [0.5, 20],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 0.75,
+        src: 'data/icon/expert_32.png'
+    }))
+});
+
+var rescueTeamStyle = new ol.style.Style({
+    image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+        //anchor: [0.5, 46],
+        anchor: [0.5, 20],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 0.75,
+        src: 'data/icon/rescueTeam_32.png'
+    }))
+});
+
+var messengerStyle = new ol.style.Style({
+    image: new ol.style.Icon(/* @type {olx.style.IconOptions}*/ ({
+        //anchor: [0.5, 46],
+        anchor: [0.5, 20],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 0.75,
+        src: 'data/icon/messenger_32.png'
+    }))
+});
 
 function simulatedData(){
     /******************************************************************/
@@ -242,6 +278,13 @@ function simulatedData(){
     baseInfoFeatures[0].setStyle(baseInfoStyle);
 
     layers.featureLayers.baseInfo.getSource().addFeatures(baseInfoFeatures);
+
+
+    //模拟专家信息
+
+    //模拟救援队伍信息
+
+    //模拟
 
 }
 
