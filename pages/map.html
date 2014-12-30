@@ -139,10 +139,14 @@
         <div class="row">
             <input type="checkbox" id="chkWarehouseLayerShow"/>
             <span class="menu-title">物资库图层</span><br>
-            <input type="checkbox" id="chkHiddenTroubleLayerShow"/>
-            <span class="menu-title">地质灾害隐患点图层</span><br>
             <input type="checkbox" id="chkSheltersLayerShow"/>
-            <span class="menu-title">应急避难场所图层</span>
+            <span class="menu-title">应急避难场所图层</span><br>
+            <input type="checkbox" id="chkProLayerShow"/>
+            <span class="menu-title">应急专家</span><br>
+            <input type="checkbox" id="chkRescueTeamLayerShow"/>
+            <span class="menu-title">救援队伍</span><br>
+            <input type="checkbox" id="chkMessengerLayerShow"/>
+            <span class="menu-title">灾害信息员</span><br>
         </div>
         <div class="row">
             <span class="span-title">资源名称</span>
@@ -154,6 +158,9 @@
                 <option value="">物资库</option>
                 <option value="">地质灾害隐患点</option>
                 <option value="">应急避难场所</option>
+                <option value="">应急专家</option>
+                <option value="">救援队伍</option>
+                <option value="">灾害信息员</option>
             </select>
         </div>
         <div class="row">
@@ -164,6 +171,8 @@
         <div class="row">
             <input type="checkbox" id="chkBaseInfoLayerShow"/>
             <span class="menu-title">基础信息图层</span>
+            <input type="checkbox" id="chkHiddenTroubleLayerShow"/>
+            <span class="menu-title">地质灾害隐患点图层</span><br>
         </div>
     </div>
     <div class="right-menu" data-url="ztt">
@@ -524,6 +533,21 @@ layers.featureLayers.shelters = new ol.layer.Vector({
 
 //基础信息矢量图层
 layers.featureLayers.baseInfo = new ol.layer.Vector({
+    source: new ol.source.Vector()
+});
+
+//应急专家矢量图层
+layers.featureLayers.expert = new ol.layer.Vector({
+    source: new ol.source.Vector()
+});
+
+//救援队伍矢量图曾
+layers.featureLayers.rescueTeam = new ol.layer.Vector({
+    source: new ol.source.Vector()
+});
+
+//灾害信息员矢量图层
+layers.featureLayers.messenger = new ol.layer.Vector({
     source: new ol.source.Vector()
 });
 
@@ -1120,7 +1144,10 @@ var map = new ol.Map({
         layers.featureLayers.warehouses,
         layers.featureLayers.hiddenTrouble,
         layers.featureLayers.shelters,
-        layers.featureLayers.baseInfo
+        layers.featureLayers.baseInfo,
+        layers.featureLayers.expert,
+        layers.featureLayers.rescueTeam,
+        layers.featureLayers.messenger
     ],
     view: mapView,
     target: 'map'
