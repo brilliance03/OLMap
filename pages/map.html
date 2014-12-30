@@ -156,7 +156,6 @@
             <span class="span-title">资源类型</span>
             <select id="data_resourceType" name="data_resourceType" style="width: 150px" class="gis-select">
                 <option value="">物资库</option>
-                <option value="">地质灾害隐患点</option>
                 <option value="">应急避难场所</option>
                 <option value="">应急专家</option>
                 <option value="">救援队伍</option>
@@ -210,8 +209,8 @@
                 <td>甘肃省兰州市城关区于2014-03-05 03:32:32发生干旱10人死亡</td>
                 <td>干旱</td>
                 <td>城关区</td>
-            </tr><tr>
-
+            </tr>
+            <tr>
                 <td class="table-icons"><input type="radio" name="locDisaster" value=""/></td>
                 <td>甘肃省金昌市永昌县于2014-04-07 08:42:32发生风雹18人死亡</td>
                 <td>风雹</td>
@@ -660,6 +659,15 @@ $("#chkSheltersLayerShow").click(function(){
 $("#chkBaseInfoLayerShow").click(function(){
     layers.featureLayers.baseInfo.setVisible($(this).is(':checked') ? true:false);
 });//基础信息图层
+$("#chkExpertLayerShow").click(function(){
+    layers.featureLayers.expert.setVisible($(this).is(':checked') ? true:false);
+});//应急专家图层
+$("#chkRescueTeamLayerShow").click(function(){
+    layers.featureLayers.rescueTeam.setVisible($(this).is(':checked') ? true:false);
+});//救援队伍信息图层
+$("#chkMessengerLayerShow").click(function(){
+    layers.featureLayers.messenger.setVisible($(this).is(':checked') ? true:false);
+});//灾害信息员信息图层
 
 //定义标点定位按钮展开菜单事件
 $('.dropdown').mouseenter(function(){
