@@ -898,7 +898,7 @@ $('table input[name="slecDisaster"]').click(function(){
                 position: {
                     my: 'bottom center',
                     adjust: {
-                        x: 0, y: -50, resize: true
+                        x: 0, y: -10, resize: true
                     }
                 },
                 style: {
@@ -1704,12 +1704,42 @@ map.on('click', function(evt) {
                 }, 200);
             }
             case vectorFeatures.warehousePoint:
-                ;
+            {
+                var geometry = feature.getGeometry();
+                var coord = geometry.getCoordinates();
+                popup.setPosition(coord);
+                $(popupElement).qtip({
+                    content: {
+                        title: feature.get('name'),
+                        text: feature.get('text'),
+                        button: 'Close'
+                    },
+                    position: {
+                        my: 'bottom center',
+                        adjust: {
+                            x: 0, y: -10, resize: true
+                        }
+                    },
+                    style: {
+                        classes: 'qtip-bootstrap'
+                    },
+                    hide: {
+                        event: false
+                    }
+
+                }).qtip('show');
+            }
             case vectorFeatures.hiddenTroublePoint:
                 ;
             case vectorFeatures.shelterPoint:
                 ;
             case vectorFeatures.baseInfoPoint:
+                ;
+            case vectorFeatures.expertPoint:
+                ;
+            case vectorFeatures.rescueTeamPoint:
+                ;
+            case vectorFeatures.messengerPoint:
                 ;
             default :
                 $('.radius').removeClass('radius-scale');
@@ -1718,7 +1748,8 @@ map.on('click', function(evt) {
 });
 
 //鼠标划过兴趣点的时候改变样式
-$(map.getViewport()).on('mousemove', function (e) {
+//TODO mousemove事件过于频繁的触发，导致提示框不停的显示、消失，正式开发时修正该BUG
+$(map.getViewport()).on('mousemove', function (e) { //mousemove事件并不适合用于显示元素信息，而只适用于鼠标形态改变
     var pixel = map.getEventPixel(e.originalEvent);
     var feature = map.forEachFeatureAtPixel(pixel, function (feature, layer) {
         return feature;
