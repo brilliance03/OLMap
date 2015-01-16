@@ -6,14 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <link rel="stylesheet" href="../../css/ele.css">
     <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+    <link href="../../plugin/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <link href="../../plugin/treegrid/summer.treegrid.css" rel="stylesheet">
     <script src="../../scripts/jquery-1.11.1.min.js"></script>
     <script src="../../scripts/slide.js"></script>
+    <script src="../../plugin/summerWidget/jquery.ui.base.min.js"></script>
+    <script src="../../plugin/zTree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="../../plugin/treegrid/jquery.summer.treegrid.js"></script>
 </head>
 <body>
 <div id="page">
-   <!-- <div id="page-title">
-        <p><i class="fa fa-th-list"></i>数据展示</p>
-    </div>-->
     <div id="page-nav">
         <ul>
             <li><a>物资需求</a></li>
@@ -21,98 +23,96 @@
             <li><a>人员需求</a></li>
         </ul>
     </div>
-    <div id="container" >
-        <ul id="text">
+    <div id="container">
+        <ul id="text" style="height: 200px;">
             <li>
                 <table  class="gis-table" id="wzxqList" >
-                    <tr>
-                        <th scope="col" >行政区划</th>
-                        <th scope="col" >面粉(千克)</th>
-                        <th scope="col" >大米(千克)</th>
-                        <th scope="col" >帐篷(顶)</th>
-                        <th scope="col" >雨衣(件)</th>
-                        <th scope="col" >简易折叠床(张)</th>
-                    </tr>
-                    <tr>
-                        <td>白银市</th>
-                        <td>26055</td>
-                        <td>62500</td>
-                        <td>63600</td>
-                        <td>84800</td>
-                        <td>84800</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;平川区</th>
-                        <td>2313</td>
-                        <td>2112</td>
-                        <td>2341</td>
-                        <td>5673</td>
-                        <td>4800</td>
-                    </tr>
-                    <tr>
-                        <td >&nbsp;靖远县</th>
-                        <td>26055</td>
-                        <td>62500</td>
-                        <td>63600</td>
-                        <td>84800</td>
-                        <td>2342</td>
-                    </tr>
+                    <div id="wzTreegrid">
+                        <div class="summer-treegrid-head">
+                            <div class="summer-treegrid-row">
+                                <div class="summer-treegrid-cell" style="width:22%">行政区划</div>
+                                <div class="summer-treegrid-cell" style="width:15%">面粉(千克)</div>
+                                <div class="summer-treegrid-cell" style="width:15%">大米(千克)</div>
+                                <div class="summer-treegrid-cell" style="width:13%">帐篷(顶)</div>
+                                <div class="summer-treegrid-cell" style="width:13%">雨衣(件)</div>
+                                <div class="summer-treegrid-cell" style="width:22%">简易折叠床(张)</div>
+                            </div>
+                        </div>
+                    </div>
                 </table>
             </li>
             <li>
                 <table  class="gis-table" id="zjxqList" >
-                    <tr>
-                        <th scope="col" style="width: 130px;">行政区划</th>
-                        <th scope="col" style="width: 116px;">应急期救助(万元)</th>
-                        <th scope="col" style="width: 116px;">采购食物(万元)</th>
-                    </tr>
-                    <tr>
-                        <td >白银市</th>
-                        <td>773</td>
-                        <td>567</td>
-                    </tr>
-                    <tr>
-                        <td >&nbsp;平川区</th>
-                        <td>130</td>
-                        <td>220</td>
-                    </tr>
-                    <tr>
-                        <td >&nbsp;靖远县</th>
-                        <td>265</td>
-                        <td>325</td>
-                    </tr>
+                    <div id="zjTreegrid">
+                        <div class="summer-treegrid-head">
+                            <div class="summer-treegrid-row">
+                                <div class="summer-treegrid-cell" style="width:33%">行政区划</div>
+                                <div class="summer-treegrid-cell" style="width:33%">应急期救助(万元)</div>
+                                <div class="summer-treegrid-cell" style="width:33%">采购食物(万元)</div>
+                            </div>
+                        </div>
+                    </div>
                 </table>
             </li>
             <li>
-                <table  class="gis-table" id="ryxqList" >
-                    <tr>
-                        <th scope="col" style="width: 130px;">行政区划</th>
-                        <th scope="col" style="width: 116px;">车辆组(人)</th>
-                        <th scope="col" style="width: 116px;">医疗组(人)</th>
-                        <th scope="col" style="width: 116px;">灾害调研组(人)</th>
-                    </tr>
-                    <tr>
-                        <td >白银市</th>
-                        <td>60</td>
-                        <td>210</td>
-                        <td>240</td>
-                    </tr>
-                    <tr>
-                        <td >&nbsp;平川区</th>
-                        <td>10</td>
-                        <td>45</td>
-                        <td>23</td>
-                    </tr>
-                    <tr>
-                        <td >&nbsp;靖远县</th>
-                        <td>42</td>
-                        <td>23</td>
-                        <td>35</td>
-                    </tr>
+               <table  class="gis-table" id="ryxqList" >
+                    <div id="ryTreegrid">
+                        <div class="summer-treegrid-head">
+                            <div class="summer-treegrid-row">
+                                <div class="summer-treegrid-cell" style="width:25%">行政区划</div>
+                                <div class="summer-treegrid-cell" style="width:25%">车辆组(人)</div>
+                                <div class="summer-treegrid-cell" style="width:25%">医疗组(人)</div>
+                                <div class="summer-treegrid-cell" style="width:25%">灾害调研组(人)</div>
+                            </div>
+                        </div>
+                    </div>
                 </table>
             </li>
         </ul>
     </div>
 </div>
+<script>
+$(function(){
+    $('#wzTreegrid').treegrid({
+        url: 'wzTreegrid.json',
+        requestParam: ['name','wangyi'],
+        treeField: 'address',
+        checkEnable: true,
+        columns: [
+            {field: 'address', width: '22%'},
+            {field:'gender', width: '15%'},
+            {field: 'age', width: '15%'},
+            {field: 'a', width: '13%'},
+            {field:'b', width: '13%'},
+            {field: 'c', width: '22%'}
+        ]
+    });
+
+    $('#zjTreegrid').treegrid({
+        url: 'zjTreegrid.json',
+        requestParam: ['name','wangyi'],
+        treeField: 'address',
+        checkEnable: true,
+        columns: [
+            {field: 'address', width: '33%'},
+            {field:'gender', width: '33%'},
+            {field: 'age', width: '33%'}
+        ]
+    });
+
+    $('#ryTreegrid').treegrid({
+        url: 'ryTreegrid.json',
+        requestParam: ['name','wangyi'],
+        treeField: 'address',
+        checkEnable: true,
+        columns: [
+            {field: 'address', width: '25%'},
+            {field:'gender', width: '25%'},
+            {field: 'age', width: '25%'},
+            {field: 'phone', width: '25%'}
+        ]
+    });
+})
+</script>
 </body>
 </html>

@@ -3,16 +3,28 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../css/ele.css">
+    <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
     <title></title>
 </head>
+<script>
+function showImg1(){
+	var options = {
+            "images" : [{
+                "href" : "images/sltp.jpg",
+                "title" : "水利信息"
+                }]
+           };
+    window.top.showImages(options);
+}
+</script>
 <body>
 <div class="grid-layout">
     <div class="row">
-        <div class="picture" ><img style="width: 300px;height: 160px;" src="../images/sltp.jpg"></div>
-        <p style="padding-left:320px">&nbsp;&nbsp;&nbsp;&nbsp;受地震影响，定西市岷县震区人饮设施、河道堤防震损严重，甘南州迭部县腊子
+        <p >&nbsp;&nbsp;&nbsp;&nbsp;受地震影响，定西市岷县震区人饮设施、河道堤防震损严重，甘南州迭部县腊子
             口一级水电站水渠被震落山石砸塌，正在全力抢修，详细震损灾情正在调查统计中。黄河防总办公室将密切关注雨水情、灾情和天气形势变化，全面
             落实各项防汛措施，全力以赴应对强降雨防范和地震灾情。</p>
     </div>
+     <div class="col-6 col-cell text">水利信息.jpg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showImg1()" ><i class="fa fa-eye"></i></a></div>
 </div>
 </body>
 </html>

@@ -6,9 +6,10 @@ $(function() {
         tableHeight = $('#text').height(),
         links = $('#page-nav li').find('a');
 
+    $('#text > li').css('width', conWidth + 'px');
     $('#text .gis-table').css('width', conWidth - 30 + 'px');
-    $('#text iframe').css('width', conWidth  + 'px');
-    $('#text iframe').css('height', tableHeight + 30  + 'px');
+    $('#text > li >iframe').css('width', conWidth -30  + 'px');
+    $('#text > li > iframe').css('height', tableHeight + 30  + 'px');
     $('#container').css('height', tableHeight + 30 + 'px');
 
     for(var i = 0; i < links.length; i++ ) {

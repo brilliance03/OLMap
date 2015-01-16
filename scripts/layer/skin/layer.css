@@ -16,7 +16,7 @@
 .xubox_border, .xubox_title, .xubox_title i, .xubox_page, .xubox_iframe, .xubox_title em, .xubox_close, .xubox_msgico, .xubox_moves{position:absolute;}
 .xubox_border{border-radius: 5px;}
 .xubox_title{left:0; top:0;}
-.xubox_main{position:relative; height:100%; _float:left;}
+.xubox_main{position:relative; height:100%; _float:left;box-shadow: 1px 1px 3px #7d7c7d, -1px -1px 3px #aaa;}
 .xubox_page{top:0; left:0;}
 .xubox_load{background:url(default/xubox_loading0.gif) #fff center center no-repeat;}
 .xubox_loading{display:block; float:left; text-decoration:none; color:#FFF; _float:none; }

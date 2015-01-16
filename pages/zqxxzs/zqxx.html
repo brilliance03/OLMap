@@ -2,11 +2,24 @@
 <html>
 <head lang="zh">
     <meta charset="UTF-8">
+    <link href="../../plugin/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <link href="../../plugin/treegrid/summer.treegrid.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/ele.css">
     <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
     <title>WebGIS 灾情信息展示</title>
-<script src="../../scripts/jquery-1.11.1.min.js"></script>
-<script type="application/javascript" src="../../scripts/slide.js"></script>
+    <script src="../../scripts/jquery-1.11.1.min.js"></script>
+    <script src="../../plugin/summerWidget/jquery.ui.base.min.js"></script>
+    <script src="../../plugin/zTree/js/jquery.ztree.all-3.5.min.js"></script>
+   <script src="../../plugin/treegrid/jquery.summer.treegrid.js"></script>
+   <script type="application/javascript" src="../../scripts/slide.js"></script>
+<style type="">
+	.first {
+		height:60px;
+	}
+	.second {
+		height:50px;
+	}
+</style>
 
 </head>
 <body>
@@ -23,372 +36,227 @@
         <ul id="text">
             <li>
                 <table class="gis-table">
-                    <thead>
-                    <tr>
-                        <th rowspan="2" style="width: 100px;"
-                            colspan="1">行政区划</th>
-                        <th rowspan="1" colspan="1">受灾人口</th>
-                        <th rowspan="1" colspan="1">因灾死亡人口</th>
-                        <th rowspan="1" colspan="1">因灾失踪人口</th>
-                        <th rowspan="1" colspan="1">因灾伤病人口</th>
-                        <th rowspan="1" colspan="1">紧急转移安置人口</th>
-                        <th rowspan="1" colspan="1">集中安置人口</th>
-                        <th rowspan="1" colspan="1">分散安置人口</th>
-                        <th rowspan="1" colspan="1">需紧急生活救助人口</th>
-                        <th rowspan="1" colspan="1">需过渡性救助人口</th>
-                        <th rowspan="1" colspan="1">因旱需生活救助人口</th>
-                        <th rowspan="1" colspan="1">其中：因旱饮水困难需救助人口</th>
-                        <th rowspan="1" colspan="1">被困人口</th>
-                    </tr>
-                    <tr >
-                        <th  rowspan="1" colspan="1"
-                             style="width: 39px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 57px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 57px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 57px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 75px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 57px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 57px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 84px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 75px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 84px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 132px;">人</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 39px;">人</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>甘肃省</td>
-                        <td>8021</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;兰州市</td>
-                        <td>8021</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;金昌市</td>
-                        <td>8021</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;永昌县</td>
-                        <td>8021</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    </tbody>
+                    <div id="kcxx">
+                        <div id="treegrid">
+                            <div class="summer-treegrid-head">
+                                <div class="summer-treegrid-row" style="height:60px;">
+                                    <div class="summer-treegrid-cell center first" style="width:12%">行政区划</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">受灾人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">因灾死亡人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">因灾失踪人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">因灾伤病人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">紧急转移安置人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">集中安置人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">分散安置人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">需紧急生活救助人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">需过渡性救助人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">因旱需生活救助人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:10%">其中：因旱饮水困难需救助人口</div>
+                                    <div class="summer-treegrid-cell center first" style="width:7%">被困人口</div>
+                                </div>
+                                <div class="summer-treegrid-row">
+                                    <div class="summer-treegrid-cell center" style="width:12%"></div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:10%">人</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">人</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('#treegrid').treegrid({
+                                url: 'szrkZqzbTreeGrid.json',
+                                treeField: 'name',
+                                columns: [
+                                    {field: 'name', width: '12%'},
+                                    {field:'szrk', width: '7%'},
+                                    {field: 'yzswrk', width: '7%'},
+                                    {field: 'yzszrk', width: '7%'},
+                                    {field: 'yzbsrk', width: '7%'},
+                                    {field: 'jjzyazrk', width: '7%'},
+                                    {field: 'jzazrk', width: '7%'},
+                                    {field:'fsazrk', width: '7%'},
+                                    {field: 'jjshjzrk', width: '7%'},
+                                    {field: 'xgdxjzrk', width: '7%'},
+                                    {field: 'yhxshjzrk', width: '7%'},
+                                    {field: 'yhysknjzrk', width: '10%'},
+                                    {field: 'bkrk', width: '7%'}
+                                ]
+                            });
+
+                        });
+                    </script>
                 </table>
             </li>
             <li>
                 <table class="gis-table">
-                    <thead>
-                    <tr role="row">
-                        <th rowspan="2" style="width: 100px;"
-                            colspan="1">行政区划</th>
-                        <th rowspan="1" colspan="1">农作物受灾面积</th>
-                        <th rowspan="1" colspan="1">其中:农作物受灾面积</th>
-                        <th rowspan="1" colspan="1">其中:农作物绝收面积</th>
-                        <th rowspan="1" colspan="1">草场受灾面积</th>
-                        <th rowspan="1" colspan="1">毁坏耕地面积</th>
-                        <th rowspan="1" colspan="1">饮水困难大牲畜</th>
-                        <th rowspan="1" colspan="1">因灾死亡大牲畜</th>
-                        <th rowspan="1" colspan="1">因灾死亡羊只</th>
-                    </tr>
-                    <tr role="row">
-                        <th  rowspan="1" colspan="1"
-                             style="width: 116px;">公顷</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 130px;">公顷</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 130px;">公顷</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 101px;">公顷</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 80px;">公顷</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 116px;">头只</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 110px;">头只</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 80px;">只</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>甘肃省</td>
-                        <td>10033.62</td>
-                        <td>10033.62</td>
-                        <td>5236.1</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;兰州市</td>
-                        <td>5236.1</td>
-                        <td>5236.1</td>
-                        <td>5236.1</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;金昌市</td>
-                        <td>4684.52</td>
-                        <td>4684.52</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;永昌县</td>
-                        <td>113</td>
-                        <td>113</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    </tbody>
+                    <div id="nzw">
+                        <div id="treegridOne">
+                            <div class="summer-treegrid-head">
+                                <div class="summer-treegrid-row">
+                                    <div class="summer-treegrid-cell center" style="width:16%">行政区划</div>
+                                    <div class="summer-treegrid-cell center" style="width:10%">农作物受灾面积</div>
+                                    <div class="summer-treegrid-cell center" style="width:12%">其中:农作物成灾面积</div>
+                                    <div class="summer-treegrid-cell center" style="width:12%">其中:农作物绝收面积</div>
+                                    <div class="summer-treegrid-cell center" style="width:10%">草场受灾面积</div>
+                                    <div class="summer-treegrid-cell center" style="width:10%">损坏耕地面积</div>
+                                    <div class="summer-treegrid-cell center" style="width:10%">饮水困难大牲畜</div>
+                                    <div class="summer-treegrid-cell center" style="width:10%">因灾死亡大牲畜</div>
+                                    <div class="summer-treegrid-cell center" style="width:10%">因灾死亡羊只</div>
+                                </div>
+                                <div class="summer-treegrid-row">
+                                    <div class="summer-treegrid-cell center" style="width:16%"></div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:10%">公顷</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:12%">公顷</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:12%">公顷</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:10%">公顷</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:10%">公顷</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:10%">头只</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:10%">头只</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:10%">只</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('#treegridOne').treegrid({
+                                url: 'nzwscZqzbTreeGrid.json',
+                                treeField: 'name',
+                                columns: [
+                                    {field: 'name', width: '16%'},
+                                    {field:'nzwszmj', width: '10%'},
+                                    {field: 'nzwczmj', width: '12%'},
+                                    {field: 'nzwjsmj', width: '12%'},
+                                    {field: 'ccszmj', width: '10%'},
+                                    {field: 'shgdmj', width: '10%'},
+                                    {field: 'yskndsc', width: '10%'},
+                                    {field: 'yzswdsc', width: '10%'},
+                                    {field: 'yzswyz', width: '10%'}
+                                ]
+                            });
+
+                        });
+                    </script>
                 </table>
             </li>
             <li>
                 <table class="gis-table">
-                    <thead>
-                    <tr>
-                        <th rowspan="2" style="width: 100px;"
-                            colspan="1">行政区划</th>
-                        <th rowspan="1" colspan="1">倒塌房屋间数</th>
-                        <th rowspan="1" colspan="1">其中：倒塌农房间数</th>
-                        <th rowspan="1" colspan="1">倒塌房屋户数</th>
-                        <th rowspan="1" colspan="1">其中：倒塌农房户数</th>
-                        <th rowspan="1" colspan="1">严重损坏房屋间数</th>
-                        <th rowspan="1" colspan="1">其中：严重损坏农房间数</th>
-                        <th rowspan="1" colspan="1">严重损坏房屋户数</th>
-                        <th rowspan="1" colspan="1">其中：严重损坏农房户数</th>
-                        <th rowspan="1" colspan="1">一般损坏房屋间数</th>
-                        <th rowspan="1" colspan="1">其中：一般损坏农房间数</th>
-                        <th rowspan="1" colspan="1">一般损坏房屋户数</th>
-                        <th rowspan="1" colspan="1">其中一般损坏农房户数</th>
-                    </tr>
-                    <tr>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 46px;">间</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 72px;">间</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 46px;">户</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 72px;">户</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 60px;">间</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 86px;">间</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 60px;">户</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 86px;">户</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 60px;">间</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 86px;">间</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 60px;">户</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 100px;">户</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>甘肃省</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;兰州市</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;金昌市</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;永昌县</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    </tbody>
+                    <div id="dsfw">
+                        <div id="treegridTwo">
+                            <div class="summer-treegrid-head">
+                                <div class="summer-treegrid-row" style="height:50px;">
+                                    <div class="summer-treegrid-cell center second" style="width:12%">行政区划</div>
+                                    <div class="summer-treegrid-cell center second" style="width:6%">倒塌房屋间数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:7%">其中：倒塌农房间数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:6%">倒塌房屋户数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:7%">其中：倒塌农房户数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:7%">严重损坏房屋间数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:9%">其中：严重损坏农房间数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:7%">严重损坏房屋户数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:9%">其中：严重损坏农房户数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:7%">一般损坏房屋间数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:9%">其中：一般损坏农房间数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:6%">一般损坏房屋户数</div>
+                                    <div class="summer-treegrid-cell center second" style="width:7%">其中:一般损坏农房户数</div>
+                                </div>
+                                <div class="summer-treegrid-row">
+                                    <div class="summer-treegrid-cell center" style="width:12%"></div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:6%">间</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">间</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:6%">户</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">户</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">间</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:9%">间</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">户</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:9%">户</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">间</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:9%">间</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:6%">户</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:7%">户</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('#treegridTwo').treegrid({
+                                url: 'szrkZqzbTreeGrid.json',
+                                treeField: 'name',
+                                columns: [
+                                    {field: 'name', width: '12%'},
+                                    {field:'szrk', width: '6%'},
+                                    {field: 'yzswrk', width: '7%'},
+                                    {field: 'yzszrk', width: '6%'},
+                                    {field: 'yzbsrk', width: '7%'},
+                                    {field: 'jjzyazrk', width: '7%'},
+                                    {field: 'jzazrk', width: '9%'},
+                                    {field:'fsazrk', width: '7%'},
+                                    {field: 'jjshjzrk', width: '9%'},
+                                    {field: 'xgdxjzrk', width: '7%'},
+                                    {field: 'yhxshjzrk', width: '9%'},
+                                    {field: 'yhysknjzrk', width: '6%'},
+                                    {field: 'bkrk', width: '7%'}
+                                ]
+                            });
+                        });
+                    </script>
                 </table>
             </li>
             <li>
                 <table class="gis-table">
-                    <thead>
-                    <tr role="row">
-                        <th rowspan="2" style="width: 100px;"
-                            colspan="1">行政区划</th>
-                        <th rowspan="1" colspan="1">直接经济损失</th>
-                        <th rowspan="1" colspan="1">其中：农业损失</th>
-                        <th rowspan="1" colspan="1">工矿企业损失</th>
-                        <th rowspan="1" colspan="1">基础设施损失</th>
-                        <th rowspan="1" colspan="1">公益设施损失</th>
-                        <th rowspan="1" colspan="1">家庭财产损失</th>
-                    </tr>
-                    <tr role="row">
-                        <th  rowspan="1" colspan="1"
-                             style="width: 152px;">万元</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 175px;">万元</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 152px;">万元</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 152px;">万元</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 152px;">万元</th>
-                        <th  rowspan="1" colspan="1"
-                             style="width: 152px;">万元</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>甘肃省</td>
-                        <td>5069</td>
-                        <td>4967</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;兰州市</td>
-                        <td>3988</td>
-                        <td>3988</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;金昌市</td>
-                        <td>979</td>
-                        <td>979</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;永昌县</td>
-                        <td>102</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    </tbody>
+                    <div id="zjjj">
+                        <div id="treegridThree">
+                            <div class="summer-treegrid-head">
+                                <div class="summer-treegrid-row">
+                                    <div class="summer-treegrid-cell center" style="width:16%">行政区划</div>
+                                    <div class="summer-treegrid-cell center" style="width:14%">直接经济损失</div>
+                                    <div class="summer-treegrid-cell center" style="width:14%">其中：农业损失</div>
+                                    <div class="summer-treegrid-cell center" style="width:14%">工矿企业损失</div>
+                                    <div class="summer-treegrid-cell center" style="width:14%">基础设施损失</div>
+                                    <div class="summer-treegrid-cell center" style="width:14%">公益设施损失</div>
+                                    <div class="summer-treegrid-cell center" style="width:14%">家庭财产损失</div>
+                                </div>
+                                <div class="summer-treegrid-row">
+                                    <div class="summer-treegrid-cell center" style="width:16%"></div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:14%">万元</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:14%">万元</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:14%">万元</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:14%">万元</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:14%">万元</div>
+                                    <div class="summer-treegrid-cell center  border-top" style="width:14%">万元</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('#treegridThree').treegrid({
+                                url: 'zjjjssZqzbTreeGrid.json',
+                                treeField: 'name',
+                                columns: [
+                                    {field: 'name', width: '16%'},
+                                    {field:'zjjjss', width: '14%'},
+                                    {field: 'nyss', width: '14%'},
+                                    {field: 'gkqyss', width: '14%'},
+                                    {field: 'jcssss', width: '14%'},
+                                    {field: 'gyssss', width: '14%'},
+                                    {field: 'jtccss', width: '14%'}
+                                ]
+                            });
+
+                        });
+                    </script>
                 </table>
             </li>
         </ul>

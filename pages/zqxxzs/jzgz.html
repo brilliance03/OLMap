@@ -2,42 +2,528 @@
 <html>
 <head lang="zh">
     <meta charset="UTF-8">
-    <title>WebGIS 救灾工作信息展示</title>
+    <link href="../../plugin/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <link href="../../plugin/treegrid/summer.treegrid.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/ele.css">
     <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+    <title>WebGIS 救灾工作展示</title>
     <script src="../../scripts/jquery-1.11.1.min.js"></script>
+    <script src="../../plugin/summerWidget/jquery.ui.base.min.js"></script>
+    <script src="../../plugin/zTree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="../../plugin/treegrid/jquery.summer.treegrid.js"></script>
     <script type="application/javascript" src="../../scripts/slide.js"></script>
+    <style>
+        .kcxx {
+            padding-left: 220px;
+        }
+        .time-left {
+            box-sizing: border-box;
+            padding: 15px 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 220px;
+            bottom: 0;
+            border-right: 1px solid #1f92c8;
+        }
 
+
+
+        .time-left .timeline-ul {
+            width: 100%;
+            height: 100%;
+            background: #FFFFFF;
+            box-sizing: border-box;
+        }
+        ul.ztree {
+            border: medium none;
+            box-shadow: none;
+            box-sizing: border-box;
+            padding: 0;
+            background: #ffffff;
+        }
+        .time-left a {
+            color: #555555;
+            cursor: pointer;
+        }
+        .time-right {
+            display: none;
+            padding: 15px 0;
+            position: relative;
+        }
+        .time-right li {
+            position: relative;
+            margin-left: 140px;
+            margin-right: 5px;
+            border-left: 6px solid #e5e5e5;
+        }
+        .time-right .timeline-l {
+            position: absolute;
+            top: 0;
+            left: -146px;
+            box-sizing: border-box;
+            width: 140px;
+            padding-right: 30px;
+            text-align: right;
+        }
+        .time-right .timeline-l.selected span {
+            color: #36b01e !important;
+        }
+        .timeline-l span:first-child {
+            padding-top: 5px;
+            padding-right: 0px;
+            font-size: 18px;
+            color: #2a81b7;
+        }
+        .timeline-l span {
+            display: block;
+            padding-right: 14px;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: bold;
+            font-family: 'Bodoni Bd BT','宋体','宋体','宋体';
+            color: #aaaaaa;
+        }
+        .time-right .timeline-r {
+            box-sizing: border-box;
+            padding-left: 50px;
+            padding-right: 20px;
+            padding-bottom: 15px;
+            width: 100%;
+            position: relative;
+        }
+        .time-right .timeline-r .timeline-rl {
+            position: absolute;
+            top: 18px;
+            left: -10px;
+            width: 60px;
+            height: 20px;
+            background: url("../images/timeline.png") no-repeat;
+        }
+        .time-right .timeline-r .timeline-rl.selected {
+            background: url("../images/timeline-s.png") no-repeat;
+        }
+        .time-right .timeline-r .timeline-rr {
+            box-sizing: border-box;
+            padding: 15px;
+            padding-left: 0;
+            width: 100%;
+            min-height: 60px;
+            background: #f3f3f3;
+            border-left: 4px solid #bfc0c4;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+            border-radius: 4px;
+        }
+        .time-right .timeline-r .timeline-rr.selected {
+            background: #eeffee;
+            border-left: 4px solid #54bf3d;
+        }
+        .timeline-rr span {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 60px;
+            background: url("../images/timeline-r.png");
+        }
+        .timeline-rr span.selected {
+            background: url("../images/timeline-rs.png");
+        }
+        .time-right .timeline-r .timeline-rr.selected p {
+            color: #000;
+        }
+        .timeline-rr p {
+            display: inline-block;
+            margin-left: 80px;
+            font-size: 12px;
+            line-height: 16px;
+        }
+    </style>
 </head>
 <body>
-<div class="summer-panel-body">
-    <div style="position: relative;padding-left:10px;padding-right:10px;">
-        <table class="gis-table" id="yatjszList">
-            <thead>
-            <tr >
-                <th rowspan="1" style="width: 200px;text-align: center;"
-                    colspan="1">行政区划</th>
-                <th rowspan="1" colspan="1" style="text-align: center;">救灾工作详细</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr >
-                <td>甘肃省</td>
-                <td><textarea style="width: 850px; height: 80px;resize:none;" readonly>甘肃省民政厅共接收救灾捐款771.36万元、捐物折价495.87万元。甘肃省红十字会接收捐款捐物逾587万元，甘肃省慈善总会接收捐款27万元。中央调拨甘肃省的救灾物资正在紧急调运之中。灾区政府已向死亡人员亲属发放了丧葬抚恤金，对受伤群众实行免费治疗并发放了慰问金</textarea></td>
-            </tr>
-            <tr >
-                <td>&nbsp;&nbsp;金昌市</td>
-                <td><textarea style="width: 850px; height: 80px;resize:none;" readonly>甘肃省民政厅共接收救灾捐款771.36万元、捐物折价495.87万元。甘肃省红十字会接收捐款捐物逾587万元，甘肃省慈善总会接收捐款27万元。中央调拨甘肃省的救灾物资正在紧急调运之中。灾区政府已向死亡人员亲属发放了丧葬抚恤金，对受伤群众实行免费治疗并发放了慰问金</textarea></td>
-            </tr>
-            <tr >
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;永昌县</td>
-                <td><textarea style="width: 850px; height: 80px;resize:none;" readonly>甘肃省民政厅共接收救灾捐款771.36万元、捐物折价495.87万元。甘肃省红十字会接收捐款捐物逾587万元，甘肃省慈善总会接收捐款27万元。中央调拨甘肃省的救灾物资正在紧急调运之中。灾区政府已向死亡人员亲属发放了丧葬抚恤金，对受伤群众实行免费治疗并发放了慰问金</textarea></td>
-            </tr>
-            </tbody>
-        </table>
+<div id="page">
+<div id="page-nav">
+    <ul>
+        <li><a>物资情况</a></li>
+        <li><a>资金情况</a></li>
+        <li><a>工作总结</a></li>
+    </ul>
+</div>
+<div id="container">
+<ul id="text" style="height: 300px">
+<li>
+    <table class="gis-table">
+       <div id="wzqk">
+            <div class="summer-treegrid-head">
+                <div class="summer-treegrid-row">
+                    <div class="summer-treegrid-cell center" style="width:20%">行政区划</div>
+                    <div class="summer-treegrid-cell center" style="width:20%">棉大衣(件)</div>
+                    <div class="summer-treegrid-cell center" style="width:20%">棉皮鞋(双)</div>
+                    <div class="summer-treegrid-cell center" style="width:20%">药品(箱)</div>
+                    <div class="summer-treegrid-cell center" style="width:20%">帐篷(顶)</div>
+                </div>
+
+                <div class="summer-treegrid-row">
+                    <div class="summer-treegrid-cell " style="width:20%"></div>
+                    <div class="summer-treegrid-cell border-top" style="width:10%">接收</div>
+                    <div class="summer-treegrid-cell border-top" style="width:10%">发放</div>
+                    <div class="summer-treegrid-cell border-top" style="width:10%">接收</div>
+                    <div class="summer-treegrid-cell border-top" style="width:10%">发放</div>
+                    <div class="summer-treegrid-cell border-top" style="width:10%">接收</div>
+                    <div class="summer-treegrid-cell border-top" style="width:10%">发放</div>
+                    <div class="summer-treegrid-cell border-top" style="width:10%">接收</div>
+                    <div class="summer-treegrid-cell border-top" style="width:10%">发放</div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function(){
+                $('#wzqk').treegrid({
+                    url:"jzgz.json",
+                    treeField:'name',
+                    columns:[
+                        {field:'name',width:'20%'},
+                        {field:'js1',width:'10%'},
+                        {field:'fs1',width:'10%'},
+                        {field:'js2',width:'10%'},
+                        {field:'fs2',width:'10%'},
+                        {field:'js3',width:'10%'},
+                        {field:'fs3',width:'10%'},
+                        {field:'js4',width:'10%'},
+                        {field:'fs4',width:'10%'}
+
+                    ]
+
+                });
+            });
+        </script>
+    </table>
+</li>
+<li>
+    <table class="gis-table">
+        <div id="zjqk">
+            <div id="treeGrid">
+                <div class="summer-treegrid-head">
+                    <div class="summer-treegrid-row">
+                        <div class="summer-treegrid-cell" style="width:20%">行政区划</div>
+                        <div class="summer-treegrid-cell" style="width:15%">拨款方式</div>
+                        <div class="summer-treegrid-cell" style="width:15%">省级财政（万元）</div>
+                        <div class="summer-treegrid-cell" style="width:15%">市级财政（万元）</div>
+                        <div class="summer-treegrid-cell" style="width:15%">县级财政（万元）</div>
+                        <div class="summer-treegrid-cell" style="width:20%">使用情况反馈</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                initTreeGrid();
+            });
+            function initTreeGrid(){
+
+                $('#treeGrid').treegrid({
+                    url: 'view.json',
+                    treeField: 'xzqh',
+                    checkEnable: false,
+                    columns: [
+                        {field: 'xzqh', width: '20%'},
+                        {field:'bkfs', width: '15%'},
+                        {field: 'sjzj', width: '15%'},
+                        {field: 'tsjzj', width: '15%'},
+                        {field: 'xjzj', width: '15%'},
+                        {field: 'syqkfk', width: '20%'}
+                    ]
+                });
+            }
+            //查看反馈信息
+            function sjzj(){
+                var url="fkxx.html";
+                $("#treeGrid").load("fkxx.html");
+            }
+        </script>
+    </table>
+</li>
+<li>
+
+    <div id="gzzj" class="kcxx">
+    <div class="time-left">
+        <div class="">
+            <ul id="timeList" class="ztree" style="width:100%;height:100%"></ul>
+        </div>
     </div>
+    <ul class="time-right" id="a" style="display: block;">
+        <li>
+            <div class="timeline-l">
+                <span>12.25</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>甘肃省民政厅共接收救灾捐款771.36万元、捐物折价495.87万元。</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-l">
+                <span>11.15</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>甘肃省红十字会接收捐款捐物逾587万元，甘肃省慈善总会接收捐款27万元。</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-l">
+                <span>10.13</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>中央调拨甘肃省的救灾物资正在紧急调运之中。</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-l">
+                <span>04.15</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>灾区政府已向死亡人员亲属发放了丧葬抚恤金，对受伤群众实行免费治疗并发放了慰问金</p>
+                </div>
+            </div>
+        </li>
+ <!--        <li>
+            <div class="timeline-l">
+                <span>02.08</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>甘肃省民政厅共接收救灾捐款771.36万元、捐物折价495.87万元。</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-l">
+                <span>01.14</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>甘肃省红十字会接收捐款捐物逾587万元，甘肃省慈善总会接收捐款27万元。</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-l">
+                <span>12.15</span>
+                <span>2013</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>中央调拨甘肃省的救灾物资正在紧急调运之中。</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-l">
+                <span>11.30</span>
+                <span>2013</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>灾区政府已向死亡人员亲属发放了丧葬抚恤金，对受伤群众实行免费治疗并发放了慰问金</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-l">
+                <span>10.15</span>
+                <span>2013</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>甘肃省民政厅共接收救灾捐款771.36万元、捐物折价495.87万元。</p>
+                </div>
+            </div>
+        </li> -->
+    </ul>
+    <ul class="time-right" id="b">
+        <li>
+            <div class="timeline-l">
+                <span>10.15</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>甘肃省红十字会接收捐款捐物逾587万元，甘肃省慈善总会接收捐款27万元。</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-l">
+                <span>08.15</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>中央调拨甘肃省的救灾物资正在紧急调运之中。</p>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ul class="time-right" id="c">
+        <li>
+            <div class="timeline-l">
+                <span>12.25</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>灾区政府已向死亡人员亲属发放了丧葬抚恤金，对受伤群众实行免费治疗并发放了慰问金。</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-l">
+                <span>10.15</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>甘肃省民政厅共接收救灾捐款771.36万元、捐物折价495.87万元。</p>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ul class="time-right" id="d">
+        <li>
+            <div class="timeline-l">
+                <span>12.25</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>甘肃省红十字会接收捐款捐物逾587万元，甘肃省慈善总会接收捐款27万元。</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-l">
+                <span>11.10</span>
+                <span>2014</span>
+            </div>
+            <div class="timeline-r">
+                <div class="timeline-rl"></div>
+                <div class="timeline-rr">
+                    <span></span>
+                    <p>灾区政府已向死亡人员亲属发放了丧葬抚恤金，对受伤群众实行免费治疗并发放了慰问金</p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<script>
+    var zTree;// 初始化设置
+    var setting = {
+        data: {
 
+            simpleData: {
+                enable: true,
+                idKey:'id',
+                pIdKey:'pId'
+            }
 
+        },
+        callback: {
+            onClick:showTimeLine
+        }
+    };
+    $(function () {
+        initTree();
+
+        $('.timeline-rr').click( function() {
+            var $this = $(this),
+                    $timeline_rl = $this.prev(),
+                    $timeline_l = $this.closest('.timeline-r').prev(),
+                    $timeline_rrspan = $this.find('span');
+            $('.timeline-rr').removeClass('selected');
+            $('.timeline-rl').removeClass('selected');
+            $('.timeline-l').removeClass('selected');
+            $('.timeline-rr span').removeClass('selected');
+            $this.addClass('selected');
+            $timeline_rrspan.addClass('selected');
+            $timeline_rl.addClass('selected');
+            $timeline_l.addClass('selected');
+        });
+
+    });
+
+    function showTimeLine(event, treeId, treeNode){
+        var url=treeNode.dataUrl;
+        if (url) {
+            $('.time-right').hide();
+            $('#'+ url).show();
+        }
+        $('.timeline-rr').removeClass('selected');
+        $('.timeline-rl').removeClass('selected');
+        $('.timeline-l').removeClass('selected');
+        $('.timeline-rr span').removeClass('selected');
+
+    }
+
+    function initTree() {
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            url: "gzzj.json",
+            success: function(msg){//msg为返回的数据，在这里做数据绑定
+                var znotes = msg.data;
+                zTree=$.fn.zTree.init($("#timeList"), setting, znotes);
+            }
+        });
+    }
+
+           </script>
+       </table>
+     </li>
+    </ul>
+  </div>
 </div>
 </body>
 </html>

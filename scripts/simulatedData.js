@@ -158,7 +158,7 @@ function simulatedData(){
 
     warehouseFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([104.2661, 36.0001], 'EPSG:4326', 'EPSG:3857')),
-        name: '物资库1',
+        name: '名称：嘉峪关市新城镇物资储备库<br>负责人：王晓<br>负责人联系电话：0971-6124881',
         text: '保存物资',
         population: 4000,
         rainfall: 500,
@@ -167,7 +167,7 @@ function simulatedData(){
 
     warehouseFeatures[1] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([100.7065, 38.5695], 'EPSG:4326', 'EPSG:3857')),
-        name: '物资库2',
+        name: '名称：兰州市七里河区物资储备库<br>负责人：王晓<br>负责人联系电话：0971-6124881',
         text: '保存物资',
         population: 4000,
         rainfall: 500,
@@ -176,7 +176,7 @@ function simulatedData(){
 
     warehouseFeatures[2] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([96.3340, 40.5179], 'EPSG:4326', 'EPSG:3857')),
-        name: '物资库3',
+        name: '名称：嘉峪关市文殊镇物资储备库<br>负责人：王晓<br>负责人联系电话：0971-6124881',
         text: '保存物资',
         population: 4000,
         rainfall: 500,
@@ -246,7 +246,7 @@ function simulatedData(){
 //模拟避难场所
     sheltersFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([103.7827, 36.0856], 'EPSG:4326', 'EPSG:3857')),
-        name: '避难场所1',
+        name: '名称：东方红广场<br>类型：广场<br>地址：甘肃省兰州市永登县<br>容纳人数（人）:1000',
         population: 4000,
         rainfall: 500,
         type: vectorFeatures.shelterPoint
@@ -254,7 +254,7 @@ function simulatedData(){
 
     sheltersFeatures[1] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([102.6584, 37.9292], 'EPSG:4326', 'EPSG:3857')),
-        name: '避难场所2',
+        name: '名称：伏羲广场<br>类型：广场<br>地址：甘肃省酒泉市金塔县<br>容纳人数（人）:2000',
         population: 4000,
         rainfall: 500,
         type: vectorFeatures.shelterPoint
@@ -284,7 +284,7 @@ function simulatedData(){
     //模拟专家信息
     expertFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([103.9434, 36.0601], 'EPSG:4326', 'EPSG:3857')),
-        name: '专家1',
+        name: '专家信息',
         text:"专家1",
         population: 4000,
         rainfall: 500,
@@ -292,7 +292,7 @@ function simulatedData(){
     });
     expertFeatures[1] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([104.1356, 36.5603], 'EPSG:4326', 'EPSG:3857')),
-        name: '专家2',
+        name: '专家信息',
         text:"专家2",
         population: 4000,
         rainfall: 500,
@@ -300,7 +300,7 @@ function simulatedData(){
     });
     expertFeatures[2] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([102.6470, 37.9138], 'EPSG:4326', 'EPSG:3857')),
-        name: '专家3',
+        name: '专家信息',
         text:"专家3",
         population: 4000,
         rainfall: 500,
@@ -314,7 +314,7 @@ function simulatedData(){
     //模拟救援队伍信息
     rescueTeamFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([102.2885, 37.7489], 'EPSG:4326', 'EPSG:3857')),
-        name: '救援队1',
+        name: '名称：甘肃省地震队<br>负责人：肖志<br>负责人联系电话：0971-6124881',
         text:"救援1",
         population: 4000,
         rainfall: 500,
@@ -323,7 +323,7 @@ function simulatedData(){
 
     rescueTeamFeatures[1] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([103.8582, 36.2808], 'EPSG:4326', 'EPSG:3857')),
-        name: '救援队2',
+        name: '名称：甘肃省地震队<br>负责人：肖志<br>负责人联系电话：0971-6124881',
         text:"救援2",
         population: 4000,
         rainfall: 500,
@@ -332,7 +332,7 @@ function simulatedData(){
 
     rescueTeamFeatures[2] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([104.6059, 35.6112], 'EPSG:4326', 'EPSG:3857')),
-        name: '救援队3',
+        name: '名称：甘肃省地震队<br>负责人：肖志<br>负责人联系电话：0971-6124881',
         text:"救援3",
         population: 4000,
         rainfall: 500,
@@ -341,7 +341,7 @@ function simulatedData(){
 
     rescueTeamFeatures[3] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([105.6180, 34.5990], 'EPSG:4326', 'EPSG:3857')),
-        name: '救援队4',
+        name: '名称：甘肃省地震队<br>负责人：肖志<br>负责人联系电话：0971-6124881',
         text:"救援4",
         population: 4000,
         rainfall: 500,
@@ -356,7 +356,7 @@ function simulatedData(){
     //模拟灾害信息员
     messengerFeatures[0] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([97.6303, 39.7198], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾害信息员1',
+        name: '灾害信息员',
         text:"灾害信息员1",
         population: 4000,
         rainfall: 500,
@@ -365,7 +365,7 @@ function simulatedData(){
 
     messengerFeatures[1] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([107.6356,35.7081], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾害信息员2',
+        name: '灾害信息员',
         text:"灾害信息员2",
         population: 4000,
         rainfall: 500,
@@ -373,7 +373,7 @@ function simulatedData(){
     });
     messengerFeatures[2] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([104.8891,33.4103], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾害信息员3',
+        name: '灾害信息员',
         text:"灾害信息员3",
         population: 4000,
         rainfall: 500,
@@ -381,7 +381,7 @@ function simulatedData(){
     });
     messengerFeatures[3] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([103.2088,35.6000], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾害信息员4',
+        name: '灾害信息员',
         text:"灾害信息员4",
         population: 4000,
         rainfall: 500,
@@ -389,7 +389,7 @@ function simulatedData(){
     });
     messengerFeatures[4] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([102.8847,37.5117], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾害信息员5',
+        name: '灾害信息员',
         text:"灾害信息员5",
         population: 4000,
         rainfall: 500,
@@ -397,7 +397,7 @@ function simulatedData(){
     });
     messengerFeatures[5] = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.transform([102.1228,38.4922], 'EPSG:4326', 'EPSG:3857')),
-        name: '灾害信息员6',
+        name: '灾害信息员',
         text:"灾害信息员6",
         population: 4000,
         rainfall: 500,

@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="../css/ele.css" type="text/css">
     <link rel="stylesheet" href="../css/jquery.qtip.min.css" type="text/css">
     <link rel="stylesheet" href="../scripts/layer/skin/layer.css" type="text/css">
+    <link rel="stylesheet" href="../plugin/lightbox/css/lightbox.css" type="text/css">
+    <style type="text/css">
+        .xubox_layer {
+            z-index: 999 !important;
+        }
+    </style>
 </head>
 <body>
 <div id="map">
@@ -182,14 +188,21 @@
 <div id="bizDisaster">
     <!--灾情相关业务-->
     <div class="radius"><i class="fa fa-bars" title="查看灾情详细信息"></i></div>
-    <div class="radius"><i class="fa fa-picture-o" title="查看灾情图片"></i></div>
-    <div class="radius"><i class="fa fa-film" title="查看灾情视频"></i></div>
+    <div class="radius"><i class="fa fa-picture-o" title="查看灾情现场资料"></i></div>
+    <!--<div class="radius"><i class="fa fa-film" title="查看灾情视频"></i></div>-->
     <div class="radius"><i class="fa fa-cloud" title="查看受灾地需求"></i></div>
     <div class="radius"><i class="fa fa-envelope" title="查看受灾地救灾工作"></i></div>
     <div class="radius"><i class="fa fa-cubes" title="查看涉灾部门数据"></i></div>
     <!--<div class="radius"><i class="fa fa-search" title="查询周边"></i></div>-->
     <div class="radius"><i class="fa fa-newspaper-o" title="查看灾情研判结果"></i></div>
     <div class="radius"><i class="fa fa-users" title="决策"></i></div>
+    <div class="radius"><i class="fa fa-search" title="查询周边"></i></div>
+    <div class="arrow arrow-01"></div>
+    <div class="arrow arrow-02"></div>
+    <div class="arrow arrow-03"></div>
+    <div class="arrow arrow-04"></div>
+    <div class="arrow arrow-05"></div>
+    <div class="arrow arrow-06"></div>
 </div>
 <!--业务页面代码-->
 <div id="locateDisasterWindow" class="bizWindow displayNone">
@@ -343,6 +356,7 @@
 <script src="../scripts/jquery.qtip.min.js" type="text/javascript"></script>
 <script src="../scripts/layer/layer.min.js" type="text/javascript"></script>
 <script src="../scripts/simulatedData.js" type="text/javascript"></script>
+<script src="../plugin/lightbox/js/lightbox.min.js" type="text/javascript"></script>
 <!--javascript引用 End-->
 <script type="text/javascript">
 /**********************************************************
@@ -625,7 +639,7 @@ var mapOperObj = $('#mapOperation').qtip({
     },
     show: {
         event: 'click',
-        effect: function(offset) {
+        effect: function(/*offset*/) {
             $(this).fadeToggle('fast');
         }
     },
@@ -1124,7 +1138,8 @@ $('#routing').click(function (){
             routingParam.requestParam.viewparams = viewparams.join(';');
             routingParam.result = new ol.layer.Image({
                 source: new ol.source.ImageWMS({
-                    url: 'http://localhost:8080/geoserver/GanSuGIS/wms',
+                    //url: 'http://localhost:8080/geoserver/GanSuGIS/wms',
+                    url: 'http://192.168.56.111:8080/geoserver/GanSuGIS/wms',
                     params: routingParam.requestParam
                 })
             });
@@ -1295,10 +1310,55 @@ function showItem($items, index, e) {
     }).addClass('radius-scale');
 
     if (index < $items.length - 1) {
-        taskId = setTimeout(function () {
-            showItem($items, ++index, e)
-        }, 50);
+      taskId = setTimeout(function () {
+        showItem($items, ++index, e)
+      }, 50);
+    } else {
+       showArrow(x,y);
     }
+}
+
+function showArrow(x,y) {
+
+    var left,top;
+    $('#bizDisaster .arrow').each(function(index, item) {
+      switch (index) {
+        case 0:
+          left = x - 62;
+          top = y - 30;
+          break;
+        case 1:
+          left = x - 31;
+          top = y - 63;
+          break;
+        case 2:
+          left = x + 17;
+          top = y - 63;
+          break;
+        case 3:
+          left = x + 48;
+          top = y - 29;
+          break;
+        case 4:
+          left = x + 50;
+          top = y + 13;
+          break;
+        case 5:
+          left = x + 17;
+          top = y + 48;
+          break;
+        case 6:
+          left = x - 33;
+          top = y + 53;
+          break;
+      }
+      $(item).css({
+        "left": left,
+        "top": top
+      });
+      $(item).show(200);
+
+    });
 }
 
 //查看灾情详细信息
@@ -1308,14 +1368,14 @@ $('.fa-bars').click(function(){
             disasterInfo = $.layer({
                 type: 1,
                 title: '灾情详细信息',
-                area: ['1000px', '400px'],
+                area: ['1200px', '430px'],
                 border: [0], //去掉默认边框
                 shade: [0], //去掉遮罩
                 closeBtn: [0, true], //去掉默认关闭按钮
                 shift: 'top', //从左动画弹出
                 /*offset: ['', '70%'],*/
                 page: {
-                    html: '<iframe src="zqxxzs/zqxx.html" frameborder="0" style="height:400px;width:1000px;"></iframe>'
+                    html: '<iframe src="zqxxzs/zqxx.html" frameborder="0" style="height:460px;width:1200px;"></iframe>'
                     //dom: '#locateSheltersWindow'
                     //url:'zqxxzs/zqxx.html'
                 },
@@ -1394,14 +1454,14 @@ $('.fa-cloud').click(function(){
         disasterInfo = $.layer({
             type: 1,
             title: '受灾地需求详细信息',
-            area: ['520px', '356px'],
+            area: ['660px', '360px'],
             border: [0], //去掉默认边框
             shade: [0], //去掉遮罩
             closeBtn: [0, true], //去掉默认关闭按钮
             shift: 'top', //从左动画弹出
             /*offset: ['', '70%'],*/
             page: {
-                html: '<iframe src="jzxq/jzxqxx.html" frameborder="0" style="height:320px;width:520px;"></iframe>'
+                html: '<iframe src="jzxq/jzxqxx.html" frameborder="0" style="height:350px;width:655px;"></iframe>'
                 //dom: '#locateSheltersWindow'
                 //url:'jzxq/jzxqxx.html'
             },
@@ -1423,14 +1483,14 @@ $('.fa-envelope').click(function(){
         disasterAnalysis = $.layer({
             type: 1,
             title: '受灾地救灾工作',
-            area: ['1000px', '400px'],
+            area: ['1200px', '480px'],
             border: [0], //去掉默认边框
             shade: [0], //去掉遮罩
             closeBtn: [0, true], //去掉默认关闭按钮
             shift: 'top', //从左动画弹出
             /*offset: ['', '70%'],*/
             page: {
-                html: '<iframe src="zqxxzs/jzgz.html" frameborder="0" style="height:400px;width:1000px;"></iframe>'
+                html: '<iframe src="zqxxzs/jzgz.html" frameborder="0" style="height:460px;width:1200px;"></iframe>'
                // url:'zqxxzs/jzgz.html'//救灾工作
             },
             success: function(layero){
@@ -1540,6 +1600,26 @@ function changeFeaturesLayerShown(layerkeys, ifShow){
 }//改变layers.features图层的显示与否，并控制相应checkbox按钮是否选中
 
 
+//图片展示
+function showImages (options){
+    if ($("#imagesArea").length > 0){
+        $("#imagesArea").empty();
+    } else {
+        $("body").append('<div id="imagesArea" style="display: none;z-index: 19891017"></div>');
+    }
+    $.each(options.images,function(){
+        $('<a>').attr({
+            "href" : this.href,
+            "data-lightbox" : this.group || "group1",
+            "data-title": this.title || "默认"
+        }).appendTo($("#imagesArea"));
+    });
+    if (options.defaultShow){
+        $("#imagesArea a[data-title=" + options.defaultShow + "]").click();
+    } else {
+        $("#imagesArea a").first().click();
+    }
+}
 /**********************************************************
  * 矢量图层操作
  **********************************************************/
@@ -1698,7 +1778,9 @@ map.on('click', function(evt) {
             {
                 var $items = $('.radius');
                 //$items.hide();
+                $('#bizDisaster .arrow').hide(0);
                 $items.removeClass('radius-scale');
+
                 setTimeout(function () {
                     showItem($items, 0, evt);
                 }, 200);
@@ -1706,7 +1788,7 @@ map.on('click', function(evt) {
             }
             case vectorFeatures.warehousePoint:
             {
-                var geometry = feature.getGeometry();
+/*                var geometry = feature.getGeometry();
                 var coord = geometry.getCoordinates();
                 popup.setPosition(coord);
                 $(popupElement).qtip({
@@ -1728,21 +1810,91 @@ map.on('click', function(evt) {
                         event: false
                     }
 
-                }).qtip('show');
+                }).qtip('show');*/
+                //物资储备库
+                $.layer({
+                    type: 1,
+                    title: '物资储备库',
+                    area: ['1000px', '300px'],
+                    border: [0], //去掉默认边框
+                    shade: [0], //去掉遮罩
+                    closeBtn: [0, true], //去掉默认关闭按钮
+                    shift: 'top', //从左动画弹出
+                    page: {
+                        html: '<iframe src="wzcbk/wzcbk.html" frameborder="0" style="height:290px;width:1000px;"></iframe>'
+                        //dom: '#locateSheltersWindow'
+                    }
+                });
                 break;
             }
             case vectorFeatures.hiddenTroublePoint:
                 ;
             case vectorFeatures.shelterPoint:
-                ;
+            {
+                $.layer({
+                    type: 1,
+                    title: '应急避难场所',
+                    area: ['800px', '300px'],
+                    border: [0], //去掉默认边框
+                    shade: [0], //去掉遮罩
+                    closeBtn: [0, true], //去掉默认关闭按钮
+                    shift: 'top', //从左动画弹出
+                    page: {
+                        html: '<iframe src="yjbns/yjbns.html" frameborder="0" style="height:300px;width:800px;"></iframe>'
+                    }
+                });
+                break;
+            }
             case vectorFeatures.baseInfoPoint:
                 ;
             case vectorFeatures.expertPoint:
-                ;
+            {
+                $.layer({
+                    type: 1,
+                    title: '应急专家',
+                    area: ['800px', '280px'],
+                    border: [0], //去掉默认边框
+                    shade: [0], //去掉遮罩
+                    closeBtn: [0, true], //去掉默认关闭按钮
+                    shift: 'top', //从左动画弹出
+                    page: {
+                        html: '<iframe src="yjzj/yjzjView.html" frameborder="0" style="height:245px;width:800px;"></iframe>'
+                    }
+                });
+                break;
+            }
             case vectorFeatures.rescueTeamPoint:
-                ;
+            {
+                $.layer({
+                    type: 1,
+                    title: '应急队伍',
+                    area: ['900px', '300px'],
+                    border: [0], //去掉默认边框
+                    shade: [0], //去掉遮罩
+                    closeBtn: [0, true], //去掉默认关闭按钮
+                    shift: 'top', //从左动画弹出
+                    page: {
+                        html: '<iframe src="yjdw/jydw.html" frameborder="0" style="height:300px;width:900px;"></iframe>'
+                    }
+                });
+                break;
+            }
             case vectorFeatures.messengerPoint:
-                ;
+            {
+                $.layer({
+                    type: 1,
+                    title: '灾害信息员',
+                    area: ['900px', '350px'],
+                    border: [0], //去掉默认边框
+                    shade: [0], //去掉遮罩
+                    closeBtn: [0, true], //去掉默认关闭按钮
+                    shift: 'top', //从左动画弹出
+                    page: {
+                        html: '<iframe src="zhxxy/zhxxy.html" frameborder="0" style="height:350px;width:900px;"></iframe>'
+                    }
+                });
+                break;
+            }
             default :
                 $('.radius').removeClass('radius-scale');
         }

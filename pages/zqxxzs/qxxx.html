@@ -3,17 +3,30 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../css/ele.css">
+    <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
     <title></title>
 </head>
+<script>
+function showImg1(){
+    var options = {
+            "images" : [{
+                "href" : "images/qxtp.png",
+                "title" : "气象信息"
+                }]
+           };
+    window.top.showImages(options);
+}
+</script>
 <body>
 <div class="grid-layout">
     <div class="row">
-        <div class="picture" ><img style="width: 300px;height: 160px;" src="../images/qxtp.png"></div>
-        <p style="padding-left:320px">&nbsp;&nbsp;&nbsp;&nbsp;今天白天，全省晴天转多云；夜里，三门峡、洛阳、南阳三地区阴天转小雨；其它地区多云到阴天。全省偏北风3到4级。最高温度：南部、东南部19-21℃；其它地区15-17℃。最低温度：西部山区、北部7-9℃；其它地区10-12℃。<br/>
+            <p >&nbsp;&nbsp;&nbsp;&nbsp;今天白天，全省晴天转多云；夜里，三门峡、洛阳、南阳三地区阴天转小雨；其它地区多云到阴天。全省偏北风3到4级。最高温度：南部、东南部19-21℃；其它地区15-17℃。最低温度：西部山区、北部7-9℃；其它地区10-12℃。<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;28日，黄河以南地区阴天，大部分地区转小雨，其中南部、东南部地区有中到大雨；其它地区多云转阴，有零星小雨。<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;29日，全省阴天，大部分地区有小雨。<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;30到31日，受南支槽前西南气流影响，全省阴天有小雨，南部、东南部有中到大雨。</p>
-    </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;30到31日，受南支槽前西南气流影响，全省阴天有小雨，南部、东南部有中到大雨。
+            </p>
+         </div>
+    <div class="col-6 col-cell text">气象信息.jpg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showImg1()" ><i class="fa fa-eye"></i></a></div>
 </div>
 </body>
 </html>

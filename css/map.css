@@ -188,11 +188,6 @@ body a
     border-left: 2px dotted rgba(0, 60, 136, .5);
     border-right: 0px;
     border-bottom: 0px;
-    padding: 4px;
-}
-
-.mapOperationPanel p{
-    padding: 4px;
 }
 
 .mapOperationPanel fieldset legend{
@@ -225,8 +220,6 @@ body a
 .mapOperationPanel fieldset a:hover{
     background:rgba(0, 60, 136, .7);
 }
-
-#mapOperation{}
 /*地图操作面板样式 End*/
 
 /*定义侧边栏菜单样式 Begin*/
@@ -466,7 +459,7 @@ ul li.sublinks
     transform: scale(0.5);
     transition: transform .2s ease-out;
     box-sizing: border-box;
-    padding: 6px 3px 4px 7px;
+    padding: 6px 4px 4px 6px;
     box-shadow: 0 1px 3px rgba(255, 255, 255, .6) inset;
 }
 .radius i {
@@ -500,4 +493,75 @@ table{
 table td{
     /*border: 1px solid #000000;*/
     text-align: center;
+}
+.arrow {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    overflow: hidden;
+    display: none;
+}
+.arrow-01 {
+    background: url(../images/arrow.png) -0px -0px no-repeat;
+    _background: none;
+    _padding-left: 0px;
+    _margin-left: -0px;
+    _padding-top: 0px;
+    _margin-top: -0px;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src="../images/arrow.png");
+
+}
+.arrow-02 {
+    background: url(../images/arrow.png) -15px -0px no-repeat;
+    _background: none;
+    _padding-left: 15px;
+    _margin-left: -15px;
+    _padding-top: 0px;
+    _margin-top: -0px;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src="../images/arrow.png");
+}
+.arrow-03 {
+    background: url(../images/arrow.png) -30px -0px no-repeat;
+    _background: none;
+    _padding-left: 30px;
+    _margin-left: -30px;
+    _padding-top: 0px;
+    _margin-top: -0px;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src="../images/arrow.png");
+}
+.arrow-04 {
+    background: url(../images/arrow.png) -45px -0px no-repeat;
+    _background: none;
+    _padding-left: 45px;
+    _margin-left: -45px;
+    _padding-top: 0px;
+    _margin-top: -0px;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src="../images/arrow.png");
+}
+.arrow-05 {
+    background: url(../images/arrow.png) -60px -0px no-repeat;
+    _background: none;
+    _padding-left: 60px;
+    _margin-left: -60px;
+    _padding-top: 0px;
+    _margin-top: -0px;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src="../images/arrow.png");
+}
+.arrow-06 {
+    background: url(../images/arrow.png) -75px -0px no-repeat;
+    _background: none;
+    _padding-left: 75px;
+    _margin-left: -75px;
+    _padding-top: 0px;
+    _margin-top: -0px;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src="../images/arrow.png");
+}
+.arrow-07 {
+    background: url(../images/arrow.png) -90px -0px no-repeat;
+    _background: none;
+    _padding-left: 90px;
+    _margin-left: -90px;
+    _padding-top: 0px;
+    _margin-top: -0px;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src="../images/arrow.png");
 }
