@@ -1683,6 +1683,36 @@ $('.fa-film').click(function () {
         }
     });
 });
+
+//查询周边
+$('.fa-search').click(function(){
+    if(!disasterAnalysis) {
+        disasterAnalysis = $.layer({
+            type: 1,
+            title: '查询灾情周边',
+            area: ['550px', '400px'],
+            border: [0], //去掉默认边框
+            shade: [0], //去掉遮罩
+            closeBtn: [0, true], //去掉默认关闭按钮
+            shift: 'top', //从左动画弹出
+            /*offset: ['', '70%'],*/
+            page: {
+                html: '<iframe src="cxzb/cxzb.html" frameborder="0" style="height:550px;width:400px;"></iframe>'
+                //dom: '#locateSheltersWindow'
+            },
+            success: function(layero){
+                //重新加载列表
+                ;
+            },
+            close: function(index){
+                disasterAnalysis = null;
+            }
+        });
+    }else{
+        ;
+    }
+});
+
 //取消按钮
 $('.fa-close').click(function(){
     $('.radius').removeClass('radius-scale');

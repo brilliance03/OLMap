@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>WebGIS 查询周边</title>
+        <link rel="stylesheet" href="../../css/ele.css">
+        <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+    </head>
+    <body>
+    <div id="cxzb">
+        <div id="page-nav">
+            <ul>
+                <li><a>道路交通状况</a></li>
+                <li><a>水利信息</a></li>
+                <li><a>气象信息</a></li>
+                <li><a>地质信息</a></li>
+            </ul>
+        </div>
+        <div id="container" style="height: 400px">
+            <ul id="text">
+                <li>
+                    <table class="gis-table" >
+                        <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th width="140px;">路段</th>
+                            <th>天气状况</th>
+                            <th>通行情况</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2014-05-06</td>
+                            <td>G6兰（州）至海（石湾）</td>
+                            <td>小雨</td>
+                            <td style="color: #ED6243">受张家寺服务区附近施工影响，道路单幅双向通行</td>
+                        </tr>
+                        <tr>
+                            <td>2014-05-06</td>
+                            <td>G6刘（刘寨柯）兰</td>
+                            <td>小雨</td>
+                            <td>乌鞘岭路段有雾；通行正常</td>
+                        </tr>
+                        <tr>
+                            <td>2014-05-06</td>
+                            <td> G22谗口至榆中段</td>
+                            <td>小雨</td>
+                            <td style="color: #ED6243">受K1779+600&mdash;K1807+631处路面养护施工影响双向通行</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <iframe src="slxx.html"></iframe>
+                </li>
+                <li>
+                    <iframe src="qxxx.html"></iframe>
+                </li>
+                <li>
+                    <iframe src="dzxx.html"></iframe>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--script-->
+    <script src="../../scripts/jquery-1.11.1.min.js"></script>
+    <script type="application/javascript" src="../../scripts/slide.js"></script>
+
+    </body>
+</html>
