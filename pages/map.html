@@ -350,6 +350,57 @@
     </div>
 </div>
 
+<!--查询周边页面-->
+<div class="displayNone" id="pageCxzb" style="width: 500px; padding: 8px">
+    <div class="row">
+        <span class="span-title">灾情名称</span>
+        <input type="text" class="gis-input" id="data_disasterName"/>
+    </div>
+    <div class="row">
+        <span class="span-title">灾情种类</span>
+        <select id="data_resourceTypes" class="gis-select" name="data_resourceType">
+            <option value="">干旱</option>
+            <option value="">洪涝</option>
+            <option value="">冰雹</option>
+        </select>
+    </div>
+    <div class="row">
+        <a class="gis-btn" style="margin-left: 70px;">查询</a>
+    </div>
+    <table class="gis-table">
+        <tr>
+            <th></th>
+            <th>灾害种类</th>
+            <th>灾害发生时间</th>
+        </tr>
+        <tr>
+            <td class="table-icons"><input type="radio" name="slecDisaster" value="0"/></td>
+            <td>洪涝</td>
+            <td>2014-10-09 10:40:40</td>
+        </tr>
+        <tr>
+            <td class="table-icons"><input type="radio" name="slecDisaster" value="1"/></td>
+            <td>干旱</td>
+            <td>2014-07-02 08:21:23</td>
+        </tr>
+        <tr>
+            <td class="table-icons"><input type="radio" name="slecDisaster" value="2"/></td>
+            <td>冰雹</td>
+            <td>2014-03-11 09:42:23</td>
+        </tr>
+        <tr>
+            <td class="table-icons"><input type="radio" name="slecDisaster" value="3"/></td>
+            <td>冰雹</td>
+            <td>2014-02-12 02:20:12</td>
+        </tr>
+        <tr>
+            <td class="table-icons"><input type="radio" name="slecDisaster" value="4"/></td>
+            <td>干旱</td>
+            <td>2013-09-20 12:23:12</td>
+        </tr>
+    </table>
+</div>
+
 <!--灾情图片临时测试-->
 <div id="imgs" style="display:none">
     <img src="data/picture/1.jpg" layer-img="data/picture/1.jpg" alt="灾情图片">
@@ -1360,8 +1411,7 @@ $('.radius').click(function (e) {
 
 //鼠标菜单失去焦点自动隐藏
 $('.radius').blur(function (e) {
-   // alert('123');
-    this.removeClass('radius-scale');
+    $('.radius').removeClass('radius-scale');
 });
 
 function showItem($items, index, e) {
@@ -1697,8 +1747,7 @@ $('.fa-search').click(function(){
             shift: 'top', //从左动画弹出
             /*offset: ['', '70%'],*/
             page: {
-                html: '<iframe src="cxzb/cxzb.html" frameborder="0" style="height:550px;width:400px;"></iframe>'
-                //dom: '#locateSheltersWindow'
+                dom: '#pageCxzb'
             },
             success: function(layero){
                 //重新加载列表
