@@ -177,7 +177,15 @@
             <input type="checkbox" id="chkBaseInfoLayerShow"/>
             <span class="menu-title">基础信息图层</span><br>
             <input type="checkbox" id="chkHiddenTroubleLayerShow"/>
-            <span class="menu-title">地质灾害隐患点图层</span>
+            <span class="menu-title">地质灾害隐患点图层</span>bv
+        </div>
+        <div class="row" id="basicInfoChoosen" style="display: none">
+            <a id="lnkPopulationWinShow" href="javascript:void(0);"><span class="menu-title">人口</span></a><br>
+            <a id="lnkFloorAreaWinShow" href="javascript:void(0);"><span class="menu-title">占地面积 </span></a><br>
+            <a id="lnkArableAreaWinShow" href="javascript:void(0);"><span class="menu-title">耕地面积</span></a><br>
+            <a id="lnkGrassLandWinShow" href="javascript:void(0);"><span class="menu-title">草场面积</span></a><br>
+            <a id="lnkGDPWinShow" href="javascript:void(0);"><span class="menu-title">生产总值</span></a><br>
+            <a id="lnkAltitudeWinShow" href="javascript:void(0);"><span class="menu-title">海拔高度</span></a><br>
         </div>
     </div>
     <div class="right-menu" data-url="ztt">
@@ -684,6 +692,8 @@ $("#chkSheltersLayerShow").click(function(){
 });//避难场所图层
 $("#chkBaseInfoLayerShow").click(function(){
     layers.featureLayers.baseInfo.setVisible($(this).is(':checked') ? true:false);
+    //显示基础信息图层的时候，显示统计指标选项
+    $('#basicInfoChoosen').css('display',$(this).is(':checked') ? 'block':'none');
 });//基础信息图层
 $("#chkExpertLayerShow").click(function(){
     layers.featureLayers.expert.setVisible($(this).is(':checked') ? true:false);
@@ -694,6 +704,99 @@ $("#chkRescueTeamLayerShow").click(function(){
 $("#chkMessengerLayerShow").click(function(){
     layers.featureLayers.messenger.setVisible($(this).is(':checked') ? true:false);
 });//灾害信息员信息图层
+
+
+//定义基础信息侧边栏统计项目链接
+$('#lnkPopulationWinShow').click(function(){
+    $.layer({
+        type: 1,
+        title: '人口统计信息',
+        area: ['500px', '300px'],
+        border: [0], //去掉默认边框
+        shade: [0], //去掉遮罩
+        closeBtn: [0, true], //去掉默认关闭按钮
+        shift: 'left', //从左动画弹出
+        page: {
+            html: '<div><h1>人口统计信息</h1></div>'
+            //dom: '#locateSheltersWindow'
+        }
+    });
+});//人口
+$('#lnkFloorAreaWinShow').click(function(){
+    $.layer({
+        type: 1,
+        title: '占地面积统计信息',
+        area: ['500px', '300px'],
+        border: [0], //去掉默认边框
+        shade: [0], //去掉遮罩
+        closeBtn: [0, true], //去掉默认关闭按钮
+        shift: 'left', //从左动画弹出
+        page: {
+            html: '<div><h1>占地面积统计信息</h1></div>'
+            //dom: '#locateSheltersWindow'
+        }
+    });
+});//占地面积
+$('#lnkArableAreaWinShow').click(function(){
+    $.layer({
+        type: 1,
+        title: '耕地面积统计信息',
+        area: ['500px', '300px'],
+        border: [0], //去掉默认边框
+        shade: [0], //去掉遮罩
+        closeBtn: [0, true], //去掉默认关闭按钮
+        shift: 'left', //从左动画弹出
+        page: {
+            html: '<div><h1>耕地面积统计信息</h1></div>'
+            //dom: '#locateSheltersWindow'
+        }
+    });
+});//耕地面积
+$('#lnkGrassLandWinShow').click(function(){
+    $.layer({
+        type: 1,
+        title: '草场面积统计信息',
+        area: ['500px', '300px'],
+        border: [0], //去掉默认边框
+        shade: [0], //去掉遮罩
+        closeBtn: [0, true], //去掉默认关闭按钮
+        shift: 'left', //从左动画弹出
+        page: {
+            html: '<div><h1>草场面积统计信息</h1></div>'
+            //dom: '#locateSheltersWindow'
+        }
+    });
+});//草场面积
+$('#lnkGDPWinShow').click(function(){
+    $.layer({
+        type: 1,
+        title: '生产总值统计信息',
+        area: ['500px', '300px'],
+        border: [0], //去掉默认边框
+        shade: [0], //去掉遮罩
+        closeBtn: [0, true], //去掉默认关闭按钮
+        shift: 'left', //从左动画弹出
+        page: {
+            html: '<div><h1>生产总值统计信息</h1></div>'
+            //dom: '#locateSheltersWindow'
+        }
+    });
+});//生产总值
+$('#lnkAltitudeWinShow').click(function(){
+    $.layer({
+        type: 1,
+        title: '海拔高度统计信息',
+        area: ['500px', '300px'],
+        border: [0], //去掉默认边框
+        shade: [0], //去掉遮罩
+        closeBtn: [0, true], //去掉默认关闭按钮
+        shift: 'left', //从左动画弹出
+        page: {
+            html: '<div><h1>海拔高度统计信息</h1></div>'
+            //dom: '#locateSheltersWindow'
+        }
+    });
+});//海拔高度
 
 //定义标点定位按钮展开菜单事件
 $('.dropdown').mouseenter(function(){
